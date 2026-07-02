@@ -34,6 +34,24 @@
       <br />
       <strong>이름</strong>
       <br />
+      <sub>Frontend</sub>
+      <br />
+      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+    </td>
+    <td align="center">
+      <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
+      <br />
+      <strong>이름</strong>
+      <br />
+      <sub>Frontend</sub>
+      <br />
+      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+    </td>
+    <td align="center">
+      <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
+      <br />
+      <strong>이름</strong>
+      <br />
       <sub>Backend</sub>
       <br />
       <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
@@ -43,25 +61,7 @@
       <br />
       <strong>이름</strong>
       <br />
-      <sub>Backend / AI</sub>
-      <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
-    </td>
-    <td align="center">
-      <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
-      <br />
-      <strong>이름</strong>
-      <br />
       <sub>Backend</sub>
-      <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
-    </td>
-    <td align="center">
-      <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
-      <br />
-      <strong>이름</strong>
-      <br />
-      <sub>Backend / AI</sub>
       <br />
       <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
     </td>
