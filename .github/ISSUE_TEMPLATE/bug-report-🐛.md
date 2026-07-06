@@ -4,6 +4,7 @@ about: 프로젝트 테스트 중 발견한 에러나 버그를 제보합니다.
 title: ''
 labels: "\U0001F41BFix"
 assignees: ''
+type: Bug
 
 ---
 
@@ -20,23 +21,3 @@ assignees: ''
 
 ## 🎯 예상되는 원인 (선택)
 - 본인이 생각하는 에러의 원인이 있다면 자유롭게 적어주세요.
-
-**Expected behavior**
-A clear and concise description of what you expected to happen.
-
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
-
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
