@@ -2,7 +2,7 @@
 name: "Feature Request \U0001F680"
 about: 새로운 기능 구현이나 아이디어를 제안할 때 사용합니다.
 title: ''
-labels: enhancement
+labels: ''
 assignees: ''
 type: Feature
 
