@@ -1,1 +1,102 @@
 <!-- 전공 선택하기 - 비교 • 선택 (전공 체험을 바탕으로 공부해볼 전공을 선택해볼까요?) -->
+{% load static %}
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>전공 선택하기</title>
+
+    <link rel="stylesheet" href="{% static 'css/confirm.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700;800&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <main class="comfirmPage">
+      <!-- 헤더 -->
+      <header class="pageHeader">
+        <span class="material-symbols-outlined backIcon">
+          arrow_back_ios_new
+        </span>
+
+        <h1 class="pageTitle">탐색학기</h1>
+      </header>
+
+      <!-- 현재 단계 -->
+      <section class="progressSection">
+        <div class="progressBar">
+          <div class="progressLine active"></div>
+          <div class="progressLine active"></div>
+
+          <div class="progressStep">
+            <span>1</span>
+          </div>
+
+          <div class="progressStep">
+            <span>2</span>
+          </div>
+
+          <div class="progressStep active">
+            <span>3</span>
+          </div>
+        </div>
+
+        <div class="progressLabel">
+          <span> 첫번째 전공 체험 </span>
+
+          <span> 두번째 전공 체험 </span>
+
+          <span class="active"> 비교·선택 </span>
+        </div>
+      </section>
+
+      <!-- 페이지 설명 -->
+      <section class="description">
+        <p>
+          전공 체험을 바탕으로<br />
+          공부해볼
+          <strong> 전공을 선택해볼까요? </strong>
+        </p>
+      </section>
+
+      <!-- 전공 카드 리스트 -->
+      <section class="majorList">
+        {% for major in majors %}
+
+        <article class="majorCard">
+          <div class="majorHeader">
+            <h2 class="majorName">{{ major.name }}</h2>
+
+            <span class="selectedBadge"> 선택됨 </span>
+          </div>
+
+          <div class="classInfo">
+            <strong> 체험한 수업 </strong>
+
+            <p>{{ major.className }}</p>
+          </div>
+        </article>
+
+        {% endfor %}
+      </section>
+
+      <!-- CTA 버튼 -->
+      <button class="startButton">이 전공으로 시작하기</button>
+    </main>
+    <script src="{% static 'js/confirm.js' %}"></script>
+  </body>
+</html>
