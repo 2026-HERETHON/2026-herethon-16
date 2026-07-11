@@ -1,4 +1,5 @@
 <!-- 탐색 학기 Flow 첫 번째 화면 -->
+{% load static %}
 <!doctype html>
 <html lang="ko">
   <head>
@@ -10,7 +11,7 @@
 
     <title>탐색학기</title>
 
-    <link rel="stylesheet" href="../static/css/intro.css" />
+    <link rel="stylesheet" href="{% static 'css/intro.css' %}" />
 
     <link
       rel="stylesheet"
@@ -36,13 +37,13 @@
         </p>
 
         <div class="actionArea">
-          <button class="nextButton">다음으로</button>
+          <button class="nextButton" data-next-url="{% url 'select1' %}">다음으로</button>
 
           <p class="guideText">질문 3개 · 약 1분</p>
         </div>
       </main>
     </div>
 
-    <script src="../static/js/intro.js"></script>
+    <script src="{% static 'js/intro.js' %}"></script>
   </body>
 </html>

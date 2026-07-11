@@ -1,4 +1,5 @@
 <!-- 선택 2 - 관심 있는 활동 (어떤 일을 해보고 싶나요?) -->
+{% load static %}
 <!doctype html>
 <html lang="ko">
   <head>
@@ -10,7 +11,7 @@
 
     <title>잇대</title>
 
-    <link rel="stylesheet" href="../static/css/select.css" />
+    <link rel="stylesheet" href="{% static 'css/select.css' %}" />
 
     <link
       rel="stylesheet"
@@ -73,10 +74,10 @@
 
       <!-- 버튼 -->
       <footer class="bottomArea">
-        <button class="nextButton">결과 받아보기</button>
+        <button class="nextButton" data-next-url="{% url 'select3' %}">결과 받아보기</button>
       </footer>
     </div>
 
-    <script src="../static/js/select2.js"></script>
+    <script src="{% static 'js/select2.js' %}"></script>
   </body>
 </html>

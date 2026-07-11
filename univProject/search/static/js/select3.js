@@ -38,7 +38,7 @@ nextButton.addEventListener("click", () => {
   console.log(selectedOptions.map((card) => card.innerText));
 
   // 다음 페이지 이동
-  window.location.href = "./loading.html";
+  window.location.href = nextButton.dataset.nextUrl;
 });
 
 // 선택 개수가 바뀔 때마다 버튼 스타일 변경

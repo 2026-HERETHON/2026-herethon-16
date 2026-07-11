@@ -1,4 +1,5 @@
 <!-- 선택 1 - 해온 경험 (가장 익숙한 경험은 무엇인가요?) -->
+{% load static %}
 <!doctype html>
 <html lang="ko">
   <head>
@@ -10,7 +11,7 @@
 
     <title>잇대</title>
 
-    <link rel="stylesheet" href="../static/css/select.css" />
+    <link rel="stylesheet" href="{% static 'css/select.css' %}" />
 
     <link
       rel="stylesheet"
@@ -77,10 +78,10 @@
 
       <!-- 버튼 -->
       <footer class="bottomArea">
-        <button class="nextButton">다음으로</button>
+        <button class="nextButton" data-next-url="{% url 'select2' %}">다음으로</button>
       </footer>
     </div>
 
-    <script src="../static/js/select1.js"></script>
+    <script src="{% static 'js/select1.js' %}"></script>
   </body>
 </html>
