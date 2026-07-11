@@ -1,6 +1,5 @@
 <!-- 전공 선택하기 - 비교 • 선택 (전공 체험을 바탕으로 공부해볼 전공을 선택해볼까요?) -->
 {% load static %}
-
 <!doctype html>
 <html lang="ko">
   <head>
@@ -26,45 +25,49 @@
   </head>
 
   <body>
+    <!-- 헤더 -->
+    <header class="pageHeader">
+      <!-- 이전 버튼 -->
+      <span class="material-symbols-outlined backIcon">
+        arrow_back_ios_new
+      </span>
+
+      <h1 class="pageTitle">탐색학기</h1>
+    </header>
+
+    <!-- 현재 단계 -->
+    <section class="progressSection">
+      <div class="progressContainer">
+        <!-- 첫 번째 원 -->
+        <div class="progressStep">
+          <span>1</span>
+        </div>
+
+        <!-- 선 -->
+        <div class="progressLine active"></div>
+
+        <!-- 두 번째 원 -->
+        <div class="progressStep">
+          <span>2</span>
+        </div>
+
+        <!-- 선 -->
+        <div class="progressLine active"></div>
+
+        <!-- 세 번째 원 -->
+        <div class="progressStep active">
+          <span>3</span>
+        </div>
+      </div>
+
+      <div class="progressLabels">
+        <span> 첫번째 전공 체험 </span>
+        <span> 두번째 전공 체험 </span>
+        <span class="active"> 비교·선택 </span>
+      </div>
+    </section>
+
     <main class="comfirmPage">
-      <!-- 헤더 -->
-      <header class="pageHeader">
-        <span class="material-symbols-outlined backIcon">
-          arrow_back_ios_new
-        </span>
-
-        <h1 class="pageTitle">탐색학기</h1>
-      </header>
-
-      <!-- 현재 단계 -->
-      <section class="progressSection">
-        <div class="progressBar">
-          <div class="progressLine active"></div>
-          <div class="progressLine active"></div>
-
-          <div class="progressStep">
-            <span>1</span>
-          </div>
-
-          <div class="progressStep">
-            <span>2</span>
-          </div>
-
-          <div class="progressStep active">
-            <span>3</span>
-          </div>
-        </div>
-
-        <div class="progressLabel">
-          <span> 첫번째 전공 체험 </span>
-
-          <span> 두번째 전공 체험 </span>
-
-          <span class="active"> 비교·선택 </span>
-        </div>
-      </section>
-
-      <!-- 페이지 설명 -->
       <section class="description">
         <p>
           전공 체험을 바탕으로<br />
