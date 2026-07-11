@@ -29,7 +29,7 @@ def login(request):
             return redirect('onboarding')
         else: 
             print('로그인 실패')
-            errorMessage = "아이디 또는 비밀번호가 잘못되었습니다."  # 에러 메시지 설정
+            errorMessage = "아이디 또는 비밀번호가 잘못되었습니다." 
             return render(request, 'login.html', {'error_message': errorMessage})
     else:
         return render(request, 'login.html')
