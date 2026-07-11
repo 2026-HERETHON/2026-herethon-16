@@ -15,26 +15,17 @@ button {
   background: none;
 }
 
-.experiencePage {
-  width: 100vw;
-  margin: 0 auto;
-  padding: 25px 30px 48px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
 /* 헤더 */
 .pageHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 20px 30px;
 }
 
 .backButton {
   width: 24px;
   height: 24px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -43,7 +34,6 @@ button {
 .pageTitle {
   flex: 1;
   text-align: center;
-
   font-size: 22px;
   font-weight: 800;
   line-height: 120%;
@@ -66,36 +56,31 @@ button {
 
 /* 전체 페이지 */
 .experienceContent {
-  width: 333px;
-
-  margin: 7px auto 0;
-
+  width: 100vw;
+  margin: 0;
+  padding: 15px 30px 59px;
   display: flex;
   flex-direction: column;
-
-  gap: 72px;
 }
 
 /* 체험 수업 안내 */
 .introSection {
   display: flex;
   flex-direction: column;
-
   gap: 6px;
+  padding-top: 15px;
+  padding-bottom: 48px;
 }
 
 .introTitle {
   font-size: 20px;
   font-weight: 700;
-
   color: #20cdb1;
-
   line-height: 120%;
 }
 
 .introDescription {
   font-size: 16px;
-
   line-height: 120%;
 }
 
@@ -103,14 +88,12 @@ button {
 .questionSection {
   display: flex;
   flex-direction: column;
-
   gap: 46px;
 }
 
 .questionItem {
   display: flex;
   flex-direction: column;
-
   gap: 16px;
 }
 
@@ -118,7 +101,6 @@ button {
 .questionHeader {
   display: flex;
   flex-direction: column;
-
   gap: 7px;
 }
 
@@ -131,7 +113,6 @@ button {
 
 .questionDescription {
   font-size: 16px;
-
   line-height: 120%;
 }
 
@@ -139,7 +120,6 @@ button {
 .answerBox {
   display: flex;
   flex-direction: column;
-
   gap: 7px;
 }
 
@@ -163,11 +143,8 @@ button {
 /* 입력한 글자수 / 글자수 제한 */
 .characterCount {
   text-align: right;
-
   font-size: 12px;
-
   font-weight: 500;
-
   color: rgba(23, 33, 30, 0.6);
 }
 
@@ -175,10 +152,11 @@ button {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 72px;
   gap: 8px;
 }
 
-/* 전공 체험 완료 버튼 (다음 페이지로 이동) */
+/* 전공 체험 완료 CTA 버튼 (다음 페이지로 이동) */
 .completeButton {
   width: 334px;
   padding: 16px;
@@ -190,6 +168,7 @@ button {
   font-weight: 600;
 }
 
+/* 전공 체험 완료 CTA 버튼 - 활성화 */
 .completeButton.active {
   width: 334px;
   padding: 16px;

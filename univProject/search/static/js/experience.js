@@ -1,5 +1,11 @@
+const backIcon = document.querySelector(".material-symbols-outlined.backIcon"); // 이전 버튼
 const answerInputs = document.querySelectorAll(".answerInput"); // 사용자 입력값
 const completeButton = document.querySelector(".completeButton"); // "첫 전공 체험 시작하기" 버튼
+
+// 이전 버튼 (이전 페이지로 이동)
+backIcon.addEventListener("click", () => {
+  window.history.back();
+});
 
 // 글자수 세기
 function updateCharacterCount(input) {
@@ -42,4 +48,3 @@ answerInputs.forEach((input) => {
 completeButton.addEventListener("click", () => {
   window.location.href = completeButton.dataset.nextUrl;
 });
-
