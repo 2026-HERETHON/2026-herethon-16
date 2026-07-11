@@ -1,6 +1,5 @@
 <!-- 추천 전공 - 1 -->
 {% load static %}
-
 <!doctype html>
 <html lang="ko">
   <head>
@@ -26,44 +25,49 @@
   </head>
 
   <body>
+    <!-- 헤더 -->
+    <header class="pageHeader">
+      <!-- 이전 버튼 -->
+      <span class="material-symbols-outlined backIcon">
+        arrow_back_ios_new
+      </span>
+
+      <h1 class="pageTitle">탐색학기</h1>
+    </header>
+
+    <!-- 현재 단계 -->
+    <section class="progressSection">
+      <div class="progressContainer">
+        <!-- 첫 번째 원 -->
+        <div class="progressStep in">
+          <span>1</span>
+        </div>
+
+        <!-- 선 -->
+        <div class="progressLine"></div>
+
+        <!-- 두 번째 원 -->
+        <div class="progressStep">
+          <span>2</span>
+        </div>
+
+        <!-- 선 -->
+        <div class="progressLine"></div>
+
+        <!-- 세 번째 원 -->
+        <div class="progressStep">
+          <span>3</span>
+        </div>
+      </div>
+
+      <div class="progressLabels">
+        <span class="progressSpan in"> 첫번째 전공 체험 </span>
+        <span class="progressSpan before"> 두번째 전공 체험 </span>
+        <span class="progressSpan before"> 비교·선택 </span>
+      </div>
+    </section>
+
     <main class="recommendPage">
-      <!-- 헤더 -->
-      <header class="pageHeader">
-        <span class="material-symbols-outlined backIcon">
-          arrow_back_ios_new
-        </span>
-
-        <h1 class="pageTitle">탐색학기</h1>
-      </header>
-
-      <!-- 현재 단계 -->
-      <section class="progressSection">
-        <div class="progressBar">
-          <div class="progressLine active"></div>
-          <div class="progressLine"></div>
-
-          <div class="progressStep active">
-            <span>1</span>
-          </div>
-
-          <div class="progressStep">
-            <span>2</span>
-          </div>
-
-          <div class="progressStep">
-            <span>3</span>
-          </div>
-        </div>
-
-        <div class="progressLabel">
-          <span class="active"> 첫번째 전공 체험 </span>
-
-          <span> 두번째 전공 체험 </span>
-
-          <span> 비교·선택 </span>
-        </div>
-      </section>
-
       <!-- 추천 전공 카드 -->
       <section class="majorCard">
         <img
