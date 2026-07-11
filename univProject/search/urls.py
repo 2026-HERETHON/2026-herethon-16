@@ -7,4 +7,6 @@ urlpatterns = [
     path("select2/", views.select2, name="select2"),
     path("select3/", views.select3, name="select3"),
     path("loading/", views.loading, name="loading"),
+    path('submit/', views.submitAnswer, name='submitAnswer'),
+    path('result/', views.result_view, name='result'),
 ]

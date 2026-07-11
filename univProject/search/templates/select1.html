@@ -60,21 +60,10 @@
 
       <!-- 선택지 -->
       <main class="optionList">
-        <button class="optionCard">일정·문서·비용 등을 정리함</button>
-
-        <button class="optionCard">모임이나 행사를 준비하며 조율함</button>
-
-        <button class="optionCard">
-          글·사진·후기 등 정보를 알리고 반응을 살핌
-        </button>
-
-        <button class="optionCard">사람들에게 필요한 정보를 알려줌</button>
-
-        <button class="optionCard">
-          상품·가격·후기를 비교하고 정보를 정리함
-        </button>
-
-        <button class="optionCard">앱/웹을 사용하며 오류·불편을 발견함</button>
+        {% csrf_token %}
+        {% for choice in choices %}
+          <button type="button" name="choice_id" value="{{ choice.id }}" class="optionCard">{{ choice.text }}</button>
+        {% endfor %}
       </main>
 
       <footer class="bottomArea">
