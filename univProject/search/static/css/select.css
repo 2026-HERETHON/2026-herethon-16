@@ -1,3 +1,4 @@
+/* 선택 1~3 화면 CSS */
 * {
   margin: 0;
   padding: 0;
@@ -63,41 +64,48 @@ button {
   margin: 27px 0;
 }
 
+/* 선택1 화면의 상단 진행도 바 */
 .progressFill33 {
   width: 33%;
   height: 100%;
   background: #4dd7c1;
 }
 
+/* 선택2 화면의 상단 진행도 바 */
 .progressFill66 {
   width: 66%;
   height: 100%;
   background: #4dd7c1;
 }
 
+/* 선택3 화면의 상단 진행도 바 */
 .progressFill100 {
   width: 100%;
   height: 100%;
   background: #4dd7c1;
 }
 
+/* 선택1,2 화면 */
 .titleArea {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
+/* 선택3 화면 */
 .titleArea3 {
   display: flex;
   flex-direction: column;
 }
 
+/* 선택1,2 화면 */
 .title {
   font-size: 22px;
   line-height: 140%;
   font-weight: 600;
 }
 
+/* 선택3 화면 */
 .title3 {
   font-size: 22px;
   line-height: 140%;
@@ -110,12 +118,14 @@ button {
   font-weight: 800;
 }
 
+/* 선택1,2 화면 */
 .description {
   font-size: 16px;
   font-weight: 500;
   line-height: 120%;
 }
 
+/* 선택3 화면 */
 .description3 {
   font-size: 16px;
   font-weight: 500;
@@ -123,17 +133,21 @@ button {
   margin-bottom: 20px;
 }
 
+/* 선택1,2 화면 */
 .limitText {
   margin-top: 19px;
   font-size: 14px;
   font-weight: 300;
 }
+
+/* 선택3 화면 */
 .limitText3 {
   font-size: 14px;
   font-weight: 300;
   margin-bottom: 6px;
 }
 
+/* 선택1,2 화면 */
 .optionList {
   margin: 12px 30px 53px;
   display: flex;
@@ -141,6 +155,7 @@ button {
   gap: 12px;
 }
 
+/* 선택3 화면 */
 .optionList3 {
   margin: 2px 30px 60px;
   display: flex;
@@ -148,6 +163,7 @@ button {
   gap: 12px;
 }
 
+/* 설문 선택 버튼 (선택 안 됨) */
 .optionCard {
   width: 100%;
   min-height: 64px;
@@ -162,6 +178,7 @@ button {
   transition: 0.2s;
 }
 
+/* 설문 선택 버튼 (선택됨) */
 .optionCard.selected {
   background: rgba(134, 255, 233, 0.3);
   border-color: #86ffe9;
@@ -172,6 +189,7 @@ button {
   margin: auto 30px 44px;
 }
 
+/* CTA 버튼 비활성화 */
 .nextButton {
   width: 100%;
   height: 56px;
@@ -183,6 +201,7 @@ button {
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
 }
 
+/* CTA 버튼 활성화 */
 .nextButton.active {
   width: 100%;
   height: 56px;

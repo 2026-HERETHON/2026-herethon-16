@@ -11,6 +11,7 @@
 
     <title>탐색학기</title>
 
+    <!-- static 폴더에서 css 파일 불러오기 -->
     <link rel="stylesheet" href="{% static 'css/intro.css' %}" />
 
     <link
@@ -37,6 +38,7 @@
         </p>
 
         <div class="actionArea">
+          <!-- select1.html로 이동하는 버튼 (선택1 화면으로 이동) -->
           <button class="nextButton" data-next-url="{% url 'select1' %}">다음으로</button>
 
           <p class="guideText">질문 3개 · 약 1분</p>
@@ -44,6 +46,7 @@
       </main>
     </div>
 
+    <!-- static 폴더에서 js 파일 불러오기 -->
     <script src="{% static 'js/intro.js' %}"></script>
   </body>
 </html>

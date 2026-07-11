@@ -11,6 +11,7 @@
 
     <title>잇대</title>
 
+    <!-- static 폴더에서 css 파일 불러오기 -->
     <link rel="stylesheet" href="{% static 'css/select.css' %}" />
 
     <link
@@ -72,12 +73,13 @@
         <button class="optionCard">앱을 사용하고 오류와 불편 기록해보기</button>
       </main>
 
-      <!-- 버튼 -->
       <footer class="bottomArea">
+        <!-- select3.html로 이동하는 CTA 버튼 (선택3 화면으로 이동) -->
         <button class="nextButton" data-next-url="{% url 'select3' %}">결과 받아보기</button>
       </footer>
     </div>
 
+    <!-- static 폴더에서 js 파일 불러오기 -->
     <script src="{% static 'js/select2.js' %}"></script>
   </body>
 </html>

@@ -1,9 +1,12 @@
+// 선택 2 - 관심 있는 활동 (어떤 일을 해보고 싶나요?)
 const optionCards = document.querySelectorAll(".optionCard");
 const backIcon = document.querySelector(".material-symbols-outlined.backIcon");
 const nextButton = document.querySelector(".nextButton");
 
+// 사용자가 선택한 옵션 저장
 const selectedOptions = [];
 
+// 설문 선택
 optionCards.forEach((card) => {
   card.addEventListener("click", () => {
     const index = selectedOptions.indexOf(card);
@@ -27,10 +30,12 @@ optionCards.forEach((card) => {
   });
 });
 
+// 이전 버튼 (이전 페이지로 이동)
 backIcon.addEventListener("click", () => {
   window.history.back();
 });
 
+// select3.html로 이동하는 CTA 버튼 (선택3 화면으로 이동)
 nextButton.addEventListener("click", () => {
   // CTA 비활성 상태일 경우, 클릭 이벤트 무효화
   if (selectedOptions.length === 0) return;
