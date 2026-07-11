@@ -1,0 +1,40 @@
+@import url(./setting.css);
+
+h4{
+    text-align: center;
+    font-weight: 500;
+}
+img{
+    width: 271px;
+    height: 136px;
+    margin-top: 240px;
+}
+.container{
+    align-items: center;
+}
+
+button{
+    background-color: #4DD7C1;
+    width: 334px;
+    height: 54px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    border: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 700;
+    box-shadow: 0px 2px 7.3px 0px rgba(0, 0, 0, 0.10);
+}
+.bot{
+    margin-top: 180px;
+    text-align: center;
+}
+.login{
+    font-size: 14px;
+}
+.login > a{
+    color: #4DD7C1;
+    text-decoration: none;
+    font-weight: 700;
+}

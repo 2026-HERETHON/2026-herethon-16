@@ -1,0 +1,52 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+
+# Create your views here.
+def signUp(request):
+    if request.method=='POST':
+        if request.POST['password'] == request.POST['repeat']:
+            newUser = User.objects.create_user(
+                username=request.POST['username'], 
+                password=request.POST['password']
+            )				
+            print('회원가입 성공')
+            return redirect('onboarding')
+        else:
+            print('회원가입 실패')
+            return render(request, 'signup.html')
+    else :
+        return render(request, 'signup.html')
+    
+def login(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password = password)
+        if user is not None:
+            auth_login(request, user)
+            print('로그인 성공')
+            return redirect('onboarding')
+        else: 
+            print('로그인 실패')
+            errorMessage = "아이디 또는 비밀번호가 잘못되었습니다."  # 에러 메시지 설정
+            return render(request, 'login.html', {'error_message': errorMessage})
+    else:
+        return render(request, 'login.html')
+    
+def logout(request):
+    auth_logout(request)
+    print('로그아웃 성공')
+    return redirect('onboarding')
+
+
+# 🌟 인트로 화면 보여주는 함수
+def intro(request):
+    return render(request, 'intro.html')
+
+# 🌟 랜딩 화면 보여주는 함수
+def landing(request):
+    return render(request, 'landing.html')
+
+def main(request):
+    return render(request, 'main.html')
