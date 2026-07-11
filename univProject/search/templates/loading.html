@@ -1,4 +1,5 @@
 <!-- 로딩 화면 -->
+{% load static %}
 <!doctype html>
 <html lang="ko">
   <head>
@@ -7,7 +8,7 @@
 
     <title>Loading</title>
 
-    <link rel="stylesheet" href="../static/css/loading.css" />
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=SF+Pro:wght@600&display=swap"
@@ -20,10 +21,10 @@
 
   <body>
     <main>
-      <img class="logo" src="../static/assets/logo.svg" alt="로고" />
+      <img class="logo" src="{% static 'assets/logo.svg' %}" alt="로고" />
 
       <p class="loadingMessage">추천 전공을 정리하고 있어요</p>
     </main>
-    <script src="../static/js/loading.js"></script>
+    <script src="{% static 'js/loading.js' %}"></script>
   </body>
 </html>
