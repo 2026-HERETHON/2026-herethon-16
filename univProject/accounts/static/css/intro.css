@@ -1,0 +1,14 @@
+@import url(./setting.css);
+
+.container {
+    background-color: #17211E;
+    align-items: center;
+
+}
+
+img {
+    object-fit: cover;
+    width: 271px;
+    height: 136px;
+    margin-top: 240px;
+}

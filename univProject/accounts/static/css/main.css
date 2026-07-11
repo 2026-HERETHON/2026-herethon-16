@@ -1,0 +1,15 @@
+@import url(./setting.css);
+
+h4{
+    text-align: center;
+    font-weight: 500;
+}
+img{
+    width: 271px;
+    height: 136px;
+    margin-top: 240px;
+}
+.container{
+    align-items: center;
+}
+

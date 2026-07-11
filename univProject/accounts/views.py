@@ -38,3 +38,15 @@ def logout(request):
     auth_logout(request)
     print('로그아웃 성공')
     return redirect('onboarding')
+
+
+# 🌟 인트로 화면 보여주는 함수
+def intro(request):
+    return render(request, 'intro.html')
+
+# 🌟 랜딩 화면 보여주는 함수
+def landing(request):
+    return render(request, 'landing.html')
+
+def main(request):
+    return render(request, 'main.html')
