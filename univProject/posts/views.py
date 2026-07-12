@@ -1,59 +1,88 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
-from .models import Post, Comment, PostLike
+from django.shortcuts import render, redirect, get_object_or_404
 
-
-def list(request):
-    posts = Post.objects.select_related('author').annotate(
-        like_count=Count('likes', distinct=True),
-        comment_count=Count('comments', distinct=True),
-    )
-    return render(request, 'posts/list.html', {'posts': posts})
+from .models import Post, PostLike, PostCheer, Comment
 
 
 @login_required
-def create(request):
+def post_list(request):
+    """내 전공 게시판만 보여줌"""
+    major = request.user.profile.selectedMajor
+    posts = Post.objects.filter(major=major).select_related('author').order_by('-created_at')
+    return render(request, 'posts/post_list.html', {'posts': posts, 'major': major})
+
+
+@login_required
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    comments = post.comments.filter(parent=None).select_related('author').order_by('created_at')
+
+    has_liked = post.likes.filter(user=request.user).exists()
+    has_cheered = post.cheers.filter(user=request.user).exists()
+
+    context = {
+        'post': post,
+        'comments': comments,
+        'has_liked': has_liked,
+        'has_cheered': has_cheered,
+    }
+    return render(request, 'posts/post_detail.html', context)
+
+
+@login_required
+def post_create(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        Post.objects.create(title=title, content=content, author=request.user)
-        return redirect('posts:list')
-    return render(request, 'posts/create.html')
 
+        post = Post.objects.create(
+            author=request.user,
+            major=request.user.profile.selectedMajor,  # 글쓴이 전공 자동 지정
+            title=title,
+            content=content,
+        )
+        return redirect('post_detail', post_id=post.id)
 
-def detail(request, id):
-    post = get_object_or_404(
-        Post.objects.select_related('author'), id=id
-    )
-
-    view_session_key = f'viewed_post_{id}'
-    if not request.session.get(view_session_key, False):
-        post.views += 1
-        post.save()
-        request.session[view_session_key] = True
-
-    is_liked = False
-    if request.user.is_authenticated:
-        is_liked = PostLike.objects.filter(post=post, user=request.user).exists()
-
-    comments = post.comments.filter(parent=None).select_related('author').prefetch_related(
-        'replies__author'
-    )
-
-    return render(request, 'posts/detail.html', {
-        'post': post,
-        'is_liked': is_liked,
-        'comments': comments,
-    })
+    return render(request, 'posts/post_form.html')
 
 
 @login_required
-def update(request, id):
-    post = get_object_or_404(Post, id=id, author=request.user)  # 작성자 본인만 수정 가능
-    if request.method == 'POST':
-        post.title = request.POST.get('title')
-        post.content = request.POST.get('content')
-        post.save()
-        return redirect('posts:detail', id)
-    return
+def post_like(request, post_id):
+    if request.method != 'POST':
+        return redirect('post_detail', post_id=post_id)
+
+    post = get_object_or_404(Post, id=post_id)
+    like, created = PostLike.objects.get_or_create(user=request.user, post=post)
+    if not created:
+        like.delete()
+
+    return redirect('post_detail', post_id=post_id)
+
+
+@login_required
+def post_cheer(request, post_id):
+    if request.method != 'POST':
+        return redirect('post_detail', post_id=post_id)
+
+    post = get_object_or_404(Post, id=post_id)
+    PostCheer.objects.get_or_create(user=request.user, post=post)
+
+    return redirect('post_detail', post_id=post_id)
+
+
+@login_required
+def comment_create(request, post_id):
+    if request.method != 'POST':
+        return redirect('post_detail', post_id=post_id)
+
+    post = get_object_or_404(Post, id=post_id)
+    content = request.POST.get('content')
+    parent_id = request.POST.get('parent_id')
+
+    Comment.objects.create(
+        post=post,
+        author=request.user,
+        content=content,
+        parent_id=parent_id if parent_id else None,
+    )
+    return redirect('post_detail', post_id=post_id)

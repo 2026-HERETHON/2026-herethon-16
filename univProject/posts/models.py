@@ -7,6 +7,9 @@ class Post(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts'
     )
+    major = models.ForeignKey(
+        'search.Major', on_delete=models.CASCADE, related_name='posts'
+    )
     title = models.CharField(max_length=200)
     content = models.TextField()
     views = models.IntegerField(default=0)
@@ -23,6 +26,10 @@ class Post(models.Model):
     def comment_count(self):
         return self.comments.count()
 
+    @property
+    def cheer_count(self):
+        return self.cheers.count()
+
 
 class PostLike(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
@@ -30,7 +37,17 @@ class PostLike(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('post', 'user') 
+        unique_together = ('post', 'user')
+
+
+class PostCheer(models.Model):
+    """'응원해요' 버튼 - 좋아요와 별개의 응원 반응"""
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='cheers')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('post', 'user')
 
 
 class Comment(models.Model):
