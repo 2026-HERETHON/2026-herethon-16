@@ -80,7 +80,7 @@
       <section class="majorList">
         {% for major in majors %}
 
-        <article class="majorCard">
+        <article class="majorCard" data-major-id="{{ forloop.counter0 }}">
           <div class="majorHeader">
             <h2 class="majorName">{{ major.name }}</h2>
 

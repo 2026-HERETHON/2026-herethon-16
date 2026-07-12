@@ -46,5 +46,20 @@ answerInputs.forEach((input) => {
 
 // 전공 체험 완료 버튼 -> 다음 페이지로 이동
 completeButton.addEventListener("click", () => {
+  // 사용자의 답변을 저장할 배열
+  const answers = [];
+
+  // answerInputs 배열에 사용자 답변 추가
+  answerInputs.forEach((input) => {
+    answers.push({
+      questionId: Number(input.dataset.questionId),
+      answer: input.value.trim(),
+    });
+  });
+
+  // 사용자 답변을 log로 출력 (추후 API 연동 시 수정할 예정)
+  console.log("사용자 답변:", answers);
+
+  // 다음 페이지로 이동
   window.location.href = completeButton.dataset.nextUrl;
 });
