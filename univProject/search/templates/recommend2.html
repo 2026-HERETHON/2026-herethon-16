@@ -1,1 +1,146 @@
 <!-- 추천 전공 - 2 -->
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>두 번째 전공 추천</title>
+
+    <link rel="stylesheet" href="{% static 'css/recommend.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;700;800&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <header class="pageHeader">
+      <!-- 이전 버튼 -->
+      <span class="material-symbols-outlined backIcon">
+        arrow_back_ios_new
+      </span>
+
+      <h1 class="pageTitle">탐색학기</h1>
+    </header>
+
+    <!-- 현재 단계 -->
+    <section class="progressSection">
+      <div class="progressContainer">
+        <!-- 첫 번째 원 -->
+        <div class="progressStep after">
+          <span>1</span>
+        </div>
+
+        <!-- 선 -->
+        <div class="progressLine active"></div>
+
+        <!-- 두 번째 원 -->
+        <div class="progressStep in">
+          <span>2</span>
+        </div>
+
+        <!-- 선 -->
+        <div class="progressLine"></div>
+
+        <!-- 세 번째 원 -->
+        <div class="progressStep before">
+          <span>3</span>
+        </div>
+      </div>
+
+      <div class="progressLabels">
+        <span class="progressSpan after"> 첫번째 전공 체험 </span>
+        <span class="progressSpan in"> 두번째 전공 체험 </span>
+        <span class="progressSpan before"> 비교·선택 </span>
+      </div>
+    </section>
+
+    <main class="recommendPage">
+      <!-- 추천 전공 카드 -->
+      <section class="majorCard">
+        <img
+          class="majorImage"
+          src="{{ recommendation.iconAssetKey }}"
+          alt="{{ recommendation.majorName }}"
+        />
+
+        <div class="majorInfo">
+          <h2 class="majorTitle">{{ recommendation.majorName }} 전공</h2>
+
+          <p class="majorDescription">
+            {{ recommendation.shortDescription|linebreaksbr }}.
+          </p>
+
+          <div class="tagList">
+            {% for tag in recommendation.tags %}
+            <span class="tag"> {{ tag }} </span>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <!-- 이 전공을 제안한 이유 -->
+      <section class="reasonSection">
+        <div class="sectionTitle">두 번째로 제안한 이유예요</div>
+
+        <p class="userText">
+          {{ recommendation.userName }}님의 답변에서 이런 가능성을 발견했어요.
+        </p>
+
+        <ul class="reasonList">
+          {% for reason in recommendation.reasons %}
+          <li>✓ {{ reason }}</li>
+          {% endfor %}
+        </ul>
+      </section>
+
+      <hr class="divider" />
+
+      <!-- 체험 수업 -->
+      <section class="experienceSection">
+        <h2 class="experienceTitle">두번째 체험 수업</h2>
+
+        <div class="experienceCard">
+          <h3 class="experienceName">{{ recommendation.trial.title }}</h3>
+
+          <div class="experienceImage">
+            <img
+              src="{{ recommendation.trial.image }}"
+              alt="{{ recommendation.trial.title }}"
+            />
+          </div>
+
+          <div class="experienceInfo">
+            <p class="experienceDescription">
+              {{ recommendation.trial.taskSummary|linebreaksbr }}
+            </p>
+
+            <p class="experienceTime">
+              약 {{ recommendation.trial.durationMin }}분 • {{ recommendation.trial.deliverableName }} 1개 완성
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 다음 페이지 이동 버튼 -->
+      <section class="buttonSection">
+        <button class="startButton" data-next-url="{% url 'experience2' %}">
+          두번째 전공 체험 시작하기
+        </button>
+      </section>
+    </main>
+    <script src="{% static 'js/recommend.js' %}"></script>
+  </body>
+</html>
