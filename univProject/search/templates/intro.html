@@ -1,1 +1,54 @@
 <!-- 탐색 학기 Flow 첫 번째 화면 -->
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>탐색학기</title>
+
+    <!-- static 폴더에서 css 파일 불러오기 -->
+    <link rel="stylesheet" href="{% static 'css/intro.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@500;700;800&display=swap"
+    />
+  </head>
+
+  <body>
+    <div class="onboarding">
+      <header class="pageHeader">
+        <h1 class="pageTitle">탐색학기</h1>
+      </header>
+
+      <main class="content">
+        <h2 class="mainTitle">
+          첫 전공을 찾기 위한<br />
+          탐색학기를 시작해볼게요
+        </h2>
+
+        <p class="description">
+          지금까지 해온 일과 관심 있는 활동을 살펴보고,<br />
+          먼저 체험해볼 전공을 하나 제안해드려요.
+        </p>
+
+        <div class="actionArea">
+          <!-- select1.html로 이동하는 버튼 (선택1 화면으로 이동) -->
+          <button class="nextButton" data-next-url="{% url 'select1' %}">
+            다음으로
+          </button>
+
+          <p class="guideText">질문 3개 · 약 1분</p>
+        </div>
+      </main>
+    </div>
+
+    <!-- static 폴더에서 js 파일 불러오기 -->
+    <script src="{% static 'js/intro.js' %}"></script>
+  </body>
+</html>

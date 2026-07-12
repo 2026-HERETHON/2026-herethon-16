@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     'onboarding',
     'accounts',
+    'search',
+    'posts',
+    'curriculums'
 ]
 
 MIDDLEWARE = [

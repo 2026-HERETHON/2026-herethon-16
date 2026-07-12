@@ -1,1 +1,87 @@
 <!-- 선택 2 - 관심 있는 활동 (어떤 일을 해보고 싶나요?) -->
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>잇대</title>
+
+    <!-- static 폴더에서 css 파일 불러오기 -->
+    <link rel="stylesheet" href="{% static 'css/select.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=SF+Pro:wght@600&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <div class="page">
+      <!-- 상단 -->
+      <header class="header">
+        <div class="progressTop">
+          <span class="material-symbols-outlined backIcon">
+            arrow_back_ios_new
+          </span>
+
+          <span class="progressText">2 / 3</span>
+        </div>
+
+        <div class="progressBar">
+          <div class="progressFill66"></div>
+        </div>
+
+        <div class="titleArea">
+          <h1 class="title">
+            <span class="highlight">어떤 일을 해보고 싶나요?</span>
+          </h1>
+
+          <p class="description">가장 궁금한 일을 하나 골라주세요.</p>
+
+          <span class="limitText">* 최대 2개</span>
+        </div>
+      </header>
+
+      <!-- 선택지 -->
+      <main class="optionList">
+        <button class="optionCard">흩어진 정보를 표로 정리해보기</button>
+
+        <button class="optionCard">일정과 준비 과정을 계획해보기</button>
+
+        <button class="optionCard">
+          SNS 콘텐츠의 대상과 메시지 분석해보기
+        </button>
+
+        <button class="optionCard">고객 문의를 나누고 답변 만들어보기</button>
+
+        <button class="optionCard">상품 정보와 리뷰에서 개선점 찾아보기</button>
+
+        <button class="optionCard">앱을 사용하고 오류와 불편 기록해보기</button>
+      </main>
+
+      <footer class="bottomArea">
+        <!-- select3.html로 이동하는 CTA 버튼 (선택3 화면으로 이동) -->
+        <button class="nextButton" data-next-url="{% url 'select3' %}">
+          결과 받아보기
+        </button>
+      </footer>
+    </div>
+
+    <!-- static 폴더에서 js 파일 불러오기 -->
+    <script src="{% static 'js/select2.js' %}"></script>
+  </body>
+</html>
