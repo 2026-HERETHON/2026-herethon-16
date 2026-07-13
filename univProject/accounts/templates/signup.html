@@ -1,31 +1,63 @@
 <!--accounts/templates/signup.html-->
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 페이지</title>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back_ios" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+                
+                color: #1F1F1F;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>회원가입</h1>
-    <form class="user" method="POST">
-        {% csrf_token %}
-        <div>
-            <input type="text" name="username" placeholder="ID 를 입력하세요.">
+    <div class="container">
+        <a href="javascript:history.back();" class="back-btn">
+            <span class="material-symbols-outlined">arrow_back_ios</span>
+        </a>
+        <h1>회원가입</h1>
+        <img src="{% static 'assets/logo.svg' %}" alt="">
+        <h2>두 번째 대학에 입학해볼까요?</h2>
+        <h5>나에게 맞는 방향을 함께 찾아가요.</h5>
+        <form class="user" method="POST">
+            {% csrf_token %}
+            <div class="inputBox">
+                <div>
+                    <input type="text" name="username" placeholder="아이디">
+                </div>
+
+                <div>
+                    <input type="text" name="password" placeholder="비밀번호">
+                </div>
+                <div>
+                    <input type="text" name="repeat" placeholder="비밀번호 확인">
+                </div>
+                <div>
+                    <input type="text" name="nickname" placeholder="닉네임">
+                </div>
+
+            </div>
+
+            <input type="submit" value="입학하기" class="button">
+        </form>
+        <div class="login">
+            <span>이미 계정이 있으신가요?</span>
+            <a href="/accounts/login">로그인 하기</a>
         </div>
-        <div>
-            <div>
-                <input type="text" name="password" placeholder="PW를 입력하세요" >
-            </div>
-            <div>
-                <input type="text" name="repeat" placeholder="PW를 다시 한 번 입력하세요">
-            </div>
-            <div>
-                <input type="text" name="nickname" placeholder="닉네임을 입력하세요">
-            </div>
-        </div>
-        <input type="submit" value="가입하기">
-    </form>
+    </div>
 </body>
+
 </html>
