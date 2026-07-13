@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Lesson, LessonAnswer, Bookmark
+from .models import Lesson, LessonAnswer, LessonProgress
 from .services import (
     get_major_progress, get_current_lesson,
     save_lesson_answers, complete_lesson,
@@ -18,6 +18,13 @@ def my_major_view(request):
 
     lessons = Lesson.objects.filter(stage__major=major).select_related('stage')
 
+    progress_map = {
+        p.lesson_id: p.status
+        for p in LessonProgress.objects.filter(user=request.user, lesson__in=lessons)
+    }
+    for lesson in lessons:
+        lesson.user_status = progress_map.get(lesson.id, 'locked')
+
     stage = current.lesson.stage if current else None
     reflections = get_lesson_reflections(stage, exclude_user=request.user)
 
@@ -29,7 +36,6 @@ def my_major_view(request):
         'reflections': reflections,
     }
     return render(request, 'curriculums/my_major.html', context)
-
 
 @login_required
 def lesson_detail_view(request, lesson_id):

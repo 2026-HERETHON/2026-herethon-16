@@ -19,20 +19,30 @@
     <a href="{% url 'bookmarked_materials' %}">담은 자료</a>
   </div>
 
-  {% for lesson in lessons %}
-    <div class="lesson-card {% if lesson == current_lesson %}current{% endif %}">
-      <span class="lesson-order">{{ lesson.order }}차시</span>
-      <h3>{{ lesson.title }}</h3>
-      <p>{{ lesson.card_summary }}</p>
-      <p>소요 시간: 약 {{ lesson.duration_minutes }}분</p>
+ {% for lesson in lessons %}
+  <div class="lesson-card {% if lesson.user_status == 'in_progress' %}current{% endif %}">
+    <span class="lesson-order">{{ lesson.order }}차시</span>
 
-      {% if lesson == current_lesson %}
-        <a href="{% url 'lesson_detail' lesson.id %}" class="btn-primary">진행중</a>
-      {% else %}
-        <span class="status-label">진행 예정</span>
-      {% endif %}
-    </div>
-  {% endfor %}
+    {% if lesson.user_status == 'locked' %}
+      <h3>{{ lesson.title }}</h3>
+    {% else %}
+      <a href="{% url 'lesson_detail' lesson.id %}">
+        <h3>{{ lesson.title }}</h3>
+      </a>
+    {% endif %}
+
+    <p>{{ lesson.card_summary }}</p>
+    <p>소요 시간: 약 {{ lesson.duration_minutes }}분</p>
+
+    {% if lesson.user_status == 'completed' %}
+      <span class="status-label status-completed">완료</span>
+    {% elif lesson.user_status == 'in_progress' %}
+      <span class="status-label status-in-progress">진행중</span>
+    {% else %}
+      <span class="status-label">진행 예정</span>
+    {% endif %}
+  </div>
+{% endfor %}
 
   {% if reflections %}
   <div class="motivation-list">
