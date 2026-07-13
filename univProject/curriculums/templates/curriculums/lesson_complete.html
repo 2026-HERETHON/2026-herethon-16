@@ -1,24 +1,88 @@
 {% extends 'base.html' %}
-{% block content %}
-<div class="lesson-complete">
-  <h2>{{ lesson.order }}차시를 마쳤어요 🎉</h2>
 
-  <div class="result-card">
-    <h3>{{ lesson.result }}</h3>
+{% load static %}
+
+{% block extra_link %}
+<link rel="stylesheet" href="{% static 'css/lesson_complete.css' %}" />
+<!-- 폰트 불러오기 -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
+/>
+{% endblock %} {% block content %}
+
+<!-- 헤더 -->
+<header class="pageHeader">
+  <span class="material-symbols-outlined backIcon"> arrow_back_ios_new </span>
+</header>
+
+<div class="lessonPage">
+  <!-- 완료 안내 -->
+  <section class="completeIntro">
+    <h2 class="completeTitle">{{ lesson.order }}차시를 마쳤어요</h2>
+    <p class="completeDescription">{{ lesson.result }}</p>
+  </section>
+
+  <!-- 경험 카드 -->
+  <section class="cardSection">
+    <h3 class="sectionTitle">나의 전달 경험 카드</h3>
+
     {% for answer in answers %}
-      <div class="answer-row">
-        <span class="card-label">{{ answer.question.card_label }}</span>
-        <p>{{ answer.content }}</p>
-      </div>
+    <article class="cardItem">
+      <strong class="cardLabel">{{ answer.question.card_label }}</strong>
+      <div class="cardBox">{{ answer.content }}</div>
+    </article>
     {% endfor %}
-  </div>
 
+  </section>
+
+  <!-- 활용 -->
+  <section class="summarySection">
+    <h3 class="sectionTitle">이번 수업의 내용과 활용</h3>
+
+    <p class="summaryText">
+      전달할 대상에게 필요한 정보를 고르고, 이해하기 쉬운 순서로 정리해봤어요.
+      <br /><br />
+      자기소개서 경험 소재, 면접에서 설명할 사례, 미니 포트폴리오의 첫 기록으로
+      활용할 수 있어요.
+    </p>
+  </section>
+
+  <!-- 소감 -->
   <form method="post">
     {% csrf_token %}
-    <h4>한 줄 소감</h4>
-    <p>간단한 소감을 남겨 동기들에게 전해보세요!</p>
-    <textarea name="reflection" maxlength="50" placeholder="예: 여행 준비한 것도 경험이더라구요ㅎㅎ 다들 화이팅!!"></textarea>
-    <button type="submit" class="btn-primary">다음으로</button>
+    <section class="reviewSection">
+      <div class="reviewHeader">
+        <h3 class="sectionTitle">한 줄 소감</h3>
+        <p class="reviewDescription">
+          간단한 소감을 남겨 동기들을 응원해주세요!
+        </p>
+      </div>
+
+      <!-- 소감 입력하는 부분 -->
+      <div class="reviewBox">
+        <textarea
+          class="reviewInput"
+          name="reflection"
+          maxlength="50"
+          placeholder="예: 여행 준비한 것도 경험이더라구요ㅎㅎ&#13;&#10;다들 화이팅!!"
+        ></textarea>
+
+        <div class="characterCount">
+          <span class="currentCount">0</span>
+          / 50
+        </div>
+      </div>
+    </section>
+
+    <!-- N차시로 가기 버튼 -->
+    <section class="buttonSection">
+      <button type="submit" class="completeButton">{{ lesson.order|add:"1" }}차시로 가기</button>
+    </section>
   </form>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/lesson.js' %}"></script>
 {% endblock %}
