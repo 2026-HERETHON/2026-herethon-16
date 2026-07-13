@@ -4,10 +4,11 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0;
 }
 .container{
     width: 393px;
-    height: 852px;
+    height: 791.39px;
     display: flex;
     background-color: #fff;
     flex-direction: column;
@@ -48,4 +49,3 @@ h4{
 h5{
     font-size: 16px;
 }
-
