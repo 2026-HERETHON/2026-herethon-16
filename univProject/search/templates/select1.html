@@ -60,10 +60,12 @@
 
       <!-- 선택지 -->
       <main class="optionList">
-        {% csrf_token %}
-        {% for choice in choices %}
-          <button type="button" name="choice_id" value="{{ choice.id }}" class="optionCard">{{ choice.text }}</button>
-        {% endfor %}
+        <form action="{% url 'submitAnswer' %}" method="post">
+          {% csrf_token %}
+          {% for choice in choices %}
+            <button type="button" name="choice_id" value="{{ choice.id }}" class="optionCard">{{ choice.text }}</button>
+          {% endfor %}
+        </form>
       </main>
 
       <footer class="bottomArea">

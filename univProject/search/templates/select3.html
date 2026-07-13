@@ -62,15 +62,17 @@
 
       <!-- 선택지 -->
        <main class="optionList">
+        <form action="{% url 'submitAnswer' %}" method="post">
           {% csrf_token %}
           {% for choice in choices %}
             <button type="button" name="choice_id" value="{{ choice.id }}" class="optionCard">{{ choice.text }}</button>
           {% endfor %}
+        </form>
       </main>
       
       <footer class="bottomArea">
         <!-- loading.html로 이동하는 CTA 버튼 (로딩 화면으로 이동) -->
-        <button class="nextButton" data-next-url="{% url 'loading' %}">
+        <button type="submit" class="nextButton" data-next-url="{% url 'loading' %}">
           내 전공 확인하기
         </button>
       </footer>

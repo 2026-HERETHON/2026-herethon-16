@@ -45,9 +45,6 @@ def submitAnswer(request):
     if request.method == "POST":
         choice_id = request.POST.get("choice_id")
         scores = ChoiceScore.objects.filter(choice_id=choice_id)
-        print("POST choice_id:", choice_id)
-        print("scores count:", scores.count())
-        print("user:", request.user)
 
         for s in scores:            
             records = ScoreRecord.objects.filter(user=request.user, major=s.major)
@@ -61,12 +58,12 @@ def submitAnswer(request):
         return redirect(next_url)
 
 
-def result_view(request):
+def resultView(request):
     records = ScoreRecord.objects.filter(user=request.user).order_by("-score")
     topMajors = [record.major for record in records[:2]]
     context = {
         'topMajors': topMajors,
         'userName': request.user.username,
     }
-    
-    return render(request, "result.html", context)
+
+    return render(request, "confirm.html", context)
