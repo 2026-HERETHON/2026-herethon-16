@@ -46,10 +46,10 @@
         <article class="questionItem">
           <!-- 질문 -->
           <div class="questionHeader">
-            <h3 class="questionTitle">{{ question.title }}</h3>
+            <h3 class="questionTitle">{{ question.order }}. {{ question.question }}</h3>
 
             <p class="questionDescription">
-              {{ question.description|linebreaksbr }}
+              {{ question.helpText|linebreaksbr }}
             </p>
           </div>
 
