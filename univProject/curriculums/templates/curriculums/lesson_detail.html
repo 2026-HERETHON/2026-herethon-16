@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load curriculum_extras %}
+{% block content %}
+
+<div class="lesson-detail">
+  <a href="{% url 'my_major' %}" class="back-link">← 뒤로</a>
+
+  <h2>{{ lesson.order }}차시 · {{ lesson.title }}</h2>
+  <p>{{ lesson.description }}</p>
+  <p class="lesson-meta">
+    {% if lesson.result %}결과물: {{ lesson.result }} · {% endif %}
+    소요 시간: 약 {{ lesson.duration_minutes }}분
+  </p>
+
+  <form method="post">
+    {% csrf_token %}
+    {% for question in questions %}
+      <div class="question-block">
+        <h4>{{ question.prompt }}</h4>
+        {% if question.guide %}<p class="guide">{{ question.guide }}</p>{% endif %}
+        <textarea
+          name="question_{{ question.id }}"
+          maxlength="{{ question.max_length }}"
+          placeholder="{{ question.placeholder }}"
+        >{% if answers|get_item:question.id %}{{ answers|get_item:question.id }}{% endif %}</textarea>
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="btn-primary">수업 완료하기</button>
+  </form>
+  <p class="auto-save-note">작성한 내용은 자동으로 저장돼요</p>
+</div>
+{% endblock %}

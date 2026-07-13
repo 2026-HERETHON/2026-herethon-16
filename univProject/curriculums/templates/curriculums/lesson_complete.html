@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="lesson-complete">
+  <h2>{{ lesson.order }}차시를 마쳤어요 🎉</h2>
+
+  <div class="result-card">
+    <h3>{{ lesson.result }}</h3>
+    {% for answer in answers %}
+      <div class="answer-row">
+        <span class="card-label">{{ answer.question.card_label }}</span>
+        <p>{{ answer.content }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <h4>한 줄 소감</h4>
+    <p>간단한 소감을 남겨 동기들에게 전해보세요!</p>
+    <textarea name="reflection" maxlength="50" placeholder="예: 여행 준비한 것도 경험이더라구요ㅎㅎ 다들 화이팅!!"></textarea>
+    <button type="submit" class="btn-primary">다음으로</button>
+  </form>
+</div>
+{% endblock %}

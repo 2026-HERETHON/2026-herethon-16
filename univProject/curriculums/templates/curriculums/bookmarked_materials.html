@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="bookmarked-materials">
+  <h2>{{ major.name }}</h2>
+
+  <div class="tabs">
+    <a href="{% url 'my_major' %}">지금 할 수업</a>
+    <a href="{% url 'roadmap' %}">전공 로드맵</a>
+    <a href="{% url 'bookmarked_materials' %}" class="active">담은 자료</a>
+  </div>
+
+  {% if bookmarks %}
+    <div class="material-grid">
+      {% for bookmark in bookmarks %}
+        <div class="material-card">
+          <p class="material-title">{{ bookmark.material.title }}</p>
+          <p class="material-duration">{{ bookmark.material.duration_text }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="empty-state">
+      <p class="empty-title">아직 담은 자료가 없어요</p>
+      <p class="empty-desc">자료실에서 지금 단계에 필요한 강의와 콘텐츠를 담아보세요.</p>
+      <a href="#" class="btn-outline">자료실 둘러보기 →</a>
+    </div>
+  {% endif %}
+
+  <nav class="bottom-tab">
+    <a href="{% url 'my_major' %}">내 전공</a>
+    <a href="#">함께</a>
+    <a href="{% url 'bookmarked_materials' %}" class="active">자료실</a>
+  </nav>
+</div>
+{% endblock %}

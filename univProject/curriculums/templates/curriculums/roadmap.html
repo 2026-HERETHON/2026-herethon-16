@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="roadmap">
+  <a href="{% url 'my_major' %}" class="back-link">← 뒤로</a>
+
+  <h2>나의 전공 로드맵</h2>
+  <p>{{ stages|length }}단계 · 지금 할 수업은 '오늘의 학습'에서, 전체 과정은 여기서 확인해보세요.</p>
+
+  {% for stage in stages %}
+    <div class="stage-card status-{{ stage.status }}">
+      <span class="stage-number">{{ stage.order }}</span>
+      <div class="stage-body">
+        <div class="stage-title-row">
+          <h3>{{ stage.title }}</h3>
+          <span class="status-badge">
+            {% if stage.status == 'in_progress' %}진행중
+            {% elif stage.status == 'completed' %}완료
+            {% else %}예정{% endif %}
+          </span>
+        </div>
+        <p>{{ stage.description }}</p>
+        <p class="stage-meta">단계: {{ stage.lesson_count }}차시 · 약 {{ stage.total_duration }}분</p>
+        {% if stage.final_result %}
+          <p class="stage-meta">완성할 것: {{ stage.final_result }}</p>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
