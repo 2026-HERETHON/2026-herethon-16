@@ -1,0 +1,88 @@
+@import url(./setting.css);
+
+.container {
+    padding-left: 30px;
+    width: 363px;
+    padding-top: 60.61px;
+}
+
+.back-btn {
+    margin-top: 13.39px;
+    margin-bottom: 25.76px;
+}
+
+h1 {
+    font-weight: 600;
+    margin-bottom: 37px;
+    margin-top: 0;
+}
+
+img {
+    width: 135.5px;
+    height: 68px;
+    margin-left: -14px;
+    margin-bottom: 16px;
+}
+
+h2 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+h5 {
+    font-weight: 500;
+    margin: 0;
+}
+
+input {
+    border: none;
+    border-bottom: 1px solid #E1E7E4;
+    width: 332px;
+    padding-bottom: 11px;
+}
+
+.inputBox {
+    margin-top: 61px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    height: 243px;
+}
+
+.button {
+    margin-top: 38.61px;
+    padding: 0;
+    background-color: #4DD7C1;
+    width: 334px;
+    height: 54px;
+    border-radius: 16px;
+    margin-bottom: 12px;
+    border: none;
+    color: #FFFFFF;
+    font-size: 18px;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-weight: 700;
+    box-shadow: 0px 2px 7.3px 0px rgba(0, 0, 0, 0.10);
+    cursor: pointer;
+}
+
+.login {
+    font-size: 14px;
+    margin-left: 64px;
+}
+
+.login>a {
+    color: #4DD7C1;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+::placeholder {
+    color: #17211E;
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    font-size: 16px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    font-weight: 400;
+}

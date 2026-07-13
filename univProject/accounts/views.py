@@ -11,7 +11,7 @@ def signUp(request):
                 password=request.POST['password']
             )				
             print('회원가입 성공')
-            return redirect('onboarding')
+            return redirect('intro')
         else:
             print('회원가입 실패')
             return render(request, 'signup.html')
@@ -26,7 +26,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             print('로그인 성공')
-            return redirect('onboarding')
+            return redirect('intro')
         else: 
             print('로그인 실패')
             errorMessage = "아이디 또는 비밀번호가 잘못되었습니다." 
@@ -38,3 +38,12 @@ def logout(request):
     auth_logout(request)
     print('로그아웃 성공')
     return redirect('onboarding')
+
+def intro(request):
+    return render(request, 'intro.html')
+
+def landing(request):
+    return render(request, 'landing.html')
+
+def main(request):
+    return render(request, 'main.html')

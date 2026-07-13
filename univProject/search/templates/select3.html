@@ -61,29 +61,18 @@
       </header>
 
       <!-- 선택지 -->
-      <main class="optionList3">
-        <button class="optionCard">
-          복잡한 정보와 업무가 한눈에 정리되고 빨라짐
-        </button>
-
-        <button class="optionCard">여러 사람이 프로그램을 문제없이 마침</button>
-
-        <button class="optionCard">
-          내 콘텐츠에 사람들이 관심을 보이고 반응함
-        </button>
-
-        <button class="optionCard">
-          사람들이 필요한 도움을 받고 동기부여가 됨
-        </button>
-
-        <button class="optionCard">고객이 상품을 쉽게 이해하고 선택함</button>
-
-        <button class="optionCard">앱이나 서비스의 오류와 불편이 줄어듦</button>
+       <main class="optionList">
+        <form action="{% url 'submitAnswer' %}" method="post">
+          {% csrf_token %}
+          {% for choice in choices %}
+            <button type="button" name="choice_id" value="{{ choice.id }}" class="optionCard">{{ choice.text }}</button>
+          {% endfor %}
+        </form>
       </main>
-
+      
       <footer class="bottomArea">
         <!-- loading.html로 이동하는 CTA 버튼 (로딩 화면으로 이동) -->
-        <button class="nextButton" data-next-url="{% url 'loading' %}">
+        <button type="submit" class="nextButton" data-next-url="{% url 'loading' %}">
           내 전공 확인하기
         </button>
       </footer>
