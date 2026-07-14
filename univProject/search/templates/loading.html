@@ -20,11 +20,14 @@
   </head>
 
   <body>
-    <main>
+    <form class="recommendForm" action="{% url 'resultView' %}" method="post">
+      {% csrf_token %}
+
       <img class="logo" src="{% static 'assets/logo.svg' %}" alt="로고" />
+      <input type="hidden" name="next_url" value="{% url 'recommend1' %}">
 
       <p class="loadingMessage">추천 전공을 정리하고 있어요</p>
-    </main>
+    </form>
     <script src="{% static 'js/loading.js' %}"></script>
   </body>
 </html>
