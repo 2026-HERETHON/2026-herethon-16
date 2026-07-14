@@ -1,12 +1,10 @@
 from django.utils import timezone
 from .models import (
-    Stage, Lesson, LessonAnswer, LessonProgress, LessonReflection,
-    Bookmark, Material,
+    Stage, Lesson, LessonAnswer, LessonProgress, LessonReflection
 )
 
 
 def get_major_progress(user, major):
-    """전체 진행도: 체험학습 제외"""
     lessons = Lesson.objects.filter(stage__major=major, is_experiential=False)
     total = lessons.count()
     completed = LessonProgress.objects.filter(
@@ -57,7 +55,6 @@ def complete_lesson(user, lesson, reflection_text):
     ).order_by('order').first()
 
     if not next_lesson:
-        # 마지막 차시였다면 다음 단계의 첫 차시로
         next_stage = Stage.objects.filter(
             major=lesson.stage.major, order__gt=lesson.stage.order
         ).order_by('order').first()
@@ -84,20 +81,5 @@ def get_lesson_reflections(stage, exclude_user=None, limit=5):
 
 
 def get_roadmap(major):
-    """로드맵: 고정 데이터를 순서대로"""
     return Stage.objects.filter(major=major).prefetch_related('lessons')
 
-
-def get_bookmarked_materials(user, major):
-    return Bookmark.objects.filter(
-        user=user, material__majors=major
-    ).select_related('material')
-
-
-def toggle_bookmark(user, material_id):
-    material = Material.objects.get(id=material_id)
-    bookmark, created = Bookmark.objects.get_or_create(user=user, material=material)
-    if not created:
-        bookmark.delete()
-        return False
-    return True

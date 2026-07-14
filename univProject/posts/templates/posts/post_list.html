@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="together">
+  <h1>함께</h1>
+
+  <div class="tabs">
+  <a href="{% url 'post_list' %}?scope=major" class="{% if scope == 'major' %}active{% endif %}">우리 전공</a>
+  <a href="{% url 'post_list' %}?scope=all" class="{% if scope == 'all' %}active{% endif %}">잇대 전체</a>
+</div>
+
+  <div class="board-header">
+    <h2>{{ major.name }}</h2>
+    <p>전공 게시판</p>
+  </div>
+
+  <div class="post-board">
+  {% for post in posts %}
+    <a href="{% url 'post_detail' post.id %}" class="post-card-link">
+      <div class="post-card">
+        <span class="author-name">{{ post.author.profile.nickname }}</span>
+        <h3 class="post-title">{{ post.title }}</h3>
+        <p class="post-major-tag">{{ post.major.name }}</p>
+        <div class="post-stats">
+          <span>♥ {{ post.like_count }}</span>
+          <span>💬 {{ post.comment_count }}</span>
+        </div>
+      </div>
+    </a>
+  {% empty %}
+    <p class="empty-text">아직 등록된 게시글이 없어요.</p>
+  {% endfor %}
+</div>
+
+  <a href="{% url 'post_create' %}" class="fab-button">+</a>
+
+ 
+</div>
+{% endblock %}
