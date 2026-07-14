@@ -1,15 +1,26 @@
-{% extends 'base.html' %}
-
 {% load static %}
-
-{% block extra_link %}
+<!DOCTYPE html>
+<html lang="ko">
+<html>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>univProject</title>
+  <head>
 <link rel="stylesheet" href="{% static 'css/lesson_complete.css' %}" />
+
+<!-- Google Icon 불러오기 -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+/>
+
 <!-- 폰트 불러오기 -->
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
 />
-{% endblock %} {% block content %}
+</head>
+<body>
 
 <!-- 헤더 -->
 <header class="pageHeader">
@@ -81,8 +92,7 @@
     </section>
   </form>
 </div>
-{% endblock %}
+</body>
 
-{% block extra_js %}
 <script src="{% static 'js/lesson.js' %}"></script>
-{% endblock %}
+</html>
