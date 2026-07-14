@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="lesson-detail">
+  <a href="{% url 'my_major' %}" class="back-link">← 뒤로</a>
 <div class="lesson-complete">
-  <h2>{{ lesson.order }}차시를 마쳤어요 🎉</h2>
+  <h2>{{ screen.complete_title|default:"수업을 마쳤어요" }} 🎉</h2>
+  <p>{{ screen.complete_subtitle }}</p>
 
   <div class="result-card">
-    <h3>{{ lesson.result }}</h3>
+    <h3>{{ screen.result_section_title }}</h3>
     {% for answer in answers %}
       <div class="answer-row">
-        <span class="card-label">{{ answer.question.card_label }}</span>
-        <p>{{ answer.content }}</p>
+        <span class="card-label">{{ answer.question.result_label }}</span>
+        <p>{{ answer.answer_text }}</p>
       </div>
     {% endfor %}
   </div>
 
+  {% if screen.insight_body %}
+  <div class="insight-box">
+    <h4>{{ screen.insight_title }}</h4>
+    <p>{{ screen.insight_body }}</p>
+    <p class="use-case">{{ screen.use_case_text }}</p>
+  </div>
+  {% endif %}
+
   <form method="post">
     {% csrf_token %}
-    <h4>한 줄 소감</h4>
-    <p>간단한 소감을 남겨 동기들에게 전해보세요!</p>
-    <textarea name="reflection" maxlength="50" placeholder="예: 여행 준비한 것도 경험이더라구요ㅎㅎ 다들 화이팅!!"></textarea>
-    <button type="submit" class="btn-primary">다음으로</button>
+    <h4>{{ screen.reflection_title|default:"한 줄 소감" }}</h4>
+    <p>{{ screen.reflection_help }}</p>
+    <textarea name="reflection" maxlength="{{ screen.reflection_max_length|default:50 }}"
+      placeholder="{{ screen.reflection_placeholder }}"></textarea>
+    <button type="submit" class="btn-primary">{{ screen.next_cta|default:"다음으로" }}</button>
   </form>
 </div>
 {% endblock %}
