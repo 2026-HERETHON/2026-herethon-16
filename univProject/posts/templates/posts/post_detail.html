@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="post-detail">
+  <a href="{% url 'post_list' %}" class="back-link">←</a>
+
+  <div class="post-header">
+    <span class="author-name">{{ post.author.profile.nickname }}</span>
+    <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+  </div>
+
+  <h2 class="post-title">{{ post.title }}</h2>
+  <p class="post-content">{{ post.content }}</p>
+
+  <div class="post-actions">
+    <form method="post" action="{% url 'post_like' post.id %}" class="inline-form">
+      {% csrf_token %}
+      <button type="submit" class="like-btn {% if has_liked %}active{% endif %}">
+        ♥ {{ post.like_count }}
+      </button>
+    </form>
+  </div>
+
+  <h3 class="comment-section-title">{{ comments|length }}개의 댓글</h3>
+
+  {% for comment in comments %}
+    <div class="comment-block">
+      <div class="comment-header">
+        <span class="author-name">{{ comment.author.profile.nickname }}</span>
+        <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+      </div>
+      <p class="comment-content">{{ comment.content }}</p>
+
+      {% for reply in comment.replies.all %}
+        <div class="comment-block reply">
+          <div class="comment-header">
+            <span class="author-name">{{ reply.author.profile.nickname }}</span>
+            <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+          </div>
+          <p class="comment-content">{{ reply.content }}</p>
+        </div>
+      {% endfor %}
+
+      <form method="post" action="{% url 'comment_create' post.id %}" class="reply-form">
+        {% csrf_token %}
+        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+        <input type="text" name="content" placeholder="답글을 입력해주세요.">
+        <button type="submit">등록</button>
+      </form>
+    </div>
+  {% endfor %}
+
+  <form method="post" action="{% url 'comment_create' post.id %}" class="comment-form">
+    {% csrf_token %}
+    <input type="text" name="content" placeholder="댓글을 입력해주세요.">
+    <button type="submit">등록</button>
+  </form>
+</div>
+{% endblock %}

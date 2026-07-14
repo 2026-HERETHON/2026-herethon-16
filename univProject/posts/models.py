@@ -41,7 +41,6 @@ class PostLike(models.Model):
 
 
 class PostCheer(models.Model):
-    """'응원해요' 버튼 - 좋아요와 별개의 응원 반응"""
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='cheers')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

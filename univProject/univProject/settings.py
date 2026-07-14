@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'accounts',
     'search',
     'posts',
-    'curriculums'
+    'curriculums',
+    'materials',
 ]
 
 MIDDLEWARE = [

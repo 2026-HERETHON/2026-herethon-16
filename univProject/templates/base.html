@@ -12,5 +12,13 @@
     {% endblock %}
   </main>
 
+  {% if user.is_authenticated %}
+  <nav class="bottom-tab">
+    <a href="{% url 'my_major' %}">내 전공</a>
+    <a href="{% url 'post_list' %}">함께</a>
+    <a href="{% url 'material_list' %}">자료실</a>
+  </nav>
+  {% endif %}
+
 </body>
 </html>
