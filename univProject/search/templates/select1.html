@@ -59,24 +59,32 @@
       </header>
 
       <!-- 선택지 -->
-      <main class="optionList">
-        <form action="{% url 'submitAnswer' %}" method="post">
-          {% csrf_token %}
+      <form action="{% url 'submitAnswer' %}" method="post">
+        {% csrf_token %}
+        <main class="optionList" data-max="2">
           {% for choice in choices %}
-            <button type="button" name="choice_id" value="{{ choice.id }}" class="optionCard">{{ choice.text }}</button>
+          <label class="optionCard">
+            <input type="checkbox" name="choice_id" value="{{ choice.id }}" />
+            {{ choice.text }}
+          </label>
           {% endfor %}
-        </form>
-      </main>
+        </main>
 
-      <footer class="bottomArea">
-        <!-- select2.html로 이동하는 CTA 버튼 (선택2 화면으로 이동) -->
-        <button class="nextButton" data-next-url="{% url 'select2' %}">
-          다음으로
-        </button>
-      </footer>
+        <footer class="bottomArea">
+          <!-- select2.html로 이동하는 CTA 버튼 (선택2 화면으로 이동) -->
+          <button
+            type="submit"
+            class="nextButton"
+            name="next_url"
+            value="{% url 'select2' %}"
+          >
+            다음으로
+          </button>
+        </footer>
+      </form>
     </div>
 
     <!-- static 폴더에서 js 파일 불러오기 -->
-    <script src="{% static 'js/select1.js' %}"></script>
+    <script src="{% static 'js/select.js' %}"></script>
   </body>
 </html>
