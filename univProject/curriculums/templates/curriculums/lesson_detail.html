@@ -1,32 +1,93 @@
-{% extends 'base.html' %}
+{% load static %}
 {% load curriculum_extras %}
-{% block content %}
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>univProject</title>
+  <link rel="stylesheet" href="{% static 'css/lesson_detail.css' %}" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" />
+</head>
+<body>
+  <header class="pageHeader">
+    <a href="{% url 'my_major' %}">
+      <span class="material-symbols-outlined backIcon">arrow_back_ios_new</span>
+    </a>
+    <h1 class="pageTitle">수업</h1>
+  </header>
 
-<div class="lesson-detail">
-  <a href="{% url 'my_major' %}" class="back-link">← 뒤로</a>
+  <div class="lessonPage">
+    <div class="lessonIntro">
+      <div class="lessonHeader">
+        <div class="lessonBadge">{{ lesson.order }}차시</div>
+        <h2 class="lessonTitle">{{ lesson.title }}</h2>
+      </div>
 
-  <h2>{{ lesson.order }}차시 · {{ lesson.title }}</h2>
-  <p>{{ lesson.description }}</p>
-  <p class="lesson-meta">
-    {% if lesson.result %}결과물: {{ lesson.result }} · {% endif %}
-    소요 시간: 약 {{ lesson.duration_minutes }}분
-  </p>
+      <div class="lessonContent">
+        <p class="lessonDescription">{{ lesson.card_summary }}</p>
 
-  <form method="post">
-    {% csrf_token %}
- {% for question in questions %}
-  <div class="question-block">
-    <h4>{{ question.question_text }}</h4>
-    {% if question.help_text %}<p class="guide">{{ question.help_text }}</p>{% endif %}
-    <textarea
-      name="question_{{ question.id }}"
-      maxlength="{{ question.max_length }}"
-      placeholder="{{ question.placeholder }}"
-    >{{ answers|get_item:question.id }}</textarea>
+        <div class="lessonInfo">
+          {% if screen.deliverable_label %}
+          <div class="infoItem">
+            <strong class="infoLabel">결과물</strong>
+            <span class="infoValue">{{ screen.deliverable_label }}</span>
+          </div>
+          {% endif %}
+
+          <div class="infoItem">
+            <strong class="infoLabel">활용</strong>
+            <span class="infoValue">{{ screen.usage_label }}</span>
+          </div>
+
+          <div class="infoItem">
+            <strong class="infoLabel">소요 시간</strong>
+            <span class="infoValue">약 {{ lesson.duration_minutes }}분</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <form method="post">
+      {% csrf_token %}
+      <section class="questionSection">
+        {% for question in questions %}
+        <article class="questionItem">
+          <div class="questionHeader">
+            <h3 class="questionTitle">{{ question.order }}. {{ question.question_text }}</h3>
+            {% if question.help_text %}
+            <p class="questionDescription">{{ question.help_text }}</p>
+            {% endif %}
+          </div>
+
+          <div class="answerBox">
+            <textarea
+              class="answerInput"
+              name="question_{{ question.id }}"
+              maxlength="{{ question.max_length }}"
+              placeholder="{{ question.placeholder }}"
+            >{{ answers|get_item:question.id }}</textarea>
+
+            <div class="characterCount">
+              <span class="currentCount">0</span> / {{ question.max_length }}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </section>
+
+      <section class="buttonSection">
+        <button type="submit" class="completeButton">
+          <span>{{ screen.detail_cta|default:"수업 완료하기" }}</span>
+        </button>
+        <p class="buttonDescription">{{ screen.autosave_text|default:"작성한 내용은 자동으로 저장돼요" }}</p>
+      </section>
+    </form>
   </div>
-{% endfor %}
-    <button type="submit" class="btn-primary">수업 완료하기</button>
-  </form>
-  <p class="auto-save-note">작성한 내용은 자동으로 저장돼요</p>
-</div>
-{% endblock %}
+
+  <script src="{% static 'js/lesson.js' %}"></script>
+</body>
+</html>
