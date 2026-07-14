@@ -6,165 +6,173 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 전공 - 지금 할 수업</title>
-    <link rel="stylesheet" href="{% static 'css/current-class.css' %}">
+    <link rel="stylesheet" href="../../static/css/settings.css">
+    <link rel="stylesheet" href="../../static/css/current-class.css">
 </head>
 
 <body>
     <div class="app">
         <div class="header">내 전공</div>
-    </div>
+    
 
-    <div class="majorCard">
-        <div class="textExplain">
-            <div class="majorName">콘텐츠·채널 마케팅 전공</div>
-            <div class="majorExplain">
-                사람들의 관심과 반응을 살펴보고,
-                <br/>가치를 콘텐츠로 전달하는 분야예요.
-            </div>
-        </div>
-
-        <div class="majorIcon">
-            <img src="../../static/assets/content-marketing-major-illustration.png" alt="콘텐츠 마케팅 일러스트"/>
-        </div>
-    </div>
-
-    <div class="sessionProgress">
-        <div class="progressBar">
-            <div class="filledProgress"></div>
-        </div>
-
-        <div class="progressText">전체 과정 1 / 12 차시</div>
-    </div>
-
-    <div class="filterComponent">
-        <div class="currentClass">지금 할 수업</div>
-
-        <div class="majorRoadmap">전공 로드맵</div>
-        
-        <div class="material">담은 자료</div>
-    </div>
-
-    <div class="stepInfo">
-        <div class="stepComposition">
-            <div class="stepTitle">1단계 · 콘텐츠 감각 찾기</div>
-            <div class="stepNum">3차시</div>
-        </div>
-
-        <div class="stepExplanation">
-            내 경험을 직무와 연결하고,
-            <br/>메시지를 만들고 개선하는 기본 과정을 경험해요.
-        </div>
-    </div>
-
-    <div class="lectureCard">
-        <p class="lectureInfo">
-            3개 수업을 마치면 <span class="bold">콘텐츠 기획 미니 포트폴리오</span>가 완성돼요.
-        </p>
-
-        <div class="nowLecture">
-            <div class="topBox">
-                <p class="nowLectureName">1차시</p>
-                <p>내 경험에서 전달 행동 찾기</p>
-                <img src='../../static/assets/vector.svg' alt='벡터 화살표'/>
-            </div>
-
-            <div>
-                이 수업을 마치면 평범하게 지나쳤던 경험을
-                <br/>콘텐츠 직무와 연결해 설명할 수 있어요.
-            </div>
-
-            <div class="nowLectureContent">
-                <div class="line">
-                    <div class="head">결과물</div>
-                    <div class="body">나의 전달 경험 카드</div>
-                </div>
-
-                <div class="line">
-                    <div class="head">활용</div>
-                    <div class="body">자기소개서·면접 경험 소재</div>
-                </div>
-
-                <div class="line">
-                    <div class="head">소요 시간</div>
-                    <div class="body">약 10분</div>
+        <div class="majorCard">
+            <div class="textExplain">
+                <div class="majorName">콘텐츠·채널 마케팅 전공</div>
+                <div class="majorExplain">
+                    사람들의 관심과 반응을 살펴보고,
+                    <br/>가치를 콘텐츠로 전달하는 분야예요.
                 </div>
             </div>
 
-            <div class="lectureOn">진행중</div>
+            <div class="majorIcon">
+                <img src="../../static/assets/content-marketing-major-illustration.png" alt="콘텐츠 마케팅 일러스트"/>
+            </div>
         </div>
 
-        <div class="lectureNotYet">
-            <div class="topBox">
-                <p class="futureLectureName">2차시</p>
-                <p>같은 메시지를 채널별로 바꿔보기</p>
-                <img src='../../static/assets/vector.svg' alt='벡터 화살표'/>
+        <div class="sessionProgress">
+            <div class="progressBar">
+                <div class="filledProgress"></div>
             </div>
 
-            <div>
-                같은 내용을 SNS, 블로그, 메시지에 맞게 
-                <br/>다르게 표현해봐요.
-            </div>
-
-            <div class="lectureSoon">진행 예정</div>
+            <div class="progressText">전체 과정 1 / 12 차시</div>
         </div>
 
-        <div class="lectureNotYet">
-            <div class="topBox">
-                <p class="futureLectureName">3차시</p>
-                <p>반응을 보고 다음 콘텐츠 개선하기</p>
-                <img src='../../static/assets/vector.svg' alt='벡터 화살표'/>
-            </div>
+        <div class="filterComponent">
+            <div class="componentActive">지금 할 수업</div>
 
-            <div>
-                공지, 후기, 단체 메시지처럼 누군가에게 
-                <br/>정보를 이해하기 쉽게 전했던 순간을 찾아봐요.
-            </div>
-
-            <div class="lectureSoon">진행 예정</div>
-        </div>
-    </div>
-
-    <div class="solidaritySection">
-        <div class="topBox">
-            <p class="solidarityTitle">같은 단계의 동기들과 함께하고 있어요</p>
-            <p>‘콘텐츠 감각 찾기’를 진행 중인 동기 18명</p>
+            <div class="component">전공 로드맵</div>
+            
+            <div class="component">담은 자료</div>
         </div>
 
-        <div class="solidarityCard">
-            <div class="accountInfo">
-                <div class="accountImage">
-                    <img src="../../static/assets/account-image.svg" alt="계정 사진">
+        <div class="stepInfo">
+            <div class="stepComposition">
+                <div class="stepTitle">1단계 · 콘텐츠 감각 찾기</div>
+                <div class="stepNum">3차시</div>
+            </div>
+
+            <div class="stepExplanation">
+                내 경험을 직무와 연결하고,
+                <br/>메시지를 만들고 개선하는 기본 과정을 경험해요.
+            </div>
+        </div>
+
+        <div class="lectureCard">
+            <p class="lectureInfo">
+                3개 수업을 마치면 <span class="bold">콘텐츠 기획 미니 포트폴리오</span>가 완성돼요.
+            </p>
+
+            <div class="nowLecture">
+                <div class="lectureTopBox">
+                    <div class="lectureTitleBox">
+                        <p class="nowLectureName">1차시</p>
+                        <p class="lectureTitle">내 경험에서 전달 행동 찾기</p>
+                    </div>
+                    
+                    <img src='../../static/assets/vector.svg' alt='벡터 화살표'/>
                 </div>
 
-                <div class="accountName">지혜맘 님</div>
+                <div class="lectureExplanation">
+                    이 수업을 마치면 평범하게 지나쳤던 경험을
+                    <br/>콘텐츠 직무와 연결해 설명할 수 있어요.
+                </div>
+
+                <div class="nowLectureContent">
+                    <div class="lectureRow">
+                        <div class="lectureHead">결과물</div>
+                        <div class="lectureBody">나의 전달 경험 카드</div>
+                    </div>
+
+                    <div class="lectureRow">
+                        <div class="lectureHead">활용</div>
+                        <div class="lectureBody">자기소개서·면접 경험 소재</div>
+                    </div>
+
+                    <div class="lectureRow">
+                        <div class="lectureHead">소요 시간</div>
+                        <div class="lectureBody">약 10분</div>
+                    </div>
+                </div>
+
+                <div class="lectureCurrent">진행중</div>
             </div>
 
-            <div class="solidarityContent">
-                “거창한 경험을 찾기보다는 누군가에게
-                <br/>쉽게 설명했던 순간부터 시작했어요.”
+            <div class="lectureNotYet">
+                <div class="lectureTopBox">
+                    <div class="lectureTitleBox">
+                        <p class="futureLectureName">2차시</p>
+                        <p class="lectureTitle">같은 메시지를 채널별로 바꿔보기</p>
+                    </div>
+
+                    <img src='../../static/assets/vector.svg' alt='벡터 화살표'/>
+                </div>
+
+                <div class="lectureExplanation">
+                    같은 내용을 SNS, 블로그, 메시지에 맞게 
+                    <br/>다르게 표현해봐요.
+                </div>
+
+                <div class="lectureUpcoming">진행 예정</div>
             </div>
 
-            <div class="doneBtn">1차시 완료</div>
+            <div class="lectureNotYet">
+                <div class="lectureTopBox">
+                    <p class="futureLectureName">3차시</p>
+                    <p>반응을 보고 다음 콘텐츠 개선하기</p>
+                    <img src='../../static/assets/vector.svg' alt='벡터 화살표'/>
+                </div>
+
+                <div class="lectureExplanation">
+                    공지, 후기, 단체 메시지처럼 누군가에게 
+                    <br/>정보를 이해하기 쉽게 전했던 순간을 찾아봐요.
+                </div>
+
+                <div class="lectureUpcoming">진행 예정</div>
+            </div>
         </div>
-    </div>
 
-    <div class="moreSolidarity">동기들 더 보러 가기 →</div>
+        <div class="solidaritySection">
+            <div class="solidarityTopBox">
+                <p class="solidarityTitle">같은 단계의 동기들과 함께하고 있어요</p>
+                <p class="solidarityNum">‘콘텐츠 감각 찾기’를 진행 중인 동기 18명</p>
+            </div>
+
+            <div class="solidarityCard">
+                <div class="accountInfo">
+                    <div class="accountImage">
+                        <img src="../../static/assets/account-image.svg" alt="계정 사진">
+                    </div>
+
+                    <div class="accountName">지혜맘 님</div>
+                </div>
+
+                <div class="solidarityContent">
+                    “거창한 경험을 찾기보다는 누군가에게
+                    <br/>쉽게 설명했던 순간부터 시작했어요.”
+                </div>
+
+                <div class="doneBtn">1차시 완료</div>
+            </div>
+        </div>
+
+        <div class="moreSolidarity">동기들 더 보러 가기 →</div>
+
+        <footer class="tapBar">
+            <div class="footerTapActive">
+                <img src="../../static/assets/mymajortap-active.svg" alt="내 전공 선택됨">
+                <p class="tapNameActive">내 전공</p>
+            </div>
+    
+            <div class="footerTap">
+                <img src="../../static/assets/together-none.svg" alt="함께 선택안됨">
+                <p class="tapName">함께</p>
+            </div>
+    
+            <div class="footerTap">
+                <img src="../../static/assets/article-none.svg" alt="자료실 선택안됨">
+                <p class="tapName">자료실</p>
+            </div>
+        </footer>
+    </div>
 </body>
-
-<footer class="tapBar">
-    <div class="footerBox">
-        <img src="../../static/assets/mymajortap-active.svg" alt="내 전공 선택됨">
-        <p class="tapName">내 전공</p>
-    </div>
-
-    <div class="footerBox">
-        <img src="../../static/assets/together-none.svg" alt="함께 선택안됨">
-        <p class="tapName">함께</p>
-    </div>
-
-    <div class="footerBox">
-        <img src="../../static/assets/article-none.svg" alt="자료실 선택안됨">
-        <p class="tapName">자료실</p>
-    </div>
-</footer>
 </html>
