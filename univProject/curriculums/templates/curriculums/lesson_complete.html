@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="lesson-detail">
-  <a href="{% url 'my_major' %}" class="back-link">← 뒤로</a>
 <div class="lesson-complete">
+  <a href="{% url 'my_major' %}" class="back-link">← 뒤로</a>
+
   <h2>{{ screen.complete_title|default:"수업을 마쳤어요" }} 🎉</h2>
   <p>{{ screen.complete_subtitle }}</p>
 
