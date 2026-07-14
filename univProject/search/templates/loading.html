@@ -23,7 +23,7 @@
     <form class="recommendForm" action="{% url 'resultView' %}" method="post">
       {% csrf_token %}
 
-      <img class="logo" src="{% static 'assets/logo.svg' %}" alt="로고" />
+      <img class="logo" src="{% static 'assets/loading_logo.svg' %}" alt="로고" />
       <input type="hidden" name="next_url" value="{% url 'recommend1' %}">
 
       <p class="loadingMessage">추천 전공을 정리하고 있어요</p>
