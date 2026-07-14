@@ -9,4 +9,10 @@ urlpatterns = [
     path("loading/", views.loading, name="loading"),
     path('submitAnswer/', views.submitAnswer, name='submitAnswer'),
     path('resultView/', views.resultView, name='confirm'),
+
+    path("recommend1/", views.recommend1, name="recommend1"),
+    path("experience1/", views.experience1, name="experience1"),
+    path("recommend2/", views.recommend2, name="recommend2"),
+    path("experience2/", views.experience2, name="experience2"),
+    path("confirm/", views.confirm, name="confirm"),
 ]
