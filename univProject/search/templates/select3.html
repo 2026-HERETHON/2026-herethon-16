@@ -61,7 +61,7 @@
       </header>
 
       <!-- 선택지 -->
-      <form action="{% url 'confirm' %}" method="post">
+      <form action="{% url 'submitAnswer' %}" method="post">
         {% csrf_token %}
         <main class="optionList" data-max="1">
           {% for choice in choices %}
