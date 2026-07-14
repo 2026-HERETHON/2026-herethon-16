@@ -1,8 +1,7 @@
 from django.contrib import admin
 from .models import (
     Stage, Lesson, LessonScreen, LessonQuestion, LessonAnswer,
-    LessonProgress, LessonReflection, Material, Bookmark,
-)
+    LessonProgress, LessonReflection)
 
 
 class LessonQuestionInline(admin.TabularInline):
@@ -36,5 +35,3 @@ class StageAdmin(admin.ModelAdmin):
 admin.site.register(LessonAnswer)
 admin.site.register(LessonProgress)
 admin.site.register(LessonReflection)
-admin.site.register(Material)
-admin.site.register(Bookmark)
