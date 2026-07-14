@@ -82,7 +82,7 @@ def recommend1(request):
             "shortDescription": major.description,
             "iconAssetKey": "/static/assets/major1.svg",
             "tags": [major.tag1, major.tag2, major.tag3],
-            "reasons": [major.reason],
+            "reasons": [major.reason1, major.reason2],
             "trial": {
                 "title": experience.title,
                 "image": "/static/assets/experience1.svg",
@@ -123,7 +123,7 @@ def recommend2(request):
             "shortDescription": major.description,
             "iconAssetKey": "/static/assets/major2.svg",
             "tags": [major.tag1, major.tag2, major.tag3],
-            "reasons": [major.reason],
+            "reasons": [major.reason1, major.reason2],
             "trial": {
                 "title": experience.title,
                 "image": "/static/assets/experience2.svg",

@@ -9,7 +9,8 @@ class Major(models.Model):
     tag1 = models.CharField(max_length=30, blank=True)
     tag2 = models.CharField(max_length=30, blank=True)
     tag3 = models.CharField(max_length=30, blank=True)
-    reason = models.TextField(blank=True)
+    reason1 = models.TextField(blank=True, default="")
+    reason2 = models.TextField(blank=True, default="")
 
     def __str__(self):
         return self.name
