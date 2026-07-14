@@ -1,98 +1,102 @@
 {% load static %}
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<html>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>univProject</title>
-  <head>
-<link rel="stylesheet" href="{% static 'css/lesson_complete.css' %}" />
+  <html>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>univProject</title>
+    <head>
+      <link rel="stylesheet" href="{% static 'css/lesson_complete.css' %}" />
 
-<!-- Google Icon 불러오기 -->
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
-/>
+      <!-- Google Icon 불러오기 -->
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      />
 
-<!-- 폰트 불러오기 -->
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
-/>
-</head>
-<body>
+      <!-- 폰트 불러오기 -->
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
+      />
+    </head>
+    <body>
+      <!-- 헤더 -->
+      <header class="pageHeader">
+        <span class="material-symbols-outlined backIcon">
+          arrow_back_ios_new
+        </span>
+      </header>
 
-<!-- 헤더 -->
-<header class="pageHeader">
-  <span class="material-symbols-outlined backIcon"> arrow_back_ios_new </span>
-</header>
+      <div class="lessonPage">
+        <!-- 완료 안내 -->
+        <section class="completeIntro">
+          <h2 class="completeTitle">{{ lesson.order }}차시를 마쳤어요</h2>
+          <p class="completeDescription">{{ lesson.result }}</p>
+        </section>
 
-<div class="lessonPage">
-  <!-- 완료 안내 -->
-  <section class="completeIntro">
-    <h2 class="completeTitle">{{ lesson.order }}차시를 마쳤어요</h2>
-    <p class="completeDescription">{{ lesson.result }}</p>
-  </section>
+        <!-- 경험 카드 -->
+        <section class="cardSection">
+          <h3 class="sectionTitle">나의 전달 경험 카드</h3>
 
-  <!-- 경험 카드 -->
-  <section class="cardSection">
-    <h3 class="sectionTitle">나의 전달 경험 카드</h3>
+          {% for answer in answers %}
+          <article class="cardItem">
+            <strong class="cardLabel">{{ answer.question.card_label }}</strong>
+            <div class="cardBox">{{ answer.content }}</div>
+          </article>
+          {% endfor %}
+        </section>
 
-    {% for answer in answers %}
-    <article class="cardItem">
-      <strong class="cardLabel">{{ answer.question.card_label }}</strong>
-      <div class="cardBox">{{ answer.content }}</div>
-    </article>
-    {% endfor %}
+        <!-- 활용 -->
+        <section class="summarySection">
+          <h3 class="sectionTitle">이번 수업의 내용과 활용</h3>
 
-  </section>
+          <p class="summaryText">
+            전달할 대상에게 필요한 정보를 고르고, 이해하기 쉬운 순서로
+            정리해봤어요.
+            <br /><br />
+            자기소개서 경험 소재, 면접에서 설명할 사례, 미니 포트폴리오의 첫
+            기록으로 활용할 수 있어요.
+          </p>
+        </section>
 
-  <!-- 활용 -->
-  <section class="summarySection">
-    <h3 class="sectionTitle">이번 수업의 내용과 활용</h3>
+        <!-- 소감 -->
+        <form method="post">
+          {% csrf_token %}
+          <section class="reviewSection">
+            <div class="reviewHeader">
+              <h3 class="sectionTitle">한 줄 소감</h3>
+              <p class="reviewDescription">
+                간단한 소감을 남겨 동기들을 응원해주세요!
+              </p>
+            </div>
 
-    <p class="summaryText">
-      전달할 대상에게 필요한 정보를 고르고, 이해하기 쉬운 순서로 정리해봤어요.
-      <br /><br />
-      자기소개서 경험 소재, 면접에서 설명할 사례, 미니 포트폴리오의 첫 기록으로
-      활용할 수 있어요.
-    </p>
-  </section>
+            <!-- 소감 입력하는 부분 -->
+            <div class="reviewBox">
+              <textarea
+                class="reviewInput"
+                name="reflection"
+                maxlength="50"
+                placeholder="예: 여행 준비한 것도 경험이더라구요ㅎㅎ&#13;&#10;다들 화이팅!!"
+              ></textarea>
 
-  <!-- 소감 -->
-  <form method="post">
-    {% csrf_token %}
-    <section class="reviewSection">
-      <div class="reviewHeader">
-        <h3 class="sectionTitle">한 줄 소감</h3>
-        <p class="reviewDescription">
-          간단한 소감을 남겨 동기들을 응원해주세요!
-        </p>
+              <div class="characterCount">
+                <span class="currentCount">0</span>
+                / 50
+              </div>
+            </div>
+          </section>
+
+          <!-- N차시로 가기 버튼 -->
+          <section class="buttonSection">
+            <button type="submit" class="completeButton">
+              {{ lesson.order|add:"1" }}차시로 가기
+            </button>
+          </section>
+        </form>
       </div>
+    </body>
 
-      <!-- 소감 입력하는 부분 -->
-      <div class="reviewBox">
-        <textarea
-          class="reviewInput"
-          name="reflection"
-          maxlength="50"
-          placeholder="예: 여행 준비한 것도 경험이더라구요ㅎㅎ&#13;&#10;다들 화이팅!!"
-        ></textarea>
-
-        <div class="characterCount">
-          <span class="currentCount">0</span>
-          / 50
-        </div>
-      </div>
-    </section>
-
-    <!-- N차시로 가기 버튼 -->
-    <section class="buttonSection">
-      <button type="submit" class="completeButton">{{ lesson.order|add:"1" }}차시로 가기</button>
-    </section>
-  </form>
-</div>
-</body>
-
-<script src="{% static 'js/lesson.js' %}"></script>
+    <script src="{% static 'js/lesson.js' %}"></script>
+  </html>
 </html>
