@@ -2,17 +2,6 @@
 {% block content %}
 <div class="roadmap">
   <a href="{% url 'my_major' %}" class="back-link">← 뒤로</a>
-  <h1>내 전공</h1>
-   <div class="major-header">
-    <h2>{{ major.name }}</h2>
-    <p>{{ major.description }}</p>
-  </div>
-
-  <div class="tabs">
-    <a href="{% url 'my_major' %}" class="active">오늘의 학습</a>
-    <a href="{% url 'roadmap' %}">전공 로드맵</a>
-    <a href="{% url 'bookmarked_materials' %}">담은 자료</a>
-  </div>
 
   <h2>나의 전공 로드맵</h2>
   <p>{{ stages|length }}단계 · 지금 할 수업은 '오늘의 학습'에서, 전체 과정은 여기서 확인해보세요.</p>
