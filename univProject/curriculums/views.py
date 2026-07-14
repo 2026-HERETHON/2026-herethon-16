@@ -6,7 +6,7 @@ from .services import (
     get_major_progress, get_current_lesson,
     save_lesson_answers, complete_lesson,
     get_lesson_reflections,
-    get_roadmap, get_bookmarked_materials, toggle_bookmark,
+    get_roadmap,
 )
 
 
@@ -91,20 +91,3 @@ def roadmap_view(request):
     context = {'major': major, 'stages': stages}
     return render(request, 'curriculums/roadmap.html', context)
 
-
-@login_required
-def bookmarked_materials_view(request):
-    major = request.user.profile.selectedMajor
-    bookmarks = get_bookmarked_materials(request.user, major)
-
-    context = {'major': major, 'bookmarks': bookmarks}
-    return render(request, 'curriculums/bookmarked_materials.html', context)
-
-
-@login_required
-def material_bookmark_toggle(request, material_id):
-    if request.method != 'POST':
-        return redirect('bookmarked_materials')
-
-    toggle_bookmark(request.user, material_id)
-    return redirect('bookmarked_materials')

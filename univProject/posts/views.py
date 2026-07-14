@@ -5,11 +5,22 @@ from .models import Post, PostLike, PostCheer, Comment
 
 
 @login_required
+@login_required
 def post_list(request):
-    """내 전공 게시판만 보여줌"""
     major = request.user.profile.selectedMajor
-    posts = Post.objects.filter(major=major).select_related('author').order_by('-created_at')
-    return render(request, 'posts/post_list.html', {'posts': posts, 'major': major})
+    scope = request.GET.get('scope', 'major')  
+
+    if scope == 'all':
+        posts = Post.objects.select_related('author', 'major').order_by('-created_at')
+    else:
+        posts = Post.objects.filter(major=major).select_related('author').order_by('-created_at')
+
+    context = {
+        'posts': posts,
+        'major': major,
+        'scope': scope,
+    }
+    return render(request, 'posts/post_list.html', context)
 
 
 @login_required
@@ -22,6 +33,7 @@ def post_detail(request, post_id):
 
     context = {
         'post': post,
+        'magor': post.major,
         'comments': comments,
         'has_liked': has_liked,
         'has_cheered': has_cheered,
