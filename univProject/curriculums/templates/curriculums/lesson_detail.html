@@ -21,7 +21,7 @@
   <div class="lessonPage">
     <div class="lessonIntro">
       <div class="lessonHeader">
-        <div class="lessonBadge">{{ lesson.order }}</div>
+        <div class="lessonBadge">{{ lesson.order }}차시</div>
         <h2 class="lessonTitle">{{ lesson.title }}</h2>
       </div>
 
@@ -57,7 +57,7 @@
         {% for question in questions %}
         <article class="questionItem">
           <div class="questionHeader">
-            <h3 class="questionTitle">{{ question.question_text }}</h3>
+            <h3 class="questionTitle">{{ question.order }}. {{ question.question_text }}</h3>
             {% if question.help_text %}
             <p class="questionDescription">{{ question.help_text }}</p>
             {% endif %}
