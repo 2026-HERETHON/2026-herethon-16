@@ -12,6 +12,7 @@
     <title>두 번째 전공 추천</title>
 
     <link rel="stylesheet" href="{% static 'css/recommend.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search_settings.css' %}" />
 
     <link
       rel="stylesheet"
@@ -22,9 +23,11 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
     />
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
   </head>
 
   <body>
+    <div class="app">
     <!-- 헤더 -->
     <header class="pageHeader">
       <!-- 이전 버튼 -->
@@ -142,5 +145,6 @@
       </section>
     </main>
     <script src="{% static 'js/recommend.js' %}"></script>
+    </div>
   </body>
 </html>
