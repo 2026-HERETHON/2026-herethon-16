@@ -2,6 +2,9 @@ const backIcon = document.querySelector(".material-symbols-outlined.backIcon"); 
 const answerInputs = document.querySelectorAll(".answerInput"); // 사용자 입력값
 const completeButton = document.querySelector(".completeButton"); // "첫 전공 체험 시작하기" 버튼
 
+// 초기 상태 (CTA 비활성화)
+completeButton.disabled = true;
+
 // 이전 버튼 (이전 페이지로 이동)
 backIcon.addEventListener("click", () => {
   window.history.back();
@@ -28,11 +31,11 @@ function checkComplete() {
   );
 
   if (isCompleted) {
-    //   조건 충족 시, CTA 버튼 활성화
-    completeButton.classList.add("active");
+    // 조건 충족 시, CTA 버튼 활성화
+    completeButton.disabled = false;
   } else {
     // 조건 불충족 시, CTQ 버튼 비활성화
-    completeButton.classList.remove("active");
+    completeButton.disabled = true;
   }
 }
 

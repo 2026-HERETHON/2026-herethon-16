@@ -185,7 +185,7 @@
 }
 
 /* CTA 버튼 비활성화 */
-.startButton {
+.startButton:disabled {
   width: 100%;
   padding: 18px 20px;
   border-radius: 16px;
@@ -196,10 +196,20 @@
   font-weight: 700;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.12);
   transition: 0.2s;
+  cursor: default;
 }
 
 /* CTA 버튼 활성화 */
-.startButton.active {
+.startButton:not(:disabled) {
+  width: 100%;
+  padding: 18px 20px;
+  border-radius: 16px;
   background: #4dd7c1;
+  font-size: 18px;
+  font-weight: 600;
+  font-weight: 700;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.12);
+  transition: 0.2s;
   color: #fff;
+  cursor: pointer;
 }
