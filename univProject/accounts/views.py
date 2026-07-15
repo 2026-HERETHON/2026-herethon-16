@@ -10,6 +10,7 @@ def signUp(request):
                 username=request.POST['username'], 
                 password=request.POST['password']
             )				
+            auth_login(request, newUser)
             print('회원가입 성공')
             return redirect('intro')
         else:
