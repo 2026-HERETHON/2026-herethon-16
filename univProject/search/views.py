@@ -66,7 +66,8 @@ def resultView(request):
         'userName': request.user.username,
     }
 
-    return render(request, "confirm.html", context)
+    next_url = request.POST.get("next_url", "loading")
+    return redirect(next_url)
 
 
 
