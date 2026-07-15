@@ -1,80 +1,96 @@
 {% load static %}
 <!doctype html>
 <html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>univProject</title>
-  <link rel="stylesheet" href="{% static 'css/lesson_complete.css' %}" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" />
-</head>
-<body>
-  <header class="pageHeader">
-    <a href="{% url 'my_major' %}">
-      <span class="material-symbols-outlined backIcon">arrow_back_ios_new</span>
-    </a>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>univProject</title>
+    <link rel="stylesheet" href="{% static 'css/lesson_complete.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <header class="pageHeader">
+        <a href="{% url 'my_major' %}">
+          <span class="material-symbols-outlined backIcon"
+            >arrow_back_ios_new</span
+          >
+        </a>
+      </header>
 
-  <div class="lessonPage">
-    <section class="completeIntro">
-      <h2 class="completeTitle">{{ screen.complete_title|default:"수업을 마쳤어요" }}</h2>
-      <p class="completeDescription">{{ screen.complete_subtitle }}</p>
-    </section>
+      <div class="lessonPage">
+        <section class="completeIntro">
+          <h2 class="completeTitle">
+            {{ screen.complete_title|default:"수업을 마쳤어요" }}
+          </h2>
+          <p class="completeDescription">{{ screen.complete_subtitle }}</p>
+        </section>
 
-    <section class="cardSection">
-      <h3 class="sectionTitle">{{ screen.result_section_title }}</h3>
+        <section class="cardSection">
+          <h3 class="sectionTitle">{{ screen.result_section_title }}</h3>
 
-      {% for answer in answers %}
-      <article class="cardItem">
-        <strong class="cardLabel">{{ answer.question.result_label }}</strong>
-        <div class="cardBox">{{ answer.answer_text }}</div>
-      </article>
-      {% endfor %}
-    </section>
+          {% for answer in answers %}
+          <article class="cardItem">
+            <strong class="cardLabel"
+              >{{ answer.question.result_label }}</strong
+            >
+            <div class="cardBox">{{ answer.answer_text }}</div>
+          </article>
+          {% endfor %}
+        </section>
 
-    {% if screen.insight_body %}
-    <section class="summarySection">
-      <h3 class="sectionTitle">{{ screen.insight_title }}</h3>
-      <p class="summaryText">
-        {{ screen.insight_body }}
-        <br /><br />
-        {{ screen.use_case_text }}
-      </p>
-    </section>
-    {% endif %}
+        {% if screen.insight_body %}
+        <section class="summarySection">
+          <h3 class="sectionTitle">{{ screen.insight_title }}</h3>
+          <p class="summaryText">
+            {{ screen.insight_body }}
+            <br /><br />
+            {{ screen.use_case_text }}
+          </p>
+        </section>
+        {% endif %}
 
-    <form method="post">
-      {% csrf_token %}
-      <section class="reviewSection">
-        <div class="reviewHeader">
-          <h3 class="sectionTitle">{{ screen.reflection_title|default:"한 줄 소감" }}</h3>
-          <p class="reviewDescription">{{ screen.reflection_help }}</p>
-        </div>
+        <form method="post">
+          {% csrf_token %}
+          <section class="reviewSection">
+            <div class="reviewHeader">
+              <h3 class="sectionTitle">
+                {{ screen.reflection_title|default:"한 줄 소감" }}
+              </h3>
+              <p class="reviewDescription">{{ screen.reflection_help }}</p>
+            </div>
 
-        <div class="reviewBox">
-          <textarea
-            class="reviewInput"
-            name="reflection"
-            maxlength="{{ screen.reflection_max_length|default:50 }}"
-            placeholder="{{ screen.reflection_placeholder }}"
-          ></textarea>
+            <div class="reviewBox">
+              <textarea
+                class="reviewInput"
+                name="reflection"
+                maxlength="{{ screen.reflection_max_length|default:50 }}"
+                placeholder="{{ screen.reflection_placeholder }}"
+              ></textarea>
 
-          <div class="characterCount">
-            <span class="currentCount">0</span>
-            / {{ screen.reflection_max_length|default:50 }}
-          </div>
-        </div>
-      </section>
+              <div class="characterCount">
+                <span class="currentCount">0</span>
+                / {{ screen.reflection_max_length|default:50 }}
+              </div>
+            </div>
+          </section>
 
-      <section class="buttonSection">
-        <button type="submit" class="completeButton">
-          {{ screen.next_cta|default:"다음으로" }}
-        </button>
-      </section>
-    </form>
-  </div>
+          <section class="buttonSection">
+            <button type="submit" class="completeButton">
+              {{ screen.next_cta|default:"다음으로" }}
+            </button>
+          </section>
+        </form>
+      </div>
 
-  <script src="{% static 'js/lesson.js' %}"></script>
-</body>
+      <script src="{% static 'js/lesson.js' %}"></script>
+    </div>
+  </body>
 </html>
