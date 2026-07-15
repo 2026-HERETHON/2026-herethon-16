@@ -17,6 +17,16 @@ button {
   cursor: pointer;
 }
 
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
 .page {
   width: 100vw;
   height: 100vh;
