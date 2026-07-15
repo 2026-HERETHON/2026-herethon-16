@@ -1,11 +1,5 @@
-const backIcon = document.querySelector(".material-symbols-outlined.backIcon"); // 이전 버튼
 const userInputs = document.querySelectorAll(".answerInput, .reviewInput"); // 사용자 입력값
 const completeButton = document.querySelector(".completeButton"); // 버튼 (수업 완료하기, N차시로 가기)
-
-// 이전 버튼 (이전 페이지로 이동)
-backIcon.addEventListener("click", () => {
-  window.history.back();
-});
 
 // 글자수 세기
 function updateCharacterCount(input) {
