@@ -1,42 +1,44 @@
+/* 탐색 학기 Flow 공통 CSS 파일 */
+
 /*기본 초기화설정*/
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/*폰트 설정*/ 
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+/*폰트 설정*/
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
 body {
-    font-family: "Pretendard", sans-serif;
+  font-family: "Pretendard", sans-serif;
 }
 
 /*레이아웃 설정*/
 html,
 body {
-    width: 100%;
+  width: 100%;
 }
 
 body {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    background: #F5F5F5;
+  background: #f5f5f5;
 
-    min-height: 100vh;
+  min-height: 100vh;
 }
 
 .app {
-    width: 100%;
-    max-width: 390px;
-    min-height: 100vh;
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
 
-    background: #FFFFFF;
+  background: #ffffff;
 
-    position: relative;
+  position: relative;
 
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 

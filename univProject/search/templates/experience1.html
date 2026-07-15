@@ -22,73 +22,75 @@
 
   <body>
     <div class="app">
-    <!-- 헤더 -->
-    <header class="pageHeader">
-      <!-- 이전 버튼 -->
-      <span class="material-symbols-outlined backIcon">
-        arrow_back_ios_new
-      </span>
+      <!-- 헤더 -->
+      <header class="pageHeader">
+        <!-- 이전 버튼 -->
+        <span class="material-symbols-outlined backIcon">
+          arrow_back_ios_new
+        </span>
 
-      <h1 class="pageTitle">체험 수업</h1>
-    </header>
+        <h1 class="pageTitle">체험 수업</h1>
+      </header>
 
-    <main class="experienceContent">
-      <!-- 체험 수업 안내 -->
-      <section class="introSection">
-        <h2 class="introTitle">{{ experience.title }}</h2>
+      <main class="experienceContent">
+        <!-- 체험 수업 안내 -->
+        <section class="introSection">
+          <h2 class="introTitle">{{ experience.title }}</h2>
 
-        <p class="introDescription">
-          {{ experience.description|linebreaksbr }}
-        </p>
-      </section>
+          <p class="introDescription">
+            {{ experience.description|linebreaksbr }}
+          </p>
+        </section>
 
-      <!-- 체험 수업 3가지 (질문, 답변) -->
-      <section class="questionSection">
-        {% for question in questions %}
+        <!-- 체험 수업 3가지 (질문, 답변) -->
+        <section class="questionSection">
+          {% for question in questions %}
 
-        <article class="questionItem">
-          <!-- 질문 -->
-          <div class="questionHeader">
-            <h3 class="questionTitle">{{ question.order }}. {{ question.question }}</h3>
+          <article class="questionItem">
+            <!-- 질문 -->
+            <div class="questionHeader">
+              <h3 class="questionTitle">
+                {{ question.order }}. {{ question.question }}
+              </h3>
 
-            <p class="questionDescription">
-              {{ question.helpText|linebreaksbr }}
-            </p>
-          </div>
-
-          <!-- 답변 -->
-          <div class="answerBox">
-            <textarea
-              class="answerInput"
-              data-question-id="{{ forloop.counter0 }}"
-              maxlength="{{ question.maxLength }}"
-              placeholder="{{ question.placeholder }}"
-            ></textarea>
-
-            <!-- 입력한 글자수 / 글자수 제한 -->
-            <div class="characterCount">
-              <span class="currentCount">0</span>
-              / {{ question.maxLength }}
+              <p class="questionDescription">
+                {{ question.helpText|linebreaksbr }}
+              </p>
             </div>
-          </div>
-        </article>
 
-        {% endfor %}
-      </section>
+            <!-- 답변 -->
+            <div class="answerBox">
+              <textarea
+                class="answerInput"
+                data-question-id="{{ forloop.counter0 }}"
+                maxlength="{{ question.maxLength }}"
+                placeholder="{{ question.placeholder }}"
+              ></textarea>
 
-      <section class="buttonSection">
-        <!-- "첫 전공 체험 마치기" 버튼 - recommend2.html (추천 전공2로 이동) -->
-        <button class="completeButton" data-next-url="{% url 'recommend2' %}">
-          <span> 첫 전공 체험 마치기 </span>
-        </button>
+              <!-- 입력한 글자수 / 글자수 제한 -->
+              <div class="characterCount">
+                <span class="currentCount">0</span>
+                / {{ question.maxLength }}
+              </div>
+            </div>
+          </article>
 
-        <p class="buttonDescription">
-          첫 수업을 마치면 두 번째 전공을 체험해요.
-        </p>
-      </section>
-    </main>
+          {% endfor %}
+        </section>
 
-    <script src="{% static 'js/experience.js' %}"></script>
+        <section class="buttonSection">
+          <!-- "첫 전공 체험 마치기" 버튼 - recommend2.html (추천 전공2로 이동) -->
+          <button class="completeButton" data-next-url="{% url 'recommend2' %}">
+            <span> 첫 전공 체험 마치기 </span>
+          </button>
+
+          <p class="buttonDescription">
+            첫 수업을 마치면 두 번째 전공을 체험해요.
+          </p>
+        </section>
+      </main>
+
+      <script src="{% static 'js/experience.js' %}"></script>
     </div>
   </body>
 </html>
