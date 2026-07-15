@@ -1,3 +1,7 @@
+.fullpage{
+    width: 100%;
+}
+
 .materialsGrid{
     display: grid;
 
