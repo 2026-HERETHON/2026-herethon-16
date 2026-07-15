@@ -1,25 +1,11 @@
 /* 탐색 학기 Flow 첫 번째 화면 CSS */
-body {
-  margin: 0;
-  font-family: Pretendard, sans-serif;
-  line-height: normal;
-  background: #fff;
-}
-
-.onboarding {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  text-align: center;
-}
-
 .pageHeader {
-  padding: 101px 30px 0;
+  text-align: center;
+  padding: 20.39px 30px;
 }
 
 .pageTitle {
-  margin: 0;
+  padding: 20px 0px;
   font-size: 22px;
   font-weight: 800;
   line-height: 120%;
@@ -27,12 +13,11 @@ body {
 }
 
 .content {
-  width: 298px;
-  margin: 40px auto 0;
+  text-align: center;
+  margin: 117.61px 0px 255px;
 }
 
 .mainTitle {
-  margin: 0;
   font-size: 22px;
   font-weight: 800;
   line-height: 140%;
@@ -40,16 +25,15 @@ body {
 }
 
 .description {
-  margin-top: 24px;
+  margin: 17px 0px;
   font-size: 16px;
   font-weight: 500;
   line-height: 150%;
   color: #17211e;
 }
 
-.actionArea {
-  margin-top: 102px;
-
+.buttonArea {
+  margin-top: 61px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,28 +43,18 @@ body {
 .nextButton {
   width: 334px;
   padding: 16px 0;
-
   border: none;
   border-radius: 16px;
-
   background: #4dd7c1;
   color: #fff;
-
   font-family: inherit;
   font-size: 18px;
   font-weight: 700;
-
   cursor: pointer;
-
   box-shadow: 0 2px 7.3px rgba(0, 0, 0, 0.1);
 }
 
-.nextButton:hover {
-  background: #44cbb6;
-}
-
 .guideText {
-  margin: 0;
   font-size: 14px;
   font-weight: 500;
   color: #17211e;

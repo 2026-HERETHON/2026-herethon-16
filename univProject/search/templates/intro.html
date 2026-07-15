@@ -13,15 +13,15 @@
 
     <!-- static 폴더에서 css 파일 불러오기 -->
     <link rel="stylesheet" href="{% static 'css/intro.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search_settings.css' %}" />
 
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Pretendard:wght@500;700;800&display=swap"
     />
   </head>
-
   <body>
-    <div class="onboarding">
+    <div class="app">
       <header class="pageHeader">
         <h1 class="pageTitle">탐색학기</h1>
       </header>
@@ -37,7 +37,7 @@
           먼저 체험해볼 전공을 하나 제안해드려요.
         </p>
 
-        <div class="actionArea">
+        <div class="buttonArea">
           <!-- select1.html로 이동하는 버튼 (선택1 화면으로 이동) -->
           <button class="nextButton" data-next-url="{% url 'select1' %}">
             다음으로
@@ -46,9 +46,9 @@
           <p class="guideText">질문 3개 · 약 1분</p>
         </div>
       </main>
-    </div>
 
-    <!-- static 폴더에서 js 파일 불러오기 -->
-    <script src="{% static 'js/intro.js' %}"></script>
+      <!-- static 폴더에서 js 파일 불러오기 -->
+      <script src="{% static 'js/intro.js' %}"></script>
+    </div>
   </body>
 </html>

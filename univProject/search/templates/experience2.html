@@ -8,6 +8,8 @@
     <title>체험 수업</title>
 
     <link rel="stylesheet" href="{% static 'css/experience.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search_settings.css' %}" />
+
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
@@ -19,67 +21,71 @@
   </head>
 
   <body>
-    <!-- 헤더 -->
-    <header class="pageHeader">
-      <!-- 이전 버튼 -->
-      <span class="material-symbols-outlined backIcon">
-        arrow_back_ios_new
-      </span>
+    <div class="app">
+      <!-- 헤더 -->
+      <header class="pageHeader">
+        <!-- 이전 버튼 -->
+        <span class="material-symbols-outlined backIcon">
+          arrow_back_ios_new
+        </span>
 
-      <h1 class="pageTitle">체험 수업</h1>
-    </header>
+        <h1 class="pageTitle">체험 수업</h1>
+      </header>
 
-    <main class="experienceContent">
-      <!-- 체험 수업 안내 -->
-      <section class="introSection">
-        <h2 class="introTitle">{{ experience.title }}</h2>
+      <main class="experienceContent">
+        <!-- 체험 수업 안내 -->
+        <section class="introSection">
+          <h2 class="introTitle">{{ experience.title }}</h2>
 
-        <p class="introDescription">
-          {{ experience.description|linebreaksbr }}
-        </p>
-      </section>
+          <p class="introDescription">
+            {{ experience.description|linebreaksbr }}
+          </p>
+        </section>
 
-      <!-- 체험 수업 3가지 (질문, 답변) -->
-      <section class="questionSection">
-        {% for question in questions %}
+        <!-- 체험 수업 3가지 (질문, 답변) -->
+        <section class="questionSection">
+          {% for question in questions %}
 
-        <article class="questionItem">
-          <!-- 질문 -->
-          <div class="questionHeader">
-            <h3 class="questionTitle">{{ question.order }}. {{ question.question }}</h3>
+          <article class="questionItem">
+            <!-- 질문 -->
+            <div class="questionHeader">
+              <h3 class="questionTitle">
+                {{ question.order }}. {{ question.question }}
+              </h3>
 
-            <p class="questionDescription">
-              {{ question.helpText|linebreaksbr }}
-            </p>
-          </div>
-
-          <!-- 답변 -->
-          <div class="answerBox">
-            <textarea
-              class="answerInput"
-              maxlength="{{ question.maxLength }}"
-              placeholder="{{ question.placeholder }}"
-            ></textarea>
-
-            <!-- 입력한 글자수 / 글자수 제한 -->
-            <div class="characterCount">
-              <span class="currentCount">0</span>
-              / {{ question.maxLength }}
+              <p class="questionDescription">
+                {{ question.helpText|linebreaksbr }}
+              </p>
             </div>
-          </div>
-        </article>
 
-        {% endfor %}
-      </section>
+            <!-- 답변 -->
+            <div class="answerBox">
+              <textarea
+                class="answerInput"
+                maxlength="{{ question.maxLength }}"
+                placeholder="{{ question.placeholder }}"
+              ></textarea>
 
-      <section class="buttonSection">
-        <!-- "두번째 전공 체험 마치기" 버튼 - confirm.html (전공 선택하기로 이동) -->
-        <button class="completeButton" data-next-url="{% url 'confirm' %}">
-          <span> 두번째 전공 체험 마치기 </span>
-        </button>
-      </section>
-    </main>
+              <!-- 입력한 글자수 / 글자수 제한 -->
+              <div class="characterCount">
+                <span class="currentCount">0</span>
+                / {{ question.maxLength }}
+              </div>
+            </div>
+          </article>
 
-    <script src="{% static 'js/experience.js' %}"></script>
+          {% endfor %}
+        </section>
+
+        <section class="buttonSection">
+          <!-- "두번째 전공 체험 마치기" 버튼 - confirm.html (전공 선택하기로 이동) -->
+          <button class="completeButton" data-next-url="{% url 'confirm' %}">
+            <span> 두번째 전공 체험 마치기 </span>
+          </button>
+        </section>
+      </main>
+
+      <script src="{% static 'js/experience.js' %}"></script>
+    </div>
   </body>
 </html>
