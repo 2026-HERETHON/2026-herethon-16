@@ -164,7 +164,7 @@ input[type="checkbox"] {
 }
 
 /* CTA 버튼 비활성화 */
-.nextButton {
+.nextButton:disabled {
   width: 100%;
   height: 56px;
   border-radius: 16px;
@@ -173,12 +173,18 @@ input[type="checkbox"] {
   font-size: 18px;
   font-weight: 600;
   box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  cursor: default;
 }
 
 /* CTA 버튼 활성화 */
-.nextButton.active {
+.nextButton:not(:disabled) {
+  width: 100%;
+  height: 56px;
+  border-radius: 16px;
   background: #4dd7c1;
   color: #fff;
   font-size: 18px;
   font-weight: 700;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }

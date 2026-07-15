@@ -101,7 +101,7 @@
 }
 
 /* 전공 체험 완료 CTA 버튼 (다음 페이지로 이동) */
-.completeButton {
+.completeButton:disabled {
   width: 334px;
   padding: 16px;
   border-radius: 16px;
@@ -110,10 +110,11 @@
   color: rgba(23, 33, 30, 0.6);
   font-size: 18px;
   font-weight: 600;
+  cursor: default;
 }
 
 /* 전공 체험 완료 CTA 버튼 - 활성화 */
-.completeButton.active {
+.completeButton:not(:disabled) {
   width: 334px;
   padding: 16px;
   border-radius: 16px;
@@ -122,6 +123,7 @@
   color: white;
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .buttonDescription {
