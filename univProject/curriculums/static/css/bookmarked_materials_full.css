@@ -1,6 +1,6 @@
 /* 하단 탭 바 때문에 메인 컨텐츠가 가려져서 추가 */
 .app {
-    padding-bottom: 132px;
+    padding-bottom: 42px;
 }
 
 .fullpage{
