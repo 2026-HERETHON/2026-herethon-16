@@ -25,6 +25,7 @@ body {
     background: #F5F5F5;
 
     min-height: 100vh;
+    overflow-y: scroll;
 }
 
 .app {
@@ -37,6 +38,7 @@ body {
     position: relative;
 
     overflow-x: hidden;
+    padding-bottom: 150px !important;
 }
 
 /* 아이콘 스타일 기본설정 */
@@ -74,14 +76,14 @@ h1 {
     line-height: 120%;
 }
 
-.app {
+/* .app {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
 .app::-webkit-scrollbar {
     display: none;
-}
+} */
 
 
 
@@ -134,6 +136,15 @@ h1 {
 
 .board-header h2 {
     color: #20CDB1;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 7px;
+}
+
+.black_board{
+    color: #17211E !important;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;

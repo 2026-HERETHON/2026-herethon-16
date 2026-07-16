@@ -4,15 +4,11 @@
 
 <link rel="stylesheet" href="{% static 'css/post_setting.css' %}">
 <link rel="stylesheet" href="{% static 'css/post_list.css' %}">
-<!-- <link rel="stylesheet" href="{% static 'css/post_form.css' %}"> -->
-
-
 
 <div class="app">
   <header class="pageHeader"></header>
   <div class="together">
     <h1>함께</h1>
-
 
     <div class="tabs">
       <a href="{% url 'post_list' %}?scope=major" class="{% if scope == 'major' %}active{% endif %}">우리 전공</a>
@@ -26,6 +22,7 @@
       <h2>{{ major.name }} · {{ stage.order }}단계</h2>
       <p>같은 단계에 있는&nbsp;<strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
     </div>
+
     {% if featured_reflection %}
     <div class="box-scroll">
       <div class="box">
@@ -45,13 +42,11 @@
         <p class="cheer-count">{{ featured_reflection.cheers.count }}명이 {{ featured_reflection.user.profile.nickname }}님을 응원했어요!</p>
       </div>
     </div>
-    <div class="board-header">
-      <h2>전공 게시판</h2>
-    </div>
-
     {% endif %}
 
-
+    <div class="board-header">
+      <h2 class="black_board">전공 게시판</h2>
+    </div>
 
     {% else %}
     {# ===== 잇대 전체 화면 ===== #}
@@ -78,22 +73,18 @@
           {% if r.milestone_text %}
           <p class="milestone-label">이번 주의 한걸음</p>
           <p class="milestone-text">{{ r.milestone_text }}</p>
-
+          {% endif %}
         </div>
-
-        {% endif %}
-
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
     {% endif %}
 
     <div class="board-header">
-      <h2>전체 게시판</h2>
+      <h2 class="black_board">전체 게시판</h2>
       <div class="board-filter">
         <a href="?scope=all" class="filter-tag {% if not category %}active{% endif %}">전체</a>
-        <a href="?scope=all&category=question"
-          class="filter-tag {% if category == 'question' %}active{% endif %}">질문</a>
+        <a href="?scope=all&category=question" class="filter-tag {% if category == 'question' %}active{% endif %}">질문</a>
         <a href="?scope=all&category=info" class="filter-tag {% if category == 'info' %}active{% endif %}">정보 공유</a>
       </div>
     </div>
@@ -101,7 +92,6 @@
 
 
     <div class="post-board">
-
       {% for post in posts %}
       <a href="{% url 'post_detail' post.id %}" class="post-card-link">
         <div class="post-card">
@@ -151,7 +141,6 @@
             <button type="submit" class="btn-primary">게시글 등록하기</button>
           </form>
         </div>
-
       </div>
     </div>
 

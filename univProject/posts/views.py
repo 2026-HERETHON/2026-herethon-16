@@ -16,22 +16,18 @@ def post_list(request):
     scope = request.GET.get('scope', 'major')
 
     if scope == 'all':
-        posts = Post.objects.filter(board_scope='all').select_related('author', 'major').order_by('-created_at')
-        category = request.GET.get('category')
-        if category:
-            posts = posts.filter(category=category)
+        posts = Post.objects.select_related('author', 'major').order_by('-created_at')
     else:
-        posts = Post.objects.filter(board_scope='major', major=major).select_related('author').order_by('-created_at')
-        category = None
+        posts = Post.objects.filter(major=major).select_related('author').order_by('-created_at')
 
     context = {
         'posts': posts,
         'major': major,
         'scope': scope,
-        'category': category,
     }
 
     if scope == 'major':
+        # 우리 전공 화면용 데이터
         current_progress = LessonProgress.objects.filter(
             user=request.user, status='in_progress'
         ).select_related('lesson__stage').first()
@@ -58,6 +54,7 @@ def post_list(request):
             'has_cheered': has_cheered,
         })
     else:
+        # 잇대 전체 화면용 데이터
         one_week_ago = timezone.now() - timedelta(days=7)
         weekly_reflections = LessonReflection.objects.filter(
             created_at__gte=one_week_ago
@@ -96,26 +93,22 @@ def post_detail(request, post_id):
     return render(request, 'posts/post_detail.html', context)
 
 
+@login_required
 def post_create(request):
-    scope = request.GET.get('scope', 'major')
-
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        board_scope = request.POST.get('board_scope', 'major')
-        category = request.POST.get('category') or None
 
         post = Post.objects.create(
             author=request.user,
             major=request.user.profile.selectedMajor,
-            board_scope=board_scope,
-            category=category,
             title=title,
             content=content,
         )
         return redirect('post_detail', post_id=post.id)
 
-    return render(request, 'posts/post_form.html', {'scope': scope})
+    return render(request, 'posts/post_form.html')
+
 
 @login_required
 def post_like(request, post_id):
