@@ -27,6 +27,7 @@ def my_major_view(request):
 
     stage = current.lesson.stage if current else None
     reflections = get_lesson_reflections(stage, exclude_user=request.user)
+    featured_reflection = reflections.first() 
 
     context = {
         'major': major,
@@ -36,7 +37,7 @@ def my_major_view(request):
         'stage': stage,
         'reflections': reflections,
         'reflections_count': reflections.count(), 
-
+        'r': featured_reflection,
     }
     return render(request, 'curriculums/my_major.html', context)
 

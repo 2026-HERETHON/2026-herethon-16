@@ -13,7 +13,7 @@
 
   {% if scope == 'stage' %}
     {% for section in sections %}
-      <h4 class="section-title">{{ section.lesson.title }} 추천 자료</h4>
+    <h4 class="section-title">{{ section.stage.title }} 추천 자료</h4>
       <div class="material-list-vertical">
         {% for material in section.materials %}
           <div class="material-card-wide">

@@ -79,13 +79,10 @@
           {% if r.milestone_text %}
           <p class="milestone-label">이번 주의 한걸음</p>
           <p class="milestone-text">{{ r.milestone_text }}</p>
-
+          {% endif %}
         </div>
-
-        {% endif %}
-
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
     {% endif %}
 
