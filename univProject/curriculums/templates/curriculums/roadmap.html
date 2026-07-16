@@ -1,0 +1,162 @@
+<!-- 내 전공 - 지금 할 수업 -->
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 전공 - 전공 로드맵</title>
+    <link rel="stylesheet" href="../../static/css/settings.css" />
+    <link rel="stylesheet" href="../../static/css/header.css" />
+    <link rel="stylesheet" href="../../static/css/roadmap.css" />
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+  </head>
+
+  <body>
+    <div class="app">
+      <div class="header">내 전공</div>
+
+      <div class="majorCard">
+        <div class="textExplain">
+          <div class="majorName">{{ major.name }}</div> <!-- 예) 콘텐츠 채널 마케팅 전공 -->
+          <div class="majorExplain">{{ major.description }}</div> <!-- 예) 사람들의 관심과 반응을 살펴보고, ... -->
+        </div>
+
+        <!-- 전공 이미지 -->
+        <div class="majorIcon">
+          <img
+            src="../../static/assets/content-marketing-major-illustration.png"
+            alt="콘텐츠 마케팅 일러스트"
+          />
+        </div>
+      </div>
+
+      <div class="sessionProgress">
+        <!-- 진행률 시각화 -->
+        <div class="progressBar">
+          <div class="filledProgress" style="width: {% widthratio progress.completed progress.total 100 %}%;"></div>
+        </div>
+
+        <!-- 예) 전체 과정 1/12차시 -->
+        <div class="progressText">
+          전체 과정 {{ progress.completed }} / {{ progress.total }} 차시
+        </div>
+      </div>
+
+      <!-- 필터 컴포넌트 -->
+      <div class="filterComponent">
+        <!-- [지금 할 수업] 필터 -->
+        <a
+          href="{% url 'my_major' %}"
+          class="component"
+          data-page="current-class.html"
+          >지금 할 수업</a
+        >
+
+        <!-- [전공 로드맵] 필터 -->
+        <a
+          href="{% url 'roadmap' %}"
+          class="componentActive"
+          data-page="roadmap.html"
+          >전공 로드맵</a
+        >
+
+        <!-- [담은 자료] 필터 -->
+        <a
+          href="{% url 'bookmarked_materials' %}"
+          class="component"
+          data-page="downloads.html"
+          >담은 자료</a
+        >
+      </div>
+
+      <div class="roadmapInfo">
+        <div class="infoBox">
+          <div class="myRoadmap">나의 전공 로드맵</div>
+
+          <!-- 예) 4단계 · 12차시 -->
+          <div class="roadmapComposition">
+            {{ stages|length }}단계 · {{ progress.total }}차시
+          </div>
+        </div>
+
+        <p>
+          지금 할 수업은 ‘오늘의 학습’에서,
+          <br />전체 과정은 전공 로드맵에서 확인해보세요.
+        </p>
+      </div>
+
+      {% for stage in stages %}
+      <div class="roadmapStep">
+        <div class="roadmapUpbox">
+          <!-- 예) 1. 콘텐츠 감각 찾기 -->
+          <div class="sidebox">
+            <p class="mapNumber">{{ stage.order }}</p>
+            <div class="stepName">{{ stage.title }}</div>
+          </div>
+
+          <!-- 예) 진행중 -->
+          <div class="roadmapStatus">
+            {% if stage.status == 'in_progress' %}진행중
+            {% elif stage.status == 'completed' %}완료
+            {% else %}예정
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- 예) 내가 정보를 전했던 경험을 돌아보고, ... -->
+        <div class="roadmapContent">{{ stage.description }}</div>
+
+        <div class="rowBox">
+          <!-- 예) 단계 - 3차시•약 40분 -->
+          <div class="roadmapRow">
+            <div class="rowHead">단계</div>
+            <div class="rowBody">
+              {{ stage.lesson_count }}차시 · 약 {{ stage.total_duration }}분
+            </div>
+          </div>
+
+          <!-- 예) 완성할 것 - 콘텐츠 미니 포트폴리오 -->
+          <div class="roadmapRow">
+            <div class="rowHead">완성할 것</div>
+            <div class="rowBody">{{ stage.final_result }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      <!-- 하단 탭바 (바텀 내비게이션 바) -->
+      <footer class="tapBar">
+        <!-- [내 전공] -->
+        <a href="{% url 'my_major' %}" class="footerTapActive">
+          <img
+            src="../../static/assets/mymajortap-active.svg"
+            alt="내 전공 선택됨"
+          />
+          <p class="tapNameActive">내 전공</p>
+        </a>
+
+        <!-- [함께] -->
+        <a href="{% url 'post_list' %}" class="footerTap">
+          <img
+            src="../../static/assets/together-none.svg"
+            alt="함께 선택안됨"
+          />
+          <p class="tapName">함께</p>
+        </a>
+
+        <!-- [자료실] -->
+        <a href="{% url 'material_list' %}" class="footerTap">
+          <img
+            src="../../static/assets/article-none.svg"
+            alt="자료실 선택안됨"
+          />
+          <p class="tapName">자료실</p>
+        </a>
+      </footer>
+    </div>
+
+    <script src="../../static/js/common.js"></script>
+    <script src="../../static/js/roadmap.js"></script>
+  </body>
+</html>

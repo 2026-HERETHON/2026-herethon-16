@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post_setting.css' %}">
+<link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+<!-- <link rel="stylesheet" href="{% static 'css/post_form.css' %}"> -->
+
+
+
+<div class="app">
+  <header class="pageHeader"></header>
+  <div class="together">
+    <h1>함께</h1>
+
+
+    <div class="tabs">
+      <a href="{% url 'post_list' %}?scope=major" class="{% if scope == 'major' %}active{% endif %}">우리 전공</a>
+      <a href="{% url 'post_list' %}?scope=all" class="{% if scope == 'all' %}active{% endif %}">잇대 전체</a>
+    </div>
+
+    {% if scope == 'major' %}
+    {# ===== 우리 전공 화면 ===== #}
+
+    <div class="board-header">
+      <h2>{{ major.name }} · {{ stage.order }}단계</h2>
+      <p>같은 단계에 있는 <strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
+    </div>
+    {% if featured_reflection %}
+    <div class="box-scroll">
+      <div class="box">
+        <div class="name">
+          <img src="{% static 'assets/box1.png' %}" alt="" class="boxImg">
+          <p class="box_name">{{ featured_reflection.user.profile.nickname }}님</p>
+        </div>
+        <p class="reflection-quote">"{{ featured_reflection.reflection_text }}"</p>
+
+        <form method="post" action="{% url 'reflection_cheer' featured_reflection.id %}" class="inline-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit" class="cheer-btn {% if has_cheered %}active{% endif %}">
+            '응원해요' 보내기
+          </button>
+        </form>
+        <p class="cheer-count">{{ featured_reflection.cheers.count }}명이 {{ featured_reflection.user.profile.nickname
+          }}님을 응원했어요!</p>
+      </div>
+    </div>
+    <div class="board-header">
+      <h2>전공 게시판</h2>
+    </div>
+
+    {% endif %}
+
+
+
+    {% else %}
+    {# ===== 잇대 전체 화면 ===== #}
+    <div class="board-header">
+      <h2>각자의 전공에서 다시 시작하고 있어요</h2>
+      <p>전공은 달라도 비슷한 전환점을 지나고 있는 <br>
+        잇대 동기들의 과정을 만나보세요.</p>
+    </div>
+
+    {% if weekly_reflections %}
+    <div class="weekly-mates">
+      <h3>이번 주 동기들의 한 걸음</h3>
+      <div class="scroll-box">
+        {% for r in weekly_reflections %}
+        <div class="box">
+          <div class="box_header">
+            <div class="profile">
+              <img src="../../static/assets/faceIcon.svg" alt="" class="faceIcon">
+              <span class="author-name">{{ r.user.profile.nickname }}님</span>
+            </div>
+            <span class="post-major-tag">{{ r.lesson.stage.major.name }}</span>
+          </div>
+          <p class="reflection-quote">"{{ r.reflection_text }}"</p>
+          {% if r.milestone_text %}
+          <p class="milestone-label">이번 주의 한걸음</p>
+          <p class="milestone-text">{{ r.milestone_text }}</p>
+
+        </div>
+
+        {% endif %}
+
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="board-header">
+      <h2>전체 게시판</h2>
+      <div class="board-filter">
+        <a href="?scope=all" class="filter-tag {% if not category %}active{% endif %}">전체</a>
+        <a href="?scope=all&category=question"
+          class="filter-tag {% if category == 'question' %}active{% endif %}">질문</a>
+        <a href="?scope=all&category=info" class="filter-tag {% if category == 'info' %}active{% endif %}">정보 공유</a>
+      </div>
+    </div>
+    {% endif %}
+
+
+    <div class="post-board">
+
+      {% for post in posts %}
+      <a href="{% url 'post_detail' post.id %}" class="post-card-link">
+        <div class="post-card">
+          <div class="name">
+            <img src="{% static 'assets/faceIcon.svg' %}" alt="" class="faceIcon">
+            <span class="author-name">{{ post.author.profile.nickname }}</span>
+          </div>
+          <h3 class="post-title">{{ post.title }}</h3>
+          <p class="post-major">{{ post.major.name }}</p>
+          <div class="post-stats">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 133 133" fill="none">
+                <path
+                  d="M66.5002 116.375L58.4647 109.171C49.1363 100.766 41.4241 93.5158 35.3283 87.4199C29.2325 81.3241 24.3835 75.8517 20.7814 71.0027C17.1793 66.1538 14.6625 61.6974 13.2309 57.6335C11.7993 53.5696 11.0835 49.4133 11.0835 45.1647C11.0835 36.4828 13.9929 29.2324 19.8116 23.4137C25.6304 17.5949 32.8807 14.6855 41.5627 14.6855C46.3654 14.6855 50.9373 15.7015 55.2783 17.7335C59.6193 19.7654 63.3599 22.6286 66.5002 26.323C69.6404 22.6286 73.3811 19.7654 77.722 17.7335C82.063 15.7015 86.6349 14.6855 91.4377 14.6855C100.12 14.6855 107.37 17.5949 113.189 23.4137C119.007 29.2324 121.917 36.4828 121.917 45.1647C121.917 49.4133 121.201 53.5696 119.769 57.6335C118.338 61.6974 115.821 66.1538 112.219 71.0027C108.617 75.8517 103.768 81.3241 97.672 87.4199C91.5762 93.5158 83.8641 100.766 74.5356 109.171L66.5002 116.375ZM66.5002 101.413C75.3668 93.4696 82.6634 86.6579 88.3897 80.9777C94.1161 75.2975 98.6418 70.3562 101.967 66.1538C105.292 61.9513 107.601 58.2107 108.894 54.9319C110.187 51.6531 110.833 48.3974 110.833 45.1647C110.833 39.623 108.986 35.005 105.292 31.3105C101.597 27.6161 96.9793 25.7689 91.4377 25.7689C87.0967 25.7689 83.079 26.9927 79.3845 29.4402C75.6901 31.8878 73.1502 35.005 71.7647 38.7918H61.2356C59.8502 35.005 57.3102 31.8878 53.6158 29.4402C49.9213 26.9927 45.9036 25.7689 41.5627 25.7689C36.021 25.7689 31.4029 27.6161 27.7085 31.3105C24.0141 35.005 22.1668 39.623 22.1668 45.1647C22.1668 48.3974 22.8134 51.6531 24.1064 54.9319C25.3995 58.2107 27.7085 61.9513 31.0335 66.1538C34.3585 70.3562 38.8842 75.2975 44.6106 80.9777C50.337 86.6579 57.6335 93.4696 66.5002 101.413Z"
+                  fill="#1F1F1F" />
+              </svg>
+              {{ post.like_count }}</span>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 108 108" fill="none">
+                <path
+                  d="M9 99V18C9 15.525 9.88125 13.4062 11.6437 11.6437C13.4062 9.88125 15.525 9 18 9H90C92.475 9 94.5938 9.88125 96.3562 11.6437C98.1187 13.4062 99 15.525 99 18V72C99 74.475 98.1187 76.5938 96.3562 78.3562C94.5938 80.1188 92.475 81 90 81H27L9 99ZM23.175 72H90V18H18V77.0625L23.175 72Z"
+                  fill="#1F1F1F" />
+              </svg>
+              {{ post.comment_count }}</span>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <p class="empty-text">아직 등록된 게시글이 없어요.</p>
+      {% endfor %}
+    </div>
+
+    <a href="{% url 'post_create' %}" id="open-modal-btn" class="fab-button">+</a>
+    <div id="write-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="post-form">
+          <form method="post" action="{% url 'post_create' %}">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="제목을 입력해주세요." class="modal_title" required>
+            <p class="category_title">카테고리 선택</p>
+            <div class="category">
+              <button class="cate-btn">전체</button>
+              <button class="cate-btn">질문</button>
+              <button class="cate-btn">정보 공유</button>
+            </div>
+            <textarea name="content" placeholder="자유롭게 내용을 입력해주세요.&#10;(1,000자 이내)" rows="8" required></textarea>
+            <button type="submit" class="btn-primary">게시글 등록하기</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <script src="{% static 'js/post_list.js' %}"></script>
+  {% endblock %}
+</div>

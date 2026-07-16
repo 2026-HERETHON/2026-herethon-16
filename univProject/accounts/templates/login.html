@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로그인 페이지</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back_ios" />
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24;
+                
+                color: #1F1F1F;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="javascript:history.back();" class="back-btn">
+            <span class="material-symbols-outlined">arrow_back_ios</span>
+        </a>
+        <h1>로그인</h1>
+        <img src="{% static 'assets/logo.svg' %}" alt="">
+        <h2>안녕하세요. <br>
+            다시 오신 걸 환영합니다.</h2>
+        <form class="user" method="POST">
+            {% csrf_token %}
+            <div class="inputBox">
+                <div>
+                    <input type="text" name="username" placeholder="아이디">
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="비밀번호">
+                </div>
+            </div>
+
+            <input type="submit" value="로그인하기" class="button">
+            <div class="login">
+                <span>아직 계정이 없으신가요?</span>
+                <a href="/accounts/signup">회원가입 하기</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

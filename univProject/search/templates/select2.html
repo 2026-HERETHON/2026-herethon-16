@@ -1,0 +1,89 @@
+<!-- 선택 2 - 관심 있는 활동 (어떤 일을 해보고 싶나요?) -->
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <title>잇대</title>
+
+    <!-- static 폴더에서 css 파일 불러오기 -->
+    <link rel="stylesheet" href="{% static 'css/select.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/search_settings.css' %}" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=SF+Pro:wght@600&display=swap"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- 상단 -->
+      <header class="header">
+        <div class="progressTop">
+          <span class="material-symbols-outlined backIcon">
+            arrow_back_ios_new
+          </span>
+
+          <span class="progressText">2 / 3</span>
+        </div>
+
+        <div class="progressBar">
+          <div class="progressFill66"></div>
+        </div>
+
+        <div class="titleArea">
+          <h1 class="title">
+            <span class="highlight">어떤 일을 해보고 싶나요?</span>
+          </h1>
+
+          <p class="description">가장 궁금한 일을 하나 골라주세요.</p>
+
+          <span class="limitText">* 최대 2개</span>
+        </div>
+      </header>
+
+      <!-- 선택지 -->
+      <form action="{% url 'submitAnswer' %}" method="post">
+        {% csrf_token %}
+        <main class="optionList" data-max="2">
+          {% for choice in choices %}
+          <label class="optionCard">
+            <input type="checkbox" name="choice_id" value="{{ choice.id }}" />
+            {{ choice.text }}
+          </label>
+          {% endfor %}
+        </main>
+
+        <footer class="bottomArea">
+          <!-- select2.html로 이동하는 CTA 버튼 (선택2 화면으로 이동) -->
+          <button
+            type="submit"
+            class="nextButton"
+            name="next_url"
+            value="{% url 'select3' %}"
+          >
+            다음으로
+          </button>
+        </footer>
+      </form>
+    </div>
+
+    <!-- static 폴더에서 js 파일 불러오기 -->
+    <script src="{% static 'js/select.js' %}"></script>
+  </body>
+</html>

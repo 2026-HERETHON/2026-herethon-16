@@ -1,0 +1,61 @@
+/* 탐색 학기 Flow 첫 번째 화면 CSS */
+.pageHeader {
+  text-align: center;
+  padding: 20.39px 30px;
+}
+
+.pageTitle {
+  padding: 20px 0px;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 120%;
+  color: #17211e;
+}
+
+.content {
+  text-align: center;
+  margin: 117.61px 0px 255px;
+}
+
+.mainTitle {
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 140%;
+  color: #20cdb1;
+}
+
+.description {
+  margin: 17px 0px;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+  color: #17211e;
+}
+
+.buttonArea {
+  margin-top: 61px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.nextButton {
+  width: 334px;
+  padding: 16px 0;
+  border: none;
+  border-radius: 16px;
+  background: #4dd7c1;
+  color: #fff;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 7.3px rgba(0, 0, 0, 0.1);
+}
+
+.guideText {
+  font-size: 14px;
+  font-weight: 500;
+  color: #17211e;
+}
