@@ -345,11 +345,12 @@
     justify-content: center;
     align-items: center;
 
-    width: 100%;
     padding: 4px 14px;
 
     border-radius: 50px;
     background:#F5F7F6;
+    margin: 0px auto;
+    font-size: 12px;
 }
 
 .moreSolidarity{
