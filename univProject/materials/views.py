@@ -22,22 +22,19 @@ def material_list_view(request):
     }
 
     if scope == 'stage':
+        from curriculums.models import Stage
 
-        from curriculums.models import Lesson
-
-        lessons = Lesson.objects.filter(
-            stage__major=major, is_experiential=False
-        ).select_related('stage').order_by('stage__order', 'order')
+        stages = Stage.objects.filter(major=major).order_by('order')
 
         sections = []
-        for lesson in lessons:
-            lesson_materials = Material.objects.filter(
-                lessons=lesson, is_active=True
+        for stage in stages:
+            stage_materials = Material.objects.filter(
+                stages=stage, is_active=True
             ).order_by('display_order')
-            if lesson_materials.exists():
+            if stage_materials.exists():
                 sections.append({
-                    'lesson': lesson,
-                    'materials': lesson_materials,
+                    'stage': stage,
+                    'materials': stage_materials,
                 })
         context['sections'] = sections
 
@@ -48,5 +45,3 @@ def material_list_view(request):
         context['materials'] = materials.order_by('display_order')
 
     return render(request, 'materials/material_list.html', context)
-
-
