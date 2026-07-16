@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from .models import UserProfile
 
 # Create your views here.
 def signUp(request):
@@ -10,6 +11,7 @@ def signUp(request):
                 username=request.POST['username'], 
                 password=request.POST['password']
             )				
+            UserProfile.objects.create(user=newUser) 
             auth_login(request, newUser)
             print('회원가입 성공')
             return redirect('intro')
