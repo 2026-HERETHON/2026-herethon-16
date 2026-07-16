@@ -20,14 +20,14 @@
 
     <div class="board-header">
       <h2>{{ major.name }} · {{ stage.order }}단계</h2>
-      <p>같은 단계에 있는 <strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
+      <p>같은 단계에 있는&nbsp;<strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
     </div>
 
     {% if featured_reflection %}
     <div class="box-scroll">
       <div class="box">
         <div class="name">
-          <img src="{% static 'assets/box1.png' %}" alt="" class="boxImg">
+          <img src="{% static 'assets/faceIcon.svg' %}" alt="" class="faceIcon">
           <p class="box_name">{{ featured_reflection.user.profile.nickname }}님</p>
         </div>
         <p class="reflection-quote">"{{ featured_reflection.reflection_text }}"</p>
@@ -45,7 +45,7 @@
     {% endif %}
 
     <div class="board-header">
-      <h2>전공 게시판</h2>
+      <h2 class="black_board">전공 게시판</h2>
     </div>
 
     {% else %}
@@ -81,7 +81,7 @@
     {% endif %}
 
     <div class="board-header">
-      <h2>전체 게시판</h2>
+      <h2 class="black_board">전체 게시판</h2>
       <div class="board-filter">
         <a href="?scope=all" class="filter-tag {% if not category %}active{% endif %}">전체</a>
         <a href="?scope=all&category=question" class="filter-tag {% if category == 'question' %}active{% endif %}">질문</a>

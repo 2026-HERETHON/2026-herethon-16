@@ -25,6 +25,7 @@ body {
     background: #F5F5F5;
 
     min-height: 100vh;
+    overflow-y: scroll;
 }
 
 .app {
@@ -37,6 +38,7 @@ body {
     position: relative;
 
     overflow-x: hidden;
+    padding-bottom: 150px !important;
 }
 
 /* 아이콘 스타일 기본설정 */
@@ -74,14 +76,14 @@ h1 {
     line-height: 120%;
 }
 
-.app {
+/* .app {
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
 .app::-webkit-scrollbar {
     display: none;
-}
+} */
 
 
 
@@ -129,11 +131,20 @@ h1 {
 }
 
 .board-header {
-    margin: 45px 0 0px 30px;
+    margin: 45px 0 23px 30px;
 }
 
 .board-header h2 {
     color: #20CDB1;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 7px;
+}
+
+.black_board{
+    color: #17211E !important;
     font-size: 18px;
     font-style: normal;
     font-weight: 700;
@@ -157,6 +168,8 @@ h1 {
     font-weight: 600;
     line-height: 120%;
 }
+
+/* 우리 전공 box 부분 */
 
 .box-scroll {
     display: flex;
@@ -311,12 +324,15 @@ a {
 
 .fab-button {
     display: flex;
+
     position: fixed;
+    right: calc(50% - 195px + 20px);
+    bottom: 90px;
+
     width: 60px;
     height: 60px;
     justify-content: center;
     align-items: center;
-    margin-left: 313px;
     border-radius: 500px;
     background: var(--Color-Button, #4DD7C1);
     box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.20);
@@ -324,7 +340,6 @@ a {
     font-size: 36px;
     color: #FFF;
     line-height: 1;
-    position: absolute;
 }
 
 /* 모달 디자인 부분 */
@@ -368,13 +383,10 @@ a {
 }
 
 .modal-content::-webkit-scrollbar {
-    width: 4px;
+    display: none;
 }
 
-.modal-content::-webkit-scrollbar-thumb {
-    background: #E1E7E4;
-    border-radius: 4px;
-}
+
 
 .modal_title {
     color: rgba(23, 33, 30, 0.40);
@@ -435,46 +447,101 @@ a {
     opacity: 40%;
     width: 100%;
     margin-top: 20px;
+    resize: none;
 }
 
 
+.btn-primary {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 100px;
+    background: var(--Color-Button, #4DD7C1);
+    color: var(--Color-Background, #FFF);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    border: none;
+    margin-left: 165px;
+    margin-bottom: 30px;
+}
 
 
 
 /* base html 부분 디자인 */
 
-.bottom-tab {
+.tapBar{
     position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 0;
-    width: 393px;
-    height: auto;
-    padding: 8px 30px 20px 30px;
-    gap: 10px;
-    border-top: 1px solid var(--Color-Border, #E1E7E4);
-    background: var(--Color-Background, #FFF);
+
+    width: 100%;
+    max-width: 390px;
+    height: 72px;
+
+    background: #FFFFFF;
+    border-top: 1px solid #E1E7E4;
+
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: space-evenly;
     align-items: center;
-    z-index: 1500;
+
+    padding: 10px 30px 10px 30px;
+    gap: 86px;
+    padding-top: 5px;
+
+    z-index: 1000;
 }
 
-.tab_box {
+.footerTapActive{
     display: flex;
-    width: auto;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-    margin-top: 8px;
+    justify-content: space-between;
+    gap: 3px;
 }
 
-.tab_name {
-    color: #17211E;
+.footerTapActive > svg{
+    width: 24px;
+    height: 20px;
 }
 
-.tab_active {
-    color: #20CDB1;
+.tapNameActive{
+    color:#20CDB1;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    text-align: center;
+}
+
+.footerTap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3px;
+}
+
+.footerTap > svg{
+    width: 24px;
+    height: 20px;
+}
+
+.tapName{
+    color: var(--Color-Text, #17211E);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+
+    text-align: center;
 }
 
 /* 전체게시판 */
@@ -504,24 +571,6 @@ a {
     background: var(--Color-Surface, #F5F7F6);
 }
 
-.btn-primary {
-    display: flex;
-    padding: 8px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 100px;
-    background: var(--Color-Button, #4DD7C1);
-    color: var(--Color-Background, #FFF);
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
-    border: none;
-    margin-left: 160px;
-    margin-bottom: 30px;
-}
 
 /* 잇대전체 디자인 */
 .weekly-mates > h3 {
