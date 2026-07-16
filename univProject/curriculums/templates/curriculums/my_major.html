@@ -85,8 +85,8 @@
       </p>
 
       <!-- 로드맵 카드 여러 개 출력 -->
-      {% for lesson in lessons %}
       <div class="cardList">
+      {% for lesson in lessons %}
 
         <!-- 로드맵 카드 (완료) -->
         {% if lesson.user_status == 'completed' %}
