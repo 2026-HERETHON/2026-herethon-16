@@ -3,11 +3,14 @@
 {% block content %}
 
 <div class="post-detail">
-  <a href="{% url 'post_list' %}" class="back-link">←</a>
+  <a href="{% url 'post_list' %}?scope={{ post.board_scope }}" class="back-link">←</a>
 
   <div class="post-header">
     <span class="author-name">{{ post.author.profile.nickname }}</span>
     <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+    {% if post.category %}
+      <span class="post-category-tag">{{ post.get_category_display }}</span>
+    {% endif %}
   </div>
 
   <h2 class="post-title">{{ post.title }}</h2>

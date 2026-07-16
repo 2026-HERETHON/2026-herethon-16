@@ -156,3 +156,11 @@ class Bookmark(models.Model):
 
     def __str__(self):
         return f"{self.user} bookmarked {self.material}"
+    
+class ReflectionCheer(models.Model):
+    reflection = models.ForeignKey(LessonReflection, on_delete=models.CASCADE, related_name='cheers')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('reflection', 'user')
