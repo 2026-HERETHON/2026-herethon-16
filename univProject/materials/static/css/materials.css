@@ -7,3 +7,11 @@
 
     justify-content:space-between;
 }
+
+.tabSelected{
+    color:#17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
