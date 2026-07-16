@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from materials.models import Material 
 
 #admin에서 데이터 넣을 때 헷갈릴 거 같아서 어떤 데이터 넣으면 되는지 주석 남겨놨습니다!
 
@@ -144,3 +145,22 @@ class LessonReflection(models.Model):
     def __str__(self):
         return f"{self.user}: {self.reflection_text[:20]}"
 
+class Bookmark(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='bookmarks')
+    material = models.ForeignKey(Material, on_delete=models.CASCADE, related_name='bookmarked_by')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'material')
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user} bookmarked {self.material}"
+    
+class ReflectionCheer(models.Model):
+    reflection = models.ForeignKey(LessonReflection, on_delete=models.CASCADE, related_name='cheers')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('reflection', 'user')

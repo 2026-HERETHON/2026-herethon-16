@@ -1,11 +1,16 @@
 {% extends 'base.html' %}
+{% load time_filters %}
 {% block content %}
+
 <div class="post-detail">
-  <a href="{% url 'post_list' %}" class="back-link">←</a>
+  <a href="{% url 'post_list' %}?scope={{ post.board_scope }}" class="back-link">←</a>
 
   <div class="post-header">
     <span class="author-name">{{ post.author.profile.nickname }}</span>
     <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+    {% if post.category %}
+      <span class="post-category-tag">{{ post.get_category_display }}</span>
+    {% endif %}
   </div>
 
   <h2 class="post-title">{{ post.title }}</h2>
@@ -27,16 +32,32 @@
       <div class="comment-header">
         <span class="author-name">{{ comment.author.profile.nickname }}</span>
         <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+        <span class="comment-time">{{ comment.created_at|simple_timesince }}</span>
       </div>
       <p class="comment-content">{{ comment.content }}</p>
+
+      <form method="post" action="{% url 'comment_like' comment.id %}" class="inline-form">
+        {% csrf_token %}
+        <button type="submit" class="like-btn small {% if comment.has_liked %}active{% endif %}">
+          ♥ {{ comment.like_count }}
+        </button>
+      </form>
 
       {% for reply in comment.replies.all %}
         <div class="comment-block reply">
           <div class="comment-header">
             <span class="author-name">{{ reply.author.profile.nickname }}</span>
             <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+            <span class="comment-time">{{ reply.created_at|simple_timesince }}</span>
           </div>
           <p class="comment-content">{{ reply.content }}</p>
+
+          <form method="post" action="{% url 'comment_like' reply.id %}" class="inline-form">
+            {% csrf_token %}
+            <button type="submit" class="like-btn small {% if reply.has_liked %}active{% endif %}">
+              ♥ {{ reply.like_count }}
+            </button>
+          </form>
         </div>
       {% endfor %}
 

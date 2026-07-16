@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .models import Lesson, LessonAnswer, LessonProgress
+from .models import Lesson, LessonAnswer, LessonProgress, Bookmark, Material
 from .services import (
     get_major_progress, get_current_lesson,
     save_lesson_answers, complete_lesson,
@@ -33,7 +33,10 @@ def my_major_view(request):
         'progress': progress,
         'current_lesson': current.lesson if current else None,
         'lessons': lessons,
+        'stage': stage,
         'reflections': reflections,
+        'reflections_count': reflections.count(), 
+
     }
     return render(request, 'curriculums/my_major.html', context)
 
@@ -91,3 +94,30 @@ def roadmap_view(request):
     context = {'major': major, 'stages': stages}
     return render(request, 'curriculums/roadmap.html', context)
 
+@login_required
+def bookmarked_materials_view(request):
+    major = request.user.profile.selectedMajor
+
+    from curriculums.services import get_major_progress
+    progress = get_major_progress(request.user, major)
+
+    bookmarks = Bookmark.objects.filter(
+        user=request.user, material__majors=major
+    ).select_related('material')
+
+    context = {'major': major, 'progress': progress, 'bookmarks': bookmarks}
+    return render(request, 'curriculums/bookmarked_materials.html', context)
+
+
+@login_required
+def material_bookmark_toggle(request, material_id):
+    if request.method != 'POST':
+        return redirect('material_list')
+
+    material = get_object_or_404(Material, id=material_id)
+    bookmark, created = Bookmark.objects.get_or_create(user=request.user, material=material)
+    if not created:
+        bookmark.delete()
+
+    next_url = request.POST.get('next') or 'material_list'
+    return redirect(next_url)

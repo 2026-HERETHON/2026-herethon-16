@@ -11,7 +11,11 @@ def signUp(request):
                 username=request.POST['username'], 
                 password=request.POST['password']
             )				
+<<<<<<< HEAD
             UserProfile.objects.create(user=newUser) 
+=======
+            UserProfile.objects.create(user=newUser,nickname=request.POST.get('nickname', '')) 
+>>>>>>> dev
             auth_login(request, newUser)
             print('회원가입 성공')
             return redirect('intro')
