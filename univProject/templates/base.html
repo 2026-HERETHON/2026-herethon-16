@@ -15,16 +15,17 @@
   </main>
 
   {% if user.is_authenticated %}
-  <nav class="bottom-tab">
-    <div class="tab_box">
+  <footer class="tapBar">
+    <div class="footerTap">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="20" viewBox="0 0 24 20" fill="none">
         <path
           d="M12 19.5692L4.36364 15.4379V8.91487L0 6.52308L12 0L24 6.52308V15.2205H21.8182V7.71897L19.6364 8.91487V15.4379L12 19.5692ZM12 10.5456L19.4727 6.52308L12 2.50051L4.52727 6.52308L12 10.5456ZM12 17.0959L17.4545 14.1605V10.0564L12 13.0462L6.54545 10.0564V14.1605L12 17.0959Z"
-          fill="#17211E" />
+          fill="#1F1F1F" fill-opacity="0.6" />
       </svg>
-      <a href="{% url 'my_major' %}" class="tab_name">내 전공</a>
+      <a href="{% url 'my_major' %}" class="tapName">내 전공</a>
     </div>
-    <div class="tab_box">
+
+    <div class="footerTap">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
         <g clip-path="url(#clip0_858_488)">
           <path
@@ -37,18 +38,19 @@
           </clipPath>
         </defs>
       </svg>
-      <a href="{% url 'post_list' %}" class="tab_active">함께</a>
+      <a href="{% url 'post_list' %}" class="tapNameActive">함께</a>
     </div>
-    <div class="tab_box">
+
+    <div class="footerTap">
       <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
         <path
           d="M4 14H11V12H4V14ZM4 10H14V8H4V10ZM4 6H14V4H4V6ZM2 18C1.45 18 0.979167 17.8042 0.5875 17.4125C0.195833 17.0208 0 16.55 0 16V2C0 1.45 0.195833 0.979167 0.5875 0.5875C0.979167 0.195833 1.45 0 2 0H16C16.55 0 17.0208 0.195833 17.4125 0.5875C17.8042 0.979167 18 1.45 18 2V16C18 16.55 17.8042 17.0208 17.4125 17.4125C17.0208 17.8042 16.55 18 16 18H2ZM2 16H16V2H2V16Z"
           fill="#1F1F1F" fill-opacity="0.6" />
       </svg>
-      <a href="{% url 'material_list' %}" class="tab_name">자료실</a>
+      <a href="{% url 'material_list' %}" class="tapName">자료실</a>
     </div>
 
-  </nav>
+  </footer>
   {% endif %}
 
 </body>

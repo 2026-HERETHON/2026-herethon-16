@@ -24,13 +24,13 @@
 
     <div class="board-header">
       <h2>{{ major.name }} · {{ stage.order }}단계</h2>
-      <p>같은 단계에 있는 <strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
+      <p>같은 단계에 있는&nbsp;<strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
     </div>
     {% if featured_reflection %}
     <div class="box-scroll">
       <div class="box">
         <div class="name">
-          <img src="{% static 'assets/box1.png' %}" alt="" class="boxImg">
+          <img src="{% static 'assets/faceIcon.svg' %}" alt="" class="faceIcon">
           <p class="box_name">{{ featured_reflection.user.profile.nickname }}님</p>
         </div>
         <p class="reflection-quote">"{{ featured_reflection.reflection_text }}"</p>
@@ -42,8 +42,7 @@
             '응원해요' 보내기
           </button>
         </form>
-        <p class="cheer-count">{{ featured_reflection.cheers.count }}명이 {{ featured_reflection.user.profile.nickname
-          }}님을 응원했어요!</p>
+        <p class="cheer-count">{{ featured_reflection.cheers.count }}명이 {{ featured_reflection.user.profile.nickname }}님을 응원했어요!</p>
       </div>
     </div>
     <div class="board-header">
