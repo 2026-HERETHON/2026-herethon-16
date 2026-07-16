@@ -2,34 +2,38 @@
 
 // 선택 최대 개수 (HTML에서 설정)
 const maxSelectCount = Number(
-  document.querySelector(".optionList").dataset.max
+  document.querySelector(".optionList").dataset.max,
 );
 
 const optionCards = document.querySelectorAll(".optionCard");
 const backIcon = document.querySelector(".material-symbols-outlined.backIcon");
 const nextButton = document.querySelector(".nextButton");
 
+// 초기 상태 (CTA 비활성화)
+nextButton.disabled = true;
+
 // 설문 선택
 optionCards.forEach((card) => {
   const checkbox = card.querySelector('input[type="checkbox"]');
 
-  card.addEventListener("click", () => {
-
+  // 체크박스 상태가 바뀔 때마다
+  checkbox.addEventListener("change", () => {
     const checkedCards = document.querySelectorAll(".optionCard input:checked");
 
-    // 2개 초과 선택 방지
+    // N개 초과 선택 방지
     if (checkedCards.length > maxSelectCount) {
       checkbox.checked = false;
       return;
     }
-    card.classList.toggle("selected", checkbox.checked);
 
-    // 다른 카드들도 selected 동기화
+    // 체크박스에 체크된 옵션 카드의 스타일 변경
     optionCards.forEach((c) => {
       const input = c.querySelector("input");
       c.classList.toggle("selected", input.checked);
     });
-    updateNextButton(); // 버튼 스타일 업데이트
+
+    // CTA 버튼 비활성화 or 활성화 체크
+    updateNextButton();
   });
 });
 
@@ -38,12 +42,14 @@ backIcon.addEventListener("click", () => {
   window.history.back();
 });
 
-// 선택 개수가 바뀔 때마다 버튼 스타일 변경
+// 선택 개수가 바뀔 때마다 CTA 버튼 스타일 변경
 function updateNextButton() {
   // 1개 이상 선택 시
   const checkedCount = document.querySelectorAll(
     ".optionCard input:checked",
   ).length;
 
-  nextButton.classList.toggle("active", checkedCount > 0);
+  // 0개 클릭된 경우엔 CTA 버튼 비활성화
+  // 1개 이상 클릭된 경우엔 CTA 버튼 활성화
+  nextButton.disabled = checkedCount === 0;
 }
