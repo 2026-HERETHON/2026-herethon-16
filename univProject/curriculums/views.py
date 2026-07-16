@@ -35,6 +35,8 @@ def my_major_view(request):
         'lessons': lessons,
         'stage': stage,
         'reflections': reflections,
+        'reflections_count': reflections.count(), 
+
     }
     return render(request, 'curriculums/my_major.html', context)
 
