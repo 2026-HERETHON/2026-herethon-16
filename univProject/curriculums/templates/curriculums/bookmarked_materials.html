@@ -1,124 +1,40 @@
-{% load static %}
-<!doctype html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>내 전공 - 담은 자료</title>
+{% extends 'base.html' %}
+{% block content %}
+<div class="my-major">
+  <h1>내 전공</h1>
 
-    <link rel="stylesheet" href="../../static/css/settings.css" />
-    <link rel="stylesheet" href="../../static/css/header.css" />
-    <link
-      rel="stylesheet"
-      href="../../static/css/bookmarked_materials-empty.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../../static/css/bookmarked_materials-full.css"
-    />
-    <link rel="stylesheet" href="../../static/css/footer.css" />
-  </head>
+  <div class="major-header">
+    <h2>{{ major.name }}</h2>
+    <p>{{ major.description }}</p>
+  </div>
 
-  <body>
-    <div class="app">
-      <div class="header">내 전공</div>
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: {% widthratio progress.completed progress.total 100 %}%;"></div>
+  </div>
+  <p class="progress-text">전체 과정 {{ progress.completed }} / {{ progress.total }}차시</p>
 
-      <div class="majorCard">
-        <div class="textExplain">
-          <div class="majorName">{{ major.name }}</div>
-          <div class="majorExplain">{{ major.description }}</div>
+  <div class="tabs">
+    <a href="{% url 'my_major' %}">지금 할 수업</a>
+    <a href="{% url 'roadmap' %}">전공 로드맵</a>
+    <a href="{% url 'bookmarked_materials' %}" class="active">담은 자료</a>
+  </div>
+
+  {% if bookmarks %}
+    <div class="material-grid">
+      {% for bookmark in bookmarks %}
+        <div class="material-card">
+          <div class="material-thumb"></div>
+          <p class="material-title">{{ bookmark.material.title }}</p>
+          <p class="material-duration">{{ bookmark.material.duration_text }}</p>
         </div>
-
-        <div class="majorIcon">
-          <img
-            src="../../static/assets/content-marketing-major-illustration.png"
-            alt=""
-          />
-        </div>
-      </div>
-
-      <div class="sessionProgress">
-        <div class="progressBar">
-          <div class="filledProgress"></div>
-        </div>
-        <div class="progressText">
-          전체 과정 {{ progress.completed }} / {{ progress.total }}차시
-        </div>
-      </div>
-
-      <div class="filterComponent">
-        <a
-          class="component"
-          href="{% url 'my_major' %}"
-          data-page="current-class.html"
-          >지금 할 수업</a
-        >
-        <a class="component" href="{% url 'roadmap' %}" data-page="roadmap.html"
-          >전공 로드맵</a
-        >
-        <a
-          class="componentActive"
-          href="{% url 'bookmarked_materials' %}"
-          data-page="downloads.html"
-          >담은 자료</a
-        >
-      </div>
-
-      {% if bookmarks %}
-      <div id="fullpage" class="fullpage">
-        <div class="materialsGrid">
-          {% for bookmark in bookmarks %}
-          <div class="keepMaterials">
-            <div class="thumbnail">
-              <img src="../../static/assets/library/" alt="썸네일 사진" />
-            </div>
-
-            <div class="materialExplain">
-              <div class="materialTitle">{{ bookmark.material.title }}</div>
-              <div class="materialshort">
-                {{ bookmark.material.duration_text }}
-              </div>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-
-      {% else %}
-      <div id="emptypage" class="emptypage">
-        <div class="notice">
-          <div class="bigText">아직 담은 자료가 없어요.</div>
-          <div class="detailText">
-            자료실에서 지금 단계에 필요한
-            <br />강의와 콘텐츠를 담아보세요.
-          </div>
-        </div>
-
-        <div class="moveToDownloads">
-          <p>자료실 둘러보기 →</p>
-        </div>
-      </div>
-      {% endif %}
-
-      <footer class="tapBar">
-        <a href="{% url 'my_major' %}" class="footerTapActive">
-          <img src="../../static/assets/mymajortap-active.svg" alt="" />
-          <p class="tapNameActive">내 전공</p>
-        </a>
-
-        <a href="{% url 'post_list' %}" class="footerTap">
-          <img src="../../static/assets/together-none.svg" alt="" />
-          <p class="tapName">함께</p>
-        </a>
-
-        <a href="{% url 'material_list' %}" class="footerTap">
-          <img src="../../static/assets/article-none.svg" alt="" />
-          <p class="tapName">자료실</p>
-        </a>
-      </footer>
+      {% endfor %}
     </div>
-
-    <script src="../../static/js/common.js"></script>
-    <script src="../../static/js/bookmarked_materials.js"></script>
-  </body>
-</html>
+  {% else %}
+    <div class="empty-state">
+      <p class="empty-title">아직 담은 자료가 없어요</p>
+      <p class="empty-desc">자료실에서 지금 단계에 필요한 강의와 콘텐츠를 담아보세요.</p>
+      <a href="{% url 'material_list' %}" class="btn-outline">자료실 둘러보기 →</a>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}

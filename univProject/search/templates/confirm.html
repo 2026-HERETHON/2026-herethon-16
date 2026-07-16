@@ -89,8 +89,21 @@
             <label class="majorCard" data-major-id="{{ forloop.counter0 }}">
               <input type="radio" name="major" value="{{ forloop.counter0 }}" />
 
+<<<<<<< HEAD
+    <form action="{% url 'my_major' %}" method="post">
+      {% csrf_token %}
+      <main class="comfirmPage">
+        <section class="description">
+          <p>
+            전공 체험을 바탕으로<br />
+            공부해볼
+            <strong> 전공을 선택해볼까요? </strong>
+          </p>
+        </section>
+=======
               <div class="majorHeader">
                 <h2 class="majorName">{{ major.name }}</h2>
+>>>>>>> 8aa3069e6438f87c8f1268bda6a1ed5726ef5388
 
                 <span class="selectedBadge"><b>선택됨</b></span>
               </div>
