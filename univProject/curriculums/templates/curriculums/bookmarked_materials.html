@@ -101,20 +101,20 @@
       {% endif %}
 
       <footer class="tapBar">
-        <div class="footerTapActive">
+        <a href="{% url 'my_major' %}" class="footerTapActive">
           <img src="../../static/assets/mymajortap-active.svg" alt="" />
           <p class="tapNameActive">내 전공</p>
-        </div>
+        </a>
 
-        <div class="footerTap">
+        <a href="{% url 'post_list' %}" class="footerTap">
           <img src="../../static/assets/together-none.svg" alt="" />
           <p class="tapName">함께</p>
-        </div>
+        </a>
 
-        <div class="footerTap">
+        <a href="{% url 'material_list' %}" class="footerTap">
           <img src="../../static/assets/article-none.svg" alt="" />
           <p class="tapName">자료실</p>
-        </div>
+        </a>
       </footer>
     </div>
 
