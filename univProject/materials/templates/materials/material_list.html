@@ -1,3 +1,5 @@
+{% load static %}
+
 <!--일단 base.html 사용x-->
 
 <!DOCTYPE html>
@@ -7,248 +9,204 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자료실</title>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css">
-    <link rel="stylesheet" href="../../static/css/settings.css">
-    <link rel="stylesheet" href="../../static/css/header.css">
-    <link rel="stylesheet" href="../../static/css/materials.css">
-    <link rel="stylesheet" href="../../static/css/footer.css">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/materials.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
 </head>
 
 <body>
-    <div class="app">
-        <div class="header">자료실</div>
-        
-        <div class="tabSelection">
-          <a class="tabSelected">내 단계 맞춤 자료</a>
-          <a class="tab">전체 전공 자료</a>
-        </div>
+<div class="app">
 
-        <div class="cardExplanation">
-          <div class="majorTitle">콘텐츠·채널 마케팅 전공</div>
-          <div class="comments">지금의 단계에 도움이 되는 자료를 모았어요.</div>
-        </div>
+    <div class="header">자료실</div>
 
-        <!--내 단계 맞춤 자료 내용-->
-        <div class="myStepTab">
-          <div class="materialCard">
-            <div class="materialTitle">콘텐츠 감각 찾기 추천 자료</div>
+    <div class="tabSelection">
+        <a href="?scope=stage"
+          class="{% if scope == 'stage' %}tabSelected{% else %}tab{% endif %}">
+            내 단계 맞춤 자료
+        </a>
 
-            <div class="materialThumbnail">
-              <img 
-                src="../../static/assets/library/thumb_m01_s1_ai_digital_baeum.png" 
-                alt="AI 디지털 배움 썸네일">
-            </div>
-
-            <div class="materialCardFooter">
-              <div class="materialDuration">
-                <div class="materialName">제목</div>
-                <div class="materialExplain">소요 시간 등 정보</div>
-              </div>
-
-              <button class="bookmarkBtn">
-                <img class='bookmark'
-                src="../../static/assets/bookmark-non.svg" 
-                alt="북마크 선택 전">
-
-                <img class='bookmarkActivated'
-                src="../../static/assets/bookmark-selected.svg" 
-                alt="북마크 선택 후">
-              </button>
-            </div>
-          </div>
-
-          <div class="materialCard">
-            <div class="materialTitle">콘텐츠 감각 찾기 추천 자료</div>
-
-            <div class="materialThumbnail">
-              <img 
-                src="../../static/assets/library/thumb_m01_s2_kmooc_excel_auto.png" 
-                alt="kmooc 일잘러">
-            </div>
-
-            <div class="materialCardFooter">
-              <div class="materialDuration">
-                <div class="materialName">제목</div>
-                <div class="materialExplain">소요 시간 등 정보</div>
-              </div>
-
-              <button class="bookmarkBtn">
-                <img class='bookmark'
-                src="../../static/assets/bookmark-non.svg" 
-                alt="북마크 선택 전">
-
-                <img class='bookmarkActivated'
-                src="../../static/assets/bookmark-selected.svg" 
-                alt="북마크 선택 후">
-              </button>
-            </div>
-          </div>
-
-          <div class="materialCard">
-            <div class="materialTitle">콘텐츠 감각 찾기 추천 자료</div>
-
-            <div class="materialThumbnail">
-              <img 
-                src="../../static/assets/library/thumb_m01_s3_book_python_auto.jpeg" 
-                alt="파이썬 교재">
-            </div>
-
-            <div class="materialCardFooter">
-              <div class="materialDuration">
-                <div class="materialName">제목</div>
-                <div class="materialExplain">소요 시간 등 정보</div>
-              </div>
-
-              <button class="bookmarkBtn">
-                <img class='bookmark'
-                src="../../static/assets/bookmark-non.svg" 
-                alt="북마크 선택 전">
-
-                <img class='bookmarkActivated'
-                src="../../static/assets/bookmark-selected.svg" 
-                alt="북마크 선택 후">
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!--전체 전공 자료 내용-->
-        <div class="allMajorTab">
-          <div class="category">
-            <a class="categoryOption categoryActivated">전체</a>
-            <a class="categoryOption">프로그램</a>
-            <a class="categoryOption">강의</a>
-            <a class="categoryOption">도서</a>
-          </div>
-
-          <div class="categoryList allCategory">
-            <div class="categoryCard">
-              <div class="categoryThumbnail">
-                <img 
-                  src="../../static/assets/library/thumb_m04_s3_book_cx_bible.jpeg" 
-                  alt="cx 전공서 도서">
-              </div>
-
-              <div class="categoryCardFooter">
-                <div class="categoryDuration">
-                  <div class="categoryName">제목</div>
-                  <div class="categoryExplain">소요 시간 등 정보</div>
-                </div>
-
-                <div class="bookmarkBtn">
-                  <img class="bookmark"
-                  src="../../static/assets/bookmark-non.svg" 
-                  alt="북마크 선택 전">
-
-                  <img class='bookmarkActivated'
-                  src="../../static/assets/bookmark-selected.svg" 
-                  alt="북마크 선택 후">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="categoryList programCategory">
-            <div class="categoryCard">
-              <div class="categoryThumbnail">
-                <img 
-                  src="../../static/assets/library/thumb_m04_s3_book_cx_bible.jpeg" 
-                  alt="cx 전공서 도서">
-              </div>
-
-              <div class="categoryCardFooter">
-                <div class="categoryDuration">
-                  <div class="categoryName">제목</div>
-                  <div class="categoryExplain">소요 시간 등 정보</div>
-                </div>
-
-                <div class="bookmarkBtn">
-                  <img class="bookmark"
-                  src="../../static/assets/bookmark-non.svg" 
-                  alt="북마크 선택 전">
-
-                  <img class='bookmarkActivated'
-                  src="../../static/assets/bookmark-selected.svg" 
-                  alt="북마크 선택 후">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="categoryList lectureCategory">
-            <div class="categoryCard">
-              <div class="categoryThumbnail">
-                <img 
-                  src="../../static/assets/library/thumb_m04_s3_book_cx_bible.jpeg" 
-                  alt="cx 전공서 도서">
-              </div>
-
-              <div class="categoryCardFooter">
-                <div class="categoryDuration">
-                  <div class="categoryName">제목</div>
-                  <div class="categoryExplain">소요 시간 등 정보</div>
-                </div>
-
-                <div class="bookmarkBtn">
-                  <img class="bookmark"
-                  src="../../static/assets/bookmark-non.svg" 
-                  alt="북마크 선택 전">
-
-                  <img class='bookmarkActivated'
-                  src="../../static/assets/bookmark-selected.svg" 
-                  alt="북마크 선택 후">
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="categoryList bookCategory">
-            <div class="categoryCard">
-              <div class="categoryThumbnail">
-                <img 
-                  src="../../static/assets/library/thumb_m04_s3_book_cx_bible.jpeg" 
-                  alt="cx 전공서 도서">
-              </div>
-
-              <div class="categoryCardFooter">
-                <div class="categoryDuration">
-                  <div class="categoryName">제목</div>
-                  <div class="categoryExplain">소요 시간 등 정보</div>
-                </div>
-
-                <div class="bookmarkBtn">
-                  <img class="bookmark"
-                  src="../../static/assets/bookmark-non.svg" 
-                  alt="북마크 선택 전">
-
-                  <img class='bookmarkActivated'
-                  src="../../static/assets/bookmark-selected.svg" 
-                  alt="북마크 선택 후">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <footer class="tapBar">
-          <div class="footerTap">
-              <img src="../../static/assets/mymajor-none.svg" alt="내 전공 선택안됨"
-              style="opacity: 0.6;">
-              <p class="tapName">내 전공</p>
-          </div>
-  
-          <div class="footerTap">
-              <img src="../../static/assets/together-none.svg" alt="함께 선택안됨">
-              <p class="tapName">함께</p>
-          </div>
-  
-          <div class="footerTapActive">
-              <img src="../../static/assets/materials-selected.svg" alt="자료실 선택됨">
-              <p class="tapNameActive">자료실</p>
-          </div>
-        </footer>
+        <a href="?scope=all"
+          class="{% if scope == 'all' %}tabSelected{% else %}tab{% endif %}">
+            전체 전공 자료
+        </a>
     </div>
 
-  <script src="../../static/js/materials.js"></script>
+    <div class="cardExplanation">
+        <div class="majorTitle">{{ major.name }}</div>
+        <div class="comments">지금의 단계에 도움이 되는 자료를 모았어요.</div>
+    </div>
+
+
+    {% if scope == 'stage' %}
+
+    <!-- 내 단계 맞춤 자료 -->
+    <div class="myStepTab">
+
+        {% for section in sections %}
+
+            <div class="materialTitle">
+                {{ section.lesson.title }} 추천 자료
+            </div>
+
+            {% for material in section.materials %}
+
+            <div class="materialCard">
+
+                <div class="materialThumbnail">
+                    <img src="{% static 'assets/library/thumb_m01_s1_ai_digital_baeum.png' %}"
+                        alt="{{ material.title }}">
+                </div>
+
+                <div class="materialCardFooter">
+
+                    <div class="materialDuration">
+                        <div class="materialName">{{ material.title }}</div>
+                        <div class="materialExplain">{{ material.duration_text }}</div>
+                    </div>
+
+                    <form method="post"
+                          action="{% url 'material_bookmark_toggle' material.id %}">
+                        {% csrf_token %}
+
+                        <input type="hidden"
+                              name="next"
+                              value="{{ request.path }}?scope=stage">
+
+                        <button type="submit" class="bookmarkBtn">
+
+                            {% if material.id in bookmarked_ids %}
+                                <img src="{% static 'assets/bookmark-selected.svg' %}"
+                                    alt="북마크 선택">
+                            {% else %}
+                                <img src="{% static 'assets/bookmark-non.svg' %}"
+                                    alt="북마크 선택 안됨">
+                            {% endif %}
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+                <p class="empty-text">추천 자료가 아직 없어요.</p>
+            {% endfor %}
+
+        {% empty %}
+            <p class="empty-text">추천 자료가 아직 없어요.</p>
+        {% endfor %}
+
+    </div>
+
+
+    {% else %}
+
+    <!-- 전체 전공 자료 -->
+    <div class="allMajorTab">
+
+        <div class="category">
+
+            <a href="?scope=all&type=all"
+              class="categoryOption {% if material_type == 'all' %}categoryActivated{% endif %}">
+                전체
+            </a>
+
+            <a href="?scope=all&type=program"
+              class="categoryOption {% if material_type == 'program' %}categoryActivated{% endif %}">
+                프로그램
+            </a>
+
+            <a href="?scope=all&type=lecture"
+              class="categoryOption {% if material_type == 'lecture' %}categoryActivated{% endif %}">
+                강의
+            </a>
+
+            <a href="?scope=all&type=book"
+              class="categoryOption {% if material_type == 'book' %}categoryActivated{% endif %}">
+                도서
+            </a>
+
+        </div>
+
+        <div class="categoryList allCategory">
+
+            {% for material in materials %}
+
+            <div class="categoryCard">
+
+                <div class="categoryThumbnail">
+                    <img src="{% static 'assets/library/thumb_m04_s3_book_cx_bible.jpeg' %}"
+                        alt="{{ material.title }}">
+                </div>
+
+                <div class="categoryCardFooter">
+
+                    <div class="categoryDuration">
+                        <div class="categoryName">{{ material.title }}</div>
+                        <div class="categoryExplain">{{ material.duration_text }}</div>
+                    </div>
+
+                    <form method="post"
+                          action="{% url 'material_bookmark_toggle' material.id %}">
+                        {% csrf_token %}
+
+                        <input type="hidden"
+                              name="next"
+                              value="{{ request.path }}?scope=all&type={{ material_type }}">
+
+                        <button type="submit" class="bookmarkBtn">
+
+                            {% if material.id in bookmarked_ids %}
+                                <img src="{% static 'assets/bookmark-selected.svg' %}"
+                                    alt="북마크 선택">
+                            {% else %}
+                                <img src="{% static 'assets/bookmark-non.svg' %}"
+                                    alt="북마크 선택 안됨">
+                            {% endif %}
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+                <p class="empty-text">등록된 자료가 없어요.</p>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    {% endif %}
+
+    <footer class="tapBar">
+        <div class="footerTap">
+            <img src="{% static 'assets/mymajor-none.svg' %}" alt="내 전공 선택안됨" style="opacity:0.6;">
+            <p class="tapName">내 전공</p>
+        </div>
+
+        <div class="footerTap">
+            <img src="{% static 'assets/together-none.svg' %}" alt="함께 선택안됨">
+            <p class="tapName">함께</p>
+        </div>
+
+        <div class="footerTapActive">
+            <img src="{% static 'assets/materials-selected.svg' %}" alt="자료실 선택됨">
+            <p class="tapNameActive">자료실</p>
+        </div>
+    </footer>
+
+</div>
+
+<script src="{% static 'js/materials.js' %}"></script>
+
 </body>
 </html>
