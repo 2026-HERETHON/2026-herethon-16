@@ -1,0 +1,357 @@
+.stepInfo{
+    padding-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.stepComposition{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stepTitle{
+    color:#17211E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.stepNum{
+    color: #17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+
+    text-align: right;
+}
+
+.stepExplanation{
+    color: #17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    border-bottom: 1px solid #E1E7E4;
+}
+
+.lectureCard{
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 12px;
+
+    margin-bottom: 64px;
+}
+
+.lectureInfo{
+    color: #17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+
+    margin-bottom: 12px;
+}
+
+.bold{
+    font-weight: 700;
+}
+
+.nowLecture{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: auto;
+    padding: 14px 16px;
+
+    gap: 14px;
+
+    border-radius: 16px;
+    border: 1px solid #E1E7E4;
+    background: #FFFFFF;
+    box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.10);
+}
+
+.lectureTopBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lectureTitleBox{
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    gap: 10px;
+}
+
+.nowLectureName{
+    display: flex;
+    padding: 4px 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 200px;
+    opacity: 0.8;
+    background-color: #20CDB1;
+
+    color: #FFFFFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 120%;
+
+    text-align: center;
+}
+
+.lectureTitle{
+    color:#17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.lectureTopBox > img{
+    width: 7px;
+    height: 12px;
+
+    fill:#17211E;
+    opacity: 0.5;
+}
+
+.lectureExplanation{
+    color: rgba(23, 33, 30, 0.60);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.nowLectureContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 8px;
+}
+
+.lectureRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.lectureHead{
+    color: rgba(23, 33, 30, 0.80);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; 
+}
+
+.lectureBody{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.lectureCurrent{
+    color: #20CDB1;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+
+    text-align: right;
+}
+
+.lectureNotYet{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    padding: 14px 16px;
+
+    gap: 12px;
+
+    border-radius: 16px;
+    border: 1px solid #E1E7E4;
+    background:#FFFfff;
+    box-shadow: 0 4px 10px 1px rgba(0, 0, 0, 0.10);
+}
+
+.lectureTopBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    width: 100%;
+}
+
+.lectureTopBox > img{
+    width: 7px;
+    height: 12px;
+
+    fill:#17211E;
+    opacity: 0.5;
+}
+
+.futureLectureName{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 4px 12px;
+    gap: 10px;
+
+    border-radius: 200px;
+    opacity: 0.8;
+    background:#E1E7E4;
+
+    color: rgba(23, 33, 30, 0.80);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 120%;
+
+    text-align: center;
+}
+
+.lectureUpcoming{
+    color: rgba(23, 33, 30, 0.50);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+
+    text-align: right;
+}
+
+.solidarityTopBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 6px;
+}
+
+.solidarityTitle{
+    color:#17211E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.solidarityNum{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.solidarityCard{
+    margin-top: 13px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    width: 100%;
+    height: auto;
+    padding: 16px 18px;
+
+    border-radius: 20px;
+    border: 1px solid #E1E7E4;
+    background:#FFFFFF;
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
+
+    gap: 14px;
+}
+
+.accountInfo{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    gap: 8px;
+}
+
+.accountImage > img{
+    width: 20px;
+    height: 20px;
+}
+
+.accountImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 31px;
+    height: 31px;
+    padding: 6px 5px 5px 6px;
+
+    border-radius: 100px;
+    border: 1px solid #F5F7F6;
+    background: rgba(77, 215, 193, 0.50);
+}
+
+.solidarityContent{
+    width: 100%;
+
+    color: #17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%; 
+
+    text-align: center;
+
+    margin-bottom: 13px;
+}
+
+.doneBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    padding: 4px 14px;
+
+    border-radius: 50px;
+    background:#F5F7F6;
+}
+
+.moreSolidarity{
+    margin-top: 10px;
+
+    color:#20CDB1;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+
+    text-align: right;
+
+    margin-bottom: 20px;
+}

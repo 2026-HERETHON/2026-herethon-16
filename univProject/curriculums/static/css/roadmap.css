@@ -1,0 +1,159 @@
+.roadmapInfo{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+}
+
+.infoBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.myRoadmap{
+    color:#17211E;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; 
+}
+
+.roadmapComposition{
+    color: var(--Color-Text, #17211E);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+
+    text-align: right;
+}
+
+.roadmapInfo > p{
+    color: #17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.roadmapStep{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 12px;
+}
+
+.roadmapUpbox{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+}
+
+.sidebox {
+    display: flex;
+    flex-direction: row;
+    align-items:center; 
+    gap: 10px;
+}
+
+.mapNumber{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30px;
+    padding: 6px 0 5px 0;
+
+    border-radius: 200px;
+    opacity: 0.8;
+    background:#20CDB1;
+
+    color:#FFFFFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 120%;
+
+    text-align: center;
+}
+
+.stepName{
+    color:#20CDB1;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%; 
+}
+
+.roadmapStatus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: auto;
+    padding: 6px;
+    gap: 10px;
+
+    border-radius: 12px;
+    background:#F5F7F6;
+
+    color:#17211E;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+
+    text-align: center;
+}
+
+.roadmapContent{
+    color: rgba(23, 33, 30, 0.60);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.rowBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 8px;
+
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+
+    border-bottom: 1px solid #E1E7E4;
+}
+
+.roadmapRow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.rowHead{
+    color: rgba(23, 33, 30, 0.80);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%
+}
+
+.rowBody{
+    color: #17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
