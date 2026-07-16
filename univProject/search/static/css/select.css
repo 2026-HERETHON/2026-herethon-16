@@ -130,16 +130,21 @@
 /* 설문 선택 버튼 (선택 안 됨) */
 .optionCard {
   width: 100%;
-  min-height: 64px;
+  height: 64px;
   border-radius: 20px;
   border: 2px solid #f5f7f6;
   background: #fff;
-  padding: 21px 0px 21px 21px;
+  padding: 22.5px 21px;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 120%;
   font-weight: 500;
   transition: 0.2s;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 설문 선택 버튼 (선택됨) */
