@@ -65,21 +65,25 @@
     {% if weekly_reflections %}
     <div class="weekly-mates">
       <h3>이번 주 동기들의 한 걸음</h3>
-      {% for r in weekly_reflections %}
-      <div class="box">
-        <div class="box_header">
-          <div class="profile">
-            <img src="../../static/assets/faceIcon.svg" alt="" class="faceIcon">
-            <span class="author-name">{{ r.user.profile.nickname }}님</span>
+      <div class="scroll-box">
+        {% for r in weekly_reflections %}
+        <div class="box">
+          <div class="box_header">
+            <div class="profile">
+              <img src="../../static/assets/faceIcon.svg" alt="" class="faceIcon">
+              <span class="author-name">{{ r.user.profile.nickname }}님</span>
+            </div>
+            <span class="post-major-tag">{{ r.lesson.stage.major.name }}</span>
           </div>
-          <span class="post-major-tag">{{ r.lesson.stage.major.name }}</span>
+          <p class="reflection-quote">"{{ r.reflection_text }}"</p>
+          {% if r.milestone_text %}
+          <p class="milestone-label">이번 주의 한걸음</p>
+          <p class="milestone-text">{{ r.milestone_text }}</p>
+
         </div>
 
-        <p class="reflection-quote">"{{ r.reflection_text }}"</p>
-        {% if r.milestone_text %}
-        <p class="milestone-label">이번 주의 한걸음</p>
-        <p class="milestone-text">{{ r.milestone_text }}</p>
         {% endif %}
+
       </div>
       {% endfor %}
     </div>

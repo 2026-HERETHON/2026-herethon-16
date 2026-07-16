@@ -524,7 +524,10 @@ a {
 }
 
 /* 잇대전체 디자인 */
-.weekly-mates>h3 {
+.weekly-mates > h3 {
+    margin-left: 29px;
+    margin-top: 22px;
+    margin-bottom: 15px;
     color: var(--Color-Text, #17211E);
     font-family: Pretendard;
     font-size: 18px;
@@ -570,4 +573,17 @@ a {
   background-color: #4DD7C1 !important;
   color: #ffffff !important;
   font-weight: bold !important;
+}
+
+.scroll-box{
+    display: flex;
+    gap: 18px;
+    /* margin-left: 30px; */
+    overflow-x: scroll;
+    padding: 20px;
+    margin: -20px -20px -20px 10px;
+}
+
+.scroll-box::-webkit-scrollbar {
+    display: none;
 }

@@ -211,8 +211,8 @@ body {
 .reply-form {
     display: flex;
     margin-left: 30px;
-    margin-top: 35px;
-    margin-bottom: 11px;
+    margin-top: 22px;
+    margin-bottom: 30px;
     gap: 8px;
 }
 
@@ -253,6 +253,7 @@ body {
 }
 
 .comment-form {
+    overflow: hidden;
     position: fixed;
     bottom: 0;
     left: 50%;
@@ -281,3 +282,8 @@ body {
     font-weight: 500;
     line-height: 120%;
 }
+
+.small{
+    margin: 11px 0 0 30px;
+}
+

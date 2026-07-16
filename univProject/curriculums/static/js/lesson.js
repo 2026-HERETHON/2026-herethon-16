@@ -1,11 +1,8 @@
-const backIcon = document.querySelector(".material-symbols-outlined.backIcon"); // 이전 버튼
 const userInputs = document.querySelectorAll(".answerInput, .reviewInput"); // 사용자 입력값
 const completeButton = document.querySelector(".completeButton"); // 버튼 (수업 완료하기, N차시로 가기)
 
-// 이전 버튼 (이전 페이지로 이동)
-backIcon.addEventListener("click", () => {
-  window.history.back();
-});
+// 초기 상태 (CTA 비활성화)
+completeButton.disabled = true;
 
 // 글자수 세기
 function updateCharacterCount(input) {
@@ -29,10 +26,10 @@ function checkComplete() {
 
   if (isCompleted) {
     // 조건 충족 시, CTA 버튼 활성화
-    completeButton.classList.add("active");
+    completeButton.disabled = false;
   } else {
     // 조건 불충족 시, CTA 버튼 비활성화
-    completeButton.classList.remove("active");
+    completeButton.disabled = true;
   }
 }
 

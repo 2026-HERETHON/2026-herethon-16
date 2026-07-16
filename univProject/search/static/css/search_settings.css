@@ -1,0 +1,79 @@
+/* 탐색 학기 Flow 공통 CSS 파일 */
+
+/*기본 초기화설정*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*폰트 설정*/
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+body {
+  font-family: "Pretendard", sans-serif;
+}
+
+/*레이아웃 설정*/
+html,
+body {
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+
+  background: #f5f5f5;
+
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+
+  background: #ffffff;
+
+  position: relative;
+
+  overflow-x: hidden;
+}
+
+
+/* 추가 */
+
+/* 버튼 기본값 */
+button {
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* 헤더 */
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+.pageTitle {
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 120%;
+  margin-right: 24px;
+}
+
+.material-symbols-outlined {
+  cursor: pointer;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}

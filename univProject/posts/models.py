@@ -1,15 +1,27 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
+from curriculums.models import LessonReflection
 
 
 class Post(models.Model):
+    BOARD_SCOPE_CHOICES = [
+        ('major', '전공 게시판'),
+        ('all', '전체 게시판'),
+    ]
+    CATEGORY_CHOICES = [
+        ('question', '질문'),
+        ('info', '정보 공유'),
+    ]
+
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='posts'
     )
     major = models.ForeignKey(
         'search.Major', on_delete=models.CASCADE, related_name='posts'
     )
+    board_scope = models.CharField(max_length=10, choices=BOARD_SCOPE_CHOICES, default='major')
+    category = models.CharField(max_length=10, choices=CATEGORY_CHOICES, blank=True, null=True)
     title = models.CharField(max_length=200)
     content = models.TextField()
     views = models.IntegerField(default=0)
@@ -62,3 +74,12 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.post.title}의 댓글: {self.content[:10]}"
+    
+class CommentLike(models.Model):
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('comment', 'user')
+
