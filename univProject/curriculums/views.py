@@ -33,6 +33,7 @@ def my_major_view(request):
         'progress': progress,
         'current_lesson': current.lesson if current else None,
         'lessons': lessons,
+        'stage': stage,
         'reflections': reflections,
     }
     return render(request, 'curriculums/my_major.html', context)

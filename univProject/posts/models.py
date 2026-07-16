@@ -62,3 +62,11 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.post.title}의 댓글: {self.content[:10]}"
+    
+class CommentLike(models.Model):
+    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name='likes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('comment', 'user')

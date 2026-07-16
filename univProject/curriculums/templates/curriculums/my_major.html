@@ -4,35 +4,69 @@
   <h1>내 전공</h1>
 
   <div class="major-header">
-    <h2>{{ major.name }}</h2>
-    <p>{{ major.description }}</p>
+    <div class="major-header-text">
+      <h2>{{ major.name }}</h2>
+      <p>{{ major.description }}</p>
+    </div>
+    <div class="major-icon"></div>
   </div>
 
-  <div class="progress-bar">
-    <div class="progress-fill" style="width: {% widthratio progress.completed progress.total 100 %}%;"></div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar">
+      <div class="progress-fill" style="width: {% widthratio progress.completed progress.total 100 %}%;"></div>
+    </div>
+    <p class="progress-text">전체 과정 {{ progress.completed }} / {{ progress.total }}차시</p>
   </div>
-  <p class="progress-text">전체 과정 {{ progress.completed }} / {{ progress.total }}차시</p>
 
   <div class="tabs">
-    <a href="{% url 'my_major' %}" class="active">오늘의 학습</a>
+    <a href="{% url 'my_major' %}" class="tab-badge active">오늘의 학습</a>
     <a href="{% url 'roadmap' %}">전공 로드맵</a>
     <a href="{% url 'bookmarked_materials' %}">담은 자료</a>
   </div>
 
- {% for lesson in lessons %}
+  <div class="stage-header">
+    <h2>{{ stage.order }}단계 · {{ stage.title }}</h2>
+<span class="stage-lesson-count">{{ stage.lesson_count }}차시</span>
+<p class="stage-desc">{{ stage.summary }}</p>
+<p class="stage-portfolio">
+  {{ stage.lesson_count }}개 수업을 마치면 <strong>{{ stage.deliverable_name }}</strong>이(가) 완성돼요.
+</p>
+
+  {% for lesson in lessons %}
   <div class="lesson-card {% if lesson.user_status == 'in_progress' %}current{% endif %}">
-    <span class="lesson-order">{{ lesson.order }}차시</span>
+    <div class="lesson-card-top">
+      <span class="lesson-order-badge">{{ lesson.order }}차시</span>
 
-    {% if lesson.user_status == 'locked' %}
-      <h3>{{ lesson.title }}</h3>
-    {% else %}
-      <a href="{% url 'lesson_detail' lesson.id %}">
+      {% if lesson.user_status == 'locked' %}
         <h3>{{ lesson.title }}</h3>
-      </a>
-    {% endif %}
+      {% else %}
+        <a href="{% url 'lesson_detail' lesson.id %}" class="lesson-title-link">
+          <h3>{{ lesson.title }}</h3>
+          <span class="chevron">›</span>
+        </a>
+      {% endif %}
+    </div>
 
-    <p>{{ lesson.card_summary }}</p>
-    <p>소요 시간: 약 {{ lesson.duration_minutes }}분</p>
+    <p class="lesson-summary">{{ lesson.card_summary }}</p>
+
+    {% if lesson.user_status == 'in_progress' %}
+    <div class="lesson-detail-table">
+      <div class="detail-row">
+        <span class="detail-label">결과물</span>
+        <span class="detail-value">{{ lesson.result_name }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">활용</span>
+        <span class="detail-value">{{ lesson.usage_context }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="detail-label">소요 시간</span>
+        <span class="detail-value">약 {{ lesson.duration_minutes }}분</span>
+      </div>
+    </div>
+    {% else %}
+    <p class="lesson-duration">소요 시간: 약 {{ lesson.duration_minutes }}분</p>
+    {% endif %}
 
     {% if lesson.user_status == 'completed' %}
       <span class="status-label status-completed">완료</span>
@@ -42,17 +76,25 @@
       <span class="status-label">진행 예정</span>
     {% endif %}
   </div>
-{% endfor %}
+  {% endfor %}
 
   {% if reflections %}
   <div class="motivation-list">
-    <h3>같은 단계 동기들의 한마디</h3>
+    <h3>같은 단계의 동기들과 함께하고 있어요</h3>
+    <p class="motivation-subtitle">'{{ stage.title }}'를 진행 중인 동기 {{ reflections_count }}명</p>
+
     {% for r in reflections %}
       <div class="motivation-item">
-        <p class="author">{{ r.user.profile.nickname }}님</p>
-        <p class="content">"{{ r.reflection_text }}"</p>
+        <div class="motivation-avatar"></div>
+        <div class="motivation-body">
+          <p class="author">{{ r.user.profile.nickname }}님</p>
+          <p class="content">"{{ r.reflection_text }}"</p>
+          <span class="lesson-done-tag">{{ r.lesson.order }}차시 완료</span>
+        </div>
       </div>
     {% endfor %}
+
+    <a href="#" class="link-more">동기들 더 보러 가기 →</a>
   </div>
   {% endif %}
 
