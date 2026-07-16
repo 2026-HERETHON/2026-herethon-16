@@ -578,7 +578,6 @@ a {
 .scroll-box{
     display: flex;
     gap: 18px;
-    /* margin-left: 30px; */
     overflow-x: scroll;
     padding: 20px;
     margin: -20px -20px -20px 10px;
