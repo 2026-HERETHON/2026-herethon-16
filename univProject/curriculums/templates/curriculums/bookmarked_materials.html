@@ -10,11 +10,11 @@
     <link rel="stylesheet" href="../../static/css/header.css" />
     <link
       rel="stylesheet"
-      href="../../static/css/bookmarked_materials-empty.css"
+      href="../../static/css/bookmarked_materials_empty.css"
     />
     <link
       rel="stylesheet"
-      href="../../static/css/bookmarked_materials-full.css"
+      href="../../static/css/bookmarked_materials_full.css"
     />
     <link rel="stylesheet" href="../../static/css/footer.css" />
   </head>
@@ -94,9 +94,11 @@
           </div>
         </div>
 
-        <div class="moveToDownloads">
-          <p>자료실 둘러보기 →</p>
-        </div>
+        <a href="{% url 'material_list' %}">
+          <div class="moveToDownloads">
+            <p>자료실 둘러보기 →</p>
+          </div>
+        </a>
       </div>
       {% endif %}
 
