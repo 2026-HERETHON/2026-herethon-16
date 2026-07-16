@@ -83,3 +83,17 @@ def get_lesson_reflections(stage, exclude_user=None, limit=5):
 def get_roadmap(major):
     return Stage.objects.filter(major=major).prefetch_related('lessons')
 
+def start_first_lesson(user, major):
+    first_lesson = Lesson.objects.filter(
+        stage__major=major
+    ).order_by('stage__order', 'order').first()
+
+    if not first_lesson:
+        return None
+
+    progress, _ = LessonProgress.objects.get_or_create(user=user, lesson=first_lesson)
+    if progress.status in ('locked', 'available'):
+        progress.status = 'in_progress'
+        progress.save()
+    return progress
+
