@@ -25,10 +25,11 @@
 
       <div class="majorCard">
         <div class="textExplain">
-          <div class="majorName">{{ major.name }}</div>
-          <div class="majorExplain">{{ major.description }}</div>
+          <div class="majorName">{{ major.name }}</div> <!-- 예) 콘텐츠, 채널 마케팅 전공 -->
+          <div class="majorExplain">{{ major.description }}</div> <!-- 예) 사람들의 관심과 ... -->
         </div>
 
+        <!-- 전공 이미지 -->
         <div class="majorIcon">
           <img
             src="../../static/assets/content-marketing-major-illustration.png"
@@ -38,24 +39,33 @@
       </div>
 
       <div class="sessionProgress">
+        <!-- 진행률 시각화 -->
         <div class="progressBar">
-          <div class="filledProgress"></div>
+          <div class="filledProgress" style="width: {% widthratio progress.completed progress.total 100 %}%;"></div>
         </div>
+
+        <!-- 예) 전체 과정 1 / 12차시 -->
         <div class="progressText">
           전체 과정 {{ progress.completed }} / {{ progress.total }}차시
         </div>
       </div>
 
+      <!-- 필터 컴포넌트 -->
       <div class="filterComponent">
+        <!-- [지금 할 수업] -->
         <a
           class="component"
           href="{% url 'my_major' %}"
           data-page="current-class.html"
           >지금 할 수업</a
         >
+
+        <!-- [전공 로드맵] -->
         <a class="component" href="{% url 'roadmap' %}" data-page="roadmap.html"
           >전공 로드맵</a
         >
+
+        <!-- [담은 자료] -->
         <a
           class="componentActive"
           href="{% url 'bookmarked_materials' %}"
@@ -64,17 +74,23 @@
         >
       </div>
 
+      <!-- 담은 자료가 있는 경우 -->
       {% if bookmarks %}
       <div id="fullpage" class="fullpage">
         <div class="materialsGrid">
           {% for bookmark in bookmarks %}
           <div class="keepMaterials">
+
+            <!-- 썸네일 사진 (이미지 url을 받아야 함) -->
             <div class="thumbnail">
               <img src="../../static/assets/library/" alt="썸네일 사진" />
             </div>
 
             <div class="materialExplain">
+               <!-- 제목 -->
               <div class="materialTitle">{{ bookmark.material.title }}</div>
+
+               <!-- 설명 -->
               <div class="materialshort">
                 {{ bookmark.material.duration_text }}
               </div>
@@ -84,6 +100,7 @@
         </div>
       </div>
 
+      <!-- 담은 자료가 없는 경우 -->
       {% else %}
       <div id="emptypage" class="emptypage">
         <div class="notice">
@@ -94,6 +111,7 @@
           </div>
         </div>
 
+        <!-- [자료실]로 이동 -->
         <a href="{% url 'material_list' %}">
           <div class="moveToDownloads">
             <p>자료실 둘러보기 →</p>
@@ -102,17 +120,21 @@
       </div>
       {% endif %}
 
+      <!-- 하단 탭 바(바텀 내비게이션 바) -->
       <footer class="tapBar">
+        <!-- [내 전공] -->
         <a href="{% url 'my_major' %}" class="footerTapActive">
           <img src="../../static/assets/mymajortap-active.svg" alt="" />
           <p class="tapNameActive">내 전공</p>
         </a>
 
+        <!-- [함께] -->
         <a href="{% url 'post_list' %}" class="footerTap">
           <img src="../../static/assets/together-none.svg" alt="" />
           <p class="tapName">함께</p>
         </a>
 
+        <!-- [자료실] -->
         <a href="{% url 'material_list' %}" class="footerTap">
           <img src="../../static/assets/article-none.svg" alt="" />
           <p class="tapName">자료실</p>
