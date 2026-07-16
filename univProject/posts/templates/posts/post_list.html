@@ -4,14 +4,70 @@
   <h1>함께</h1>
 
   <div class="tabs">
-  <a href="{% url 'post_list' %}?scope=major" class="{% if scope == 'major' %}active{% endif %}">우리 전공</a>
-  <a href="{% url 'post_list' %}?scope=all" class="{% if scope == 'all' %}active{% endif %}">잇대 전체</a>
-</div>
-
-  <div class="board-header">
-    <h2>{{ major.name }}</h2>
-    <p>전공 게시판</p>
+    <a href="{% url 'post_list' %}?scope=major" class="{% if scope == 'major' %}active{% endif %}">우리 전공</a>
+    <a href="{% url 'post_list' %}?scope=all" class="{% if scope == 'all' %}active{% endif %}">잇대 전체</a>
   </div>
+
+  {% if scope == 'major' %}
+    {# ===== 우리 전공 화면 ===== #}
+    {% if featured_reflection %}
+    <div class="stage-mates-preview">
+      <h3>{{ major.name }} · {{ stage.order }}단계</h3>
+      <p>같은 단계에 있는 <strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
+
+      <div class="reflection-card">
+        <span class="author-name">{{ featured_reflection.user.profile.nickname }}님</span>
+        <p class="reflection-quote">"{{ featured_reflection.reflection_text }}"</p>
+
+        <form method="post" action="{% url 'reflection_cheer' featured_reflection.id %}" class="inline-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit" class="cheer-btn {% if has_cheered %}active{% endif %}">
+            '응원해요' 보내기
+          </button>
+        </form>
+        <p class="cheer-count">{{ featured_reflection.cheers.count }}명이 {{ featured_reflection.user.profile.nickname }}님을 응원했어요!</p>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="board-header">
+      <h2>전공 게시판</h2>
+    </div>
+
+  {% else %}
+    {# ===== 잇대 전체 화면 ===== #}
+    <div class="board-header">
+      <h2>각자의 전공에서 다시 시작하고 있어요</h2>
+      <p>전공은 달라도 비슷한 전환점을 지나고 있는 잇대 동기들의 과정을 만나보세요.</p>
+    </div>
+
+    {% if weekly_reflections %}
+    <div class="weekly-mates">
+      <h3>이번 주 동기들의 한 걸음</h3>
+      {% for r in weekly_reflections %}
+        <div class="reflection-card">
+          <span class="author-name">{{ r.user.profile.nickname }}님</span>
+          <span class="post-major-tag">{{ r.lesson.stage.major.name }}</span>
+          <p class="reflection-quote">"{{ r.reflection_text }}"</p>
+          {% if r.milestone_text %}
+            <p class="milestone-label">이번 주의 한걸음</p>
+            <p class="milestone-text">{{ r.milestone_text }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <div class="board-header">
+      <h2>전체 게시판</h2>
+      <div class="board-filter">
+        <a href="?scope=all" class="filter-tag {% if not category %}active{% endif %}">전체</a>
+        <a href="?scope=all&category=question" class="filter-tag {% if category == 'question' %}active{% endif %}">질문</a>
+        <a href="?scope=all&category=info" class="filter-tag {% if category == 'info' %}active{% endif %}">정보 공유</a>
+      </div>
+    </div>
+  {% endif %}
 
   <div class="post-board">
   {% for post in posts %}
@@ -29,10 +85,8 @@
   {% empty %}
     <p class="empty-text">아직 등록된 게시글이 없어요.</p>
   {% endfor %}
-</div>
+  </div>
 
-  <a href="{% url 'post_create' %}" class="fab-button">+</a>
-
- 
+  <a href="{% url 'post_create' %}?scope={{ scope }}" class="fab-button">+</a>
 </div>
 {% endblock %}
