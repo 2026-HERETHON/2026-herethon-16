@@ -154,18 +154,21 @@ def experience2(request):
     return render(request, "experience2.html", context)
 
 # "전공 선택하기 (비교 선택)"
+from curriculums.services import start_first_lesson
+
 def confirm(request):
     records = ScoreRecord.objects.filter(user=request.user).order_by("-score")[:2]
 
     if request.method == "POST":
         selected = int(request.POST.get("major")) 
-
         selected_major = records[selected].major
 
         profile = request.user.profile
         profile.selectedMajor = selected_major
         profile.explorationStatus = "selected"
         profile.save()
+
+        start_first_lesson(request.user, selected_major)   # ← 추가
 
         return redirect("my_major") 
     
