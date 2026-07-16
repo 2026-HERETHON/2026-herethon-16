@@ -1,0 +1,9 @@
+.tabSelection{
+    display: flex;
+    flex-direction: row;
+
+    padding-left: 40px;
+    padding-right: 40px;
+
+    justify-content:space-between;
+}

@@ -17,7 +17,7 @@
     <div class="app">
         <div class="header">자료실</div>
         
-        <div class="tabSelcetion">
+        <div class="tabSelection">
           <a class="myStep">내 단계 맞춤 자료</a>
           <a class="allMajor">전체 전공 자료</a>
         </div>
@@ -27,35 +27,91 @@
           <div class="comments">지금의 단계에 도움이 되는 자료를 모았어요.</div>
         </div>
 
-        <div class="materialCard">
-          <div class="materialTitle">콘텐츠 감각 찾기 추천 자료</div>
+        <!--내 단계 맞춤 자료 내용-->
+        <div class="myStepTab">
+          <div class="materialCard">
+            <div class="materialTitle">콘텐츠 감각 찾기 추천 자료</div>
 
-          <div class="materialThumbnail">
-            <img 
-              src="../../static/assets/library/thumb_m01_s1_ai_digital_baeum.png" 
-              alt="AI 디지털 배움 썸네일">
-          </div>
-
-          <div class="cardFooter">
-            <div class="materialDuration">
-              <div class="materialName">제목</div>
-              <div class="materialExplain">소요 시간 등 정보</div>
+            <div class="materialThumbnail">
+              <img 
+                src="../../static/assets/library/thumb_m01_s1_ai_digital_baeum.png" 
+                alt="AI 디지털 배움 썸네일">
             </div>
 
-            <div class="bookmark">
-              <img 
-              src="../../static/assets/bookmark-non.svg" 
-              alt="북마크 선택 전">
+            <div class="materialCardFooter">
+              <div class="materialDuration">
+                <div class="materialName">제목</div>
+                <div class="materialExplain">소요 시간 등 정보</div>
+              </div>
 
-              <img 
-              src="../../static/assets/bookmark-selected.svg" 
-              alt="북마크 선택 후">
+              <div class="bookmark">
+                <img 
+                src="../../static/assets/bookmark-non.svg" 
+                alt="북마크 선택 전">
+
+                <img 
+                src="../../static/assets/bookmark-selected.svg" 
+                alt="북마크 선택 후">
+              </div>
             </div>
           </div>
         </div>
 
-        <footer>
+        <!--전체 전공 자료 내용-->
+        <div class="allMajorTab">
+          <div class="category">
+            <a class="categoryAll">전체</a>
+            <a class="categoryProgram">프로그램</a>
+            <a class="categoryLecture">강의</a>
+            <a class="categoryBook">도서</a>
+          </div>
+
+          <div class="categoryCard">
+            <div class="categoryThumbnail">
+              <img 
+                src="../../static/assets/library/thumb_m04_s3_book_cx_bible.jpeg" 
+                alt="cx 전공서 도서">
+            </div>
+
+            <div class="categoryCardFooter">
+              <div class="categoryDuration">
+                <div class="categoryName">제목</div>
+                <div class="categoryExplain">소요 시간 등 정보</div>
+              </div>
+
+              <div class="bookmark">
+                <img 
+                src="../../static/assets/bookmark-non.svg" 
+                alt="북마크 선택 전">
+
+                <img 
+                src="../../static/assets/bookmark-selected.svg" 
+                alt="북마크 선택 후">
+              </div>
+            </div>
+          </div>
+          
+        </div>
+
+        <footer class="tapBar">
+          <div class="footerTap">
+              <img src="../../static/assets/mymajor-none.svg" alt="내 전공 선택안됨"
+              style="opacity: 0.6;">
+              <p class="tapName">내 전공</p>
+          </div>
+  
+          <div class="footerTap">
+              <img src="../../static/assets/together-none.svg" alt="함께 선택안됨">
+              <p class="tapName">함께</p>
+          </div>
+  
+          <div class="footerTapActive">
+              <img src="../../static/assets/materials-selected.svg" alt="자료실 선택됨">
+              <p class="tapNameActive">자료실</p>
+          </div>
         </footer>
     </div>
+
+  <script src="../../static/js/materials.js"></script>
 </body>
 </html>
