@@ -1,0 +1,588 @@
+/*기본 초기화설정*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*폰트 설정*/
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+    font-family: "Pretendard", sans-serif;
+}
+
+/*레이아웃 설정*/
+html,
+body {
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+
+    background: #F5F5F5;
+
+    min-height: 100vh;
+}
+
+.app {
+    width: 100%;
+    max-width: 390px;
+    min-height: 100vh;
+
+    background: #FFFFFF;
+
+    position: relative;
+
+    overflow-x: hidden;
+}
+
+/* 아이콘 스타일 기본설정 */
+.faceIcon {
+    display: flex;
+    width: 31px;
+    height: 31px;
+    padding: 6px 5px 5px 6px;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    border: 1px solid var(--Color-Surface, #F5F7F6);
+    background: var(--Color-Border, #E1E7E4);
+}
+
+
+/* 헤더 */
+.pageHeader {
+    display: flex;
+    width: 393px;
+    padding: 20.53px 23.463px 18.575px 23.463px;
+    justify-content: center;
+    align-items: center;
+    gap: 150.552px;
+}
+
+h1 {
+    margin: 20px 30px;
+    color: var(--Color-Text, #17211E);
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 120%;
+}
+
+.app {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.app::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+/* 기본 탭 스타일 (선택되지 않았을 때) */
+.tabs {
+    margin-top: 9px;
+    display: flex;
+    gap: 120px;
+    padding-bottom: 6px;
+    display: flex;
+    justify-content: center;
+}
+
+.tabs a {
+    text-decoration: none;
+    color: #17211E;
+    opacity: 60%;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 120%;
+    padding-bottom: 6px;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+
+/* 선택된 탭 스타일 */
+.tabs a.active {
+    color: #17211E;
+    opacity: 1;
+    font-weight: 700;
+}
+
+/* 선택된 탭의 밑줄 디자인 */
+.tabs a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 130px;
+    height: 1.4px;
+    background-color: #000000;
+}
+
+.board-header {
+    margin: 45px 0 0px 30px;
+}
+
+.board-header h2 {
+    color: #20CDB1;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 7px;
+}
+
+.board-header p {
+    display: flex;
+    color: #17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 120%;
+}
+
+.num {
+    color: #17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.box-scroll {
+    display: flex;
+    overflow-x: scroll;
+    margin-left: 10px;
+    margin-bottom: 22px;
+    gap: 8px;
+    padding: 0px 20px 20px 20px;
+    box-sizing: border-box;
+}
+
+.box-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.box {
+    display: flex;
+    width: 333px;
+    padding: 16px 18px;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 20px;
+    border: 1px solid var(--Color-Border, #E1E7E4);
+    background: var(--Color-Background, #FFF);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
+    flex-shrink: 0;
+}
+
+.boxImg {
+    width: 31px;
+    height: 31px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.name {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+.name p {
+    color: #17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.box_content {
+    color: #17211E;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.box_btn {
+    display: flex;
+    width: 297px;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    border: 1px solid var(--Color-Button, #4DD7C1);
+    background: var(--Color-Background, #FFF);
+    transition: all 0.2s ease;
+}
+
+.box_btn.active {
+    /* 활성화 상태: 민트색 배경에 흰색 글자 */
+    background-color: #4DD7C1;
+    border: 1px solid #4DD7C1;
+    color: #FFF;
+}
+
+.post-board {
+    margin: 32px 30px 0 30px;
+}
+
+.title {
+    position: sticky;
+    margin: 10px 0;
+    z-index: 500;
+}
+
+.post-card {
+    display: flex;
+    padding: 11px 17px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    align-self: stretch;
+    border-bottom: 1px solid #E1E7E4;
+}
+
+a {
+    text-decoration: none;
+}
+
+.author-name {
+    color: rgba(23, 33, 30, 0.80);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.post-title {
+    color: var(--Color-Text, #17211E);
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.post-major-tag {
+    color: rgba(23, 33, 30, 0.80);
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.post-stats {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    align-self: stretch;
+    color: rgba(23, 33, 30, 0.60);
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.post-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.together {
+    position: relative;
+}
+
+.fab-button {
+    display: flex;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    margin-left: 313px;
+    border-radius: 500px;
+    background: var(--Color-Button, #4DD7C1);
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.20);
+    z-index: 999;
+    font-size: 36px;
+    color: #FFF;
+    line-height: 1;
+    position: absolute;
+}
+
+/* 모달 디자인 부분 */
+
+/* 1. 기본 상태: 화면에서 아예 안 보이게 숨김 */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-overlay.show {
+    display: block;
+}
+
+.modal-content {
+    display: flex;
+    width: 333px;
+    height: 390px;
+    padding: 20px 24px;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    border: 1px solid var(--Color-Border, #E1E7E4);
+    background: var(--Color-Background, #FFF);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.10);
+    position: fixed;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: 120px;
+    max-height: 480px;
+    overflow-y: auto;
+    animation: modalFadeIn 0.25s ease-out;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #E1E7E4;
+    border-radius: 4px;
+}
+
+.modal_title {
+    color: rgba(23, 33, 30, 0.40);
+    opacity: 40%;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    border-bottom: 1px solid rgba(23, 33, 30, 0.40);
+    display: flex;
+    padding: 12px 0;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+.category_title {
+    margin-top: 20px;
+    color: rgba(23, 33, 30, 0.40);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.category button {
+    margin-top: 4px;
+    display: flex;
+    padding: 6px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 100px;
+    opacity: 0.9;
+    border: none;
+    cursor: pointer;
+}
+
+.cate-btn.active {
+    background-color: #4DD7C1;
+    color: #FFFFFF;
+}
+
+.post-form textarea {
+    border: none;
+    color: rgba(23, 33, 30, 0.40);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    opacity: 40%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+
+
+
+/* base html 부분 디자인 */
+
+.bottom-tab {
+    position: fixed;
+    bottom: 0;
+    width: 393px;
+    height: auto;
+    padding: 8px 30px 20px 30px;
+    gap: 10px;
+    border-top: 1px solid var(--Color-Border, #E1E7E4);
+    background: var(--Color-Background, #FFF);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1500;
+}
+
+.tab_box {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    margin-top: 8px;
+}
+
+.tab_name {
+    color: #17211E;
+}
+
+.tab_active {
+    color: #20CDB1;
+}
+
+/* 전체게시판 */
+
+.board-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.board-filter>a {
+    cursor: pointer;
+    color: rgba(23, 33, 30, 0.80);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    display: flex;
+    padding: 6px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    border-radius: 100px;
+    opacity: 0.9;
+    background: var(--Color-Surface, #F5F7F6);
+}
+
+.btn-primary {
+    display: flex;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 100px;
+    background: var(--Color-Button, #4DD7C1);
+    color: var(--Color-Background, #FFF);
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    border: none;
+    margin-left: 160px;
+    margin-bottom: 30px;
+}
+
+/* 잇대전체 디자인 */
+.weekly-mates > h3 {
+    margin-left: 29px;
+    margin-top: 22px;
+    margin-bottom: 15px;
+    color: var(--Color-Text, #17211E);
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.box_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile {
+    display: flex;
+    gap: 9px;
+}
+
+.box>p {
+    color: var(--Color-Text, #17211E);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.milestone-label {
+    font-weight: 700;
+}
+
+.post-major {
+    color: rgba(23, 33, 30, 0.80);
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.board-filter .filter-tag.active {
+  background-color: #4DD7C1 !important;
+  color: #ffffff !important;
+  font-weight: bold !important;
+}
+
+.scroll-box{
+    display: flex;
+    gap: 18px;
+    overflow-x: scroll;
+    padding: 20px;
+    margin: -20px -20px -20px 10px;
+}
+
+.scroll-box::-webkit-scrollbar {
+    display: none;
+}

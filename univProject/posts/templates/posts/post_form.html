@@ -1,23 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="post-form">
-  <a href="{% url 'post_list' %}?scope={{ scope }}" class="back-link">←</a>
-  <h2>글쓰기</h2>
+{% load static %}
 
-  <form method="post">
-    {% csrf_token %}
-    <input type="hidden" name="board_scope" value="{{ scope }}">
+<link rel="stylesheet" href="{% static 'css/post_form.css' %}">
+  <div class="post-form">
+    <a href="{% url 'post_list' %}" class="back-link">←</a>
+    <h2>글쓰기</h2>
 
-    {% if scope == 'all' %}
-    <div class="category-select">
-      <label><input type="radio" name="category" value="question" checked> 질문</label>
-      <label><input type="radio" name="category" value="info"> 정보 공유</label>
-    </div>
-    {% endif %}
-
-    <input type="text" name="title" placeholder="제목을 입력해주세요." required>
-    <textarea name="content" placeholder="내용을 입력해주세요." rows="8" required></textarea>
-    <button type="submit" class="btn-primary">등록</button>
-  </form>
-</div>
-{% endblock %}
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="title" placeholder="제목을 입력해주세요." required>
+      <textarea name="content" placeholder="내용을 입력해주세요." rows="8" required></textarea>
+      <button type="submit" class="btn-primary">등록</button>
+    </form>
+  </div>
+  {% endblock %}
