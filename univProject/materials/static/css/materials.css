@@ -1,6 +1,6 @@
 /*내 단계 맞춤 자료*/
 
-.tabSelection{
+.tabSelection {
     display: flex;
     flex-direction: row;
 
@@ -9,6 +9,11 @@
     padding-bottom: 6px;
 
     justify-content:space-between;
+}
+
+.tabSelection a{
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .tabSelected{
@@ -132,9 +137,17 @@
     line-height: 120%;
 }
 
-.bookmark{
+/*북마크는 '전체 전공 자료 내용'에서도 동일하게 사용*/
+
+.bookmarkBtn{
     background-color: transparent;
     border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.bookmarkBtn:focus{
+    outline:none;
 }
 
 .bookmarkActivated{
@@ -178,6 +191,8 @@
     line-height: 120%;
 
     text-align: center;
+
+    cursor: pointer;
 }
 
 .categoryOption.categoryActivated{
@@ -200,6 +215,12 @@
     gap: 8px 8px;
 }
 
+.programCategory,
+.lectureCategory,
+.bookCategory{
+    display: none;
+}
+
 .categoryCard{
     width:100%;
 
@@ -209,14 +230,6 @@
     align-items: flex-start;
 
     gap: 8px;
-}
-
-.categoryTitle{
-    color:#17211E;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
 }
 
 .categoryThumbnail{
@@ -267,13 +280,4 @@
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
-}
-
-.bookmark{
-    background-color: transparent;
-    border: none;
-}
-
-.bookmarkActivated{
-    display: none;
 }
