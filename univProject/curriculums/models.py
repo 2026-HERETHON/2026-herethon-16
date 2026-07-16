@@ -155,6 +155,7 @@ class Bookmark(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
+<<<<<<< HEAD
         return f"{self.user} bookmarked {self.material}"
     
 class ReflectionCheer(models.Model):
@@ -164,3 +165,6 @@ class ReflectionCheer(models.Model):
 
     class Meta:
         unique_together = ('reflection', 'user')
+=======
+        return f"{self.user} bookmarked {self.material}"
+>>>>>>> 5744863f0f42ff486eca75feee5150eae4129576
