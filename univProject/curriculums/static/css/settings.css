@@ -38,3 +38,8 @@ body {
 
     overflow-x: hidden;
 }
+
+/* a 태그 기본 스타일 제거 */
+a {
+    text-decoration: none;
+}

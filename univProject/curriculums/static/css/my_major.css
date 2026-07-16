@@ -43,15 +43,19 @@
     border-bottom: 1px solid #E1E7E4;
 }
 
-.lectureCard{
-    margin-top: 20px;
+.cardList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 21px;
+    margin-bottom: 63px;
+}
 
+.lectureCard{
     display: flex;
     flex-direction: column;
     height: auto;
     gap: 12px;
-
-    margin-bottom: 64px;
 }
 
 .lectureInfo{
@@ -61,6 +65,7 @@
     font-weight: 400;
     line-height: 120%;
 
+    margin-top: 21px;
     margin-bottom: 12px;
 }
 

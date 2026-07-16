@@ -18,10 +18,11 @@
 
       <div class="majorCard">
         <div class="textExplain">
-          <div class="majorName">{{ major.name }}</div>
-          <div class="majorExplain">{{ major.description }}</div>
+          <div class="majorName">{{ major.name }}</div> <!-- 예) 콘텐츠 채널 마케팅 전공 -->
+          <div class="majorExplain">{{ major.description }}</div><!-- 예) 사람들의 관심과 반응을 살펴보고, ... -->
         </div>
 
+        <!-- 전공 이미지 -->
         <div class="majorIcon">
           <img
             src="../../static/assets/content-marketing-major-illustration.png"
@@ -31,16 +32,20 @@
       </div>
 
       <div class="sessionProgress">
+        <!-- 진행률 시각화 -->
         <div class="progressBar">
           <div class="filledProgress"></div>
         </div>
 
+        <!-- 예) 전체 과정 1/12차시 -->
         <div class="progressText">
           전체 과정 {{ progress.completed }} / {{ progress.total }}차시
         </div>
       </div>
 
+      <!-- 필터 컴포넌트 -->
       <div class="filterComponent">
+        <!-- [지금 할 수업] 필터 -->
         <a
           class="componentActive"
           href="{% url 'my_major' %}"
@@ -48,10 +53,12 @@
           >오늘의 학습</a
         >
 
+        <!-- [전공 로드맵] 필터 -->
         <a class="component" href="{% url 'roadmap' %}" data-page="roadmap.html"
           >전공 로드맵</a
         >
 
+        <!-- [담은 자료] 필터 -->
         <a
           class="component"
           href="{% url 'bookmarked_materials' %}"
@@ -62,34 +69,45 @@
 
       <div class="stepInfo">
         <div class="stepComposition">
-          <div class="stepTitle">1단계 · 콘텐츠 감각 찾기</div>
-          <div class="stepNum">3차시</div>
+          <!-- 하드코딩된 부분 -->
+          <div class="stepTitle">1단계 · 콘텐츠 감각 찾기</div> <!-- 예) 1단계 · 콘텐츠 감각 찾기 -->
+          <div class="stepNum">3차시</div> <!-- 예) 3차시 -->
         </div>
 
+        <!-- 하드코딩된 부분 -->
+        <!-- 예) 내 경험을 직무와 연결하고, ... -->
         <div class="stepExplanation">
           내 경험을 직무와 연결하고,
           <br />메시지를 만들고 개선하는 기본 과정을 경험해요.
         </div>
       </div>
 
+      <!-- 하드코딩된 부분 -->
+       <!-- 예) 3개 수업을 마치면 콘텐츠 기획 미니 포트폴리오가 완성돼요. -->
       <p class="lectureInfo">
         3개 수업을 마치면
         <span class="bold">콘텐츠 기획 미니 포트폴리오</span>가 완성돼요.
       </p>
 
+      <!-- 로드맵 카드 여러 개 출력 -->
       {% for lesson in lessons %}
+      <div class="cardList">
       
+      <!-- 로드맵 카드 (진행중) -->
       {% if lesson.user_status == 'in_progress' %}
       <div class="lectureCard">
         <div class="nowLecture">
           <div class="lectureTopBox">
             <div class="lectureTitleBox">
-              <p class="nowLectureName">{{ lesson.order }}차시</p>
+              <p class="nowLectureName">{{ lesson.order }}차시</p> <!-- 예) 1차시 -->
+              <!-- 클릭해도 이동 X --> 
               {% if lesson.user_status == 'locked' %}
-              <p class="lectureTitle">{{ lesson.title }}</p>
+              <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 내 경험에서 전달 행동 찾기 -->
+
+              <!-- 클릭 시 "내 전공 수업 상세 화면"으로 이동 -->
               {% else %}
               <a href="{% url 'lesson_detail' lesson.id %}">
-                <p class="lectureTitle">{{ lesson.title }}</p>
+                <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 내 경험에서 전달 행동 찾기 -->
               </a>
               {% endif %}
             </div>
@@ -97,6 +115,7 @@
             <img src="../../static/assets/vector.svg" alt="벡터 화살표" />
           </div>
 
+          <!-- 예) 이 수업을 마치면 평범하게 지나쳤던 경험을 ... -->
           <div class="lectureExplanation">{{ lesson.card_summary }}</div>
 
           <div class="nowLectureContent">
@@ -120,6 +139,7 @@
         </div>
       </div>
 
+      <!-- 로드맵 카드 (진행 예정) -->
       {% else %}
       <div class="lectureCard">
         <div class="lectureNotYet">
@@ -146,6 +166,7 @@
       </div>
       {% endif %}
       {% endfor %}
+      </div>
 
 
       {% if reflections %}
@@ -175,7 +196,9 @@
         {% endfor %}
       </div>
 
-      <div class="moreSolidarity">동기들 더 보러 가기 →</div>
+      <a href="{% url 'post_list' %}">
+        <div class="moreSolidarity">동기들 더 보러 가기 →</div>
+      </a>
       {% endif %}
 
       <footer class="tapBar">
