@@ -1,0 +1,60 @@
+.fullpage{
+    width: 100%;
+}
+
+.materialsGrid{
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 8px;
+    
+    margin-top: 40px;
+    margin-bottom: 90px;
+}
+
+.keepMaterials{
+    display: flex;
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.thumbnail{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
+    overflow: hidden;
+
+    background: #F5F7F6;
+}
+
+.thumbnail img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.materialExplain{
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.materialTitle{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.materialshort{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
