@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Question, ScoreRecord, ChoiceScore, Experience, ExperienceQuestion
+from accounts.models import UserProfile
 
 # Create your views here.
 def intro(request):
@@ -155,6 +156,19 @@ def experience2(request):
 # "전공 선택하기 (비교 선택)"
 def confirm(request):
     records = ScoreRecord.objects.filter(user=request.user).order_by("-score")[:2]
+
+    if request.method == "POST":
+        selected = int(request.POST.get("major")) 
+
+        selected_major = records[selected].major
+
+        profile = request.user.profile
+        profile.selectedMajor = selected_major
+        profile.explorationStatus = "selected"
+        profile.save()
+
+        return redirect("my_major") 
+    
     majors = [
         {
             "name": records[0].major.name,
