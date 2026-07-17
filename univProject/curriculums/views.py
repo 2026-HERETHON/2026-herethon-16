@@ -16,7 +16,13 @@ def my_major_view(request):
     progress = get_major_progress(request.user, major)
     current = get_current_lesson(request.user, major)
 
-    lessons = Lesson.objects.filter(stage__major=major).select_related('stage')
+    stage = current.lesson.stage if current else None
+
+    lessons = (
+        Lesson.objects.filter(stage=stage)
+        .select_related("stage")
+        .order_by("order")
+    ) if stage else Lesson.objects.none()
 
     progress_map = {
         p.lesson_id: p.status
@@ -25,7 +31,7 @@ def my_major_view(request):
     for lesson in lessons:
         lesson.user_status = progress_map.get(lesson.id, 'locked')
 
-    stage = current.lesson.stage if current else None
+    #stage = current.lesson.stage if current else None
     reflections = get_lesson_reflections(stage, exclude_user=request.user)
 
     context = {
@@ -33,7 +39,10 @@ def my_major_view(request):
         'progress': progress,
         'current_lesson': current.lesson if current else None,
         'lessons': lessons,
+        'stage': stage,
         'reflections': reflections,
+        'reflections_count': reflections.count(), 
+
     }
     return render(request, 'curriculums/my_major.html', context)
 

@@ -1,0 +1,301 @@
+/*기본 초기화설정*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*폰트 설정*/
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+    font-family: "Pretendard", sans-serif;
+}
+
+/*레이아웃 설정*/
+html,
+body {
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+
+    background: #F5F5F5;
+
+    min-height: 100vh;
+}
+
+.app {
+    width: 100%;
+    max-width: 390px;
+    min-height: 100vh;
+
+    background: #FFFFFF;
+
+    position: relative;
+
+    overflow-x: hidden;
+}
+
+/* 아이콘 스타일 기본설정 */
+.faceIcon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    border: 1px solid var(--Color-Surface, #F5F7F6);
+    background: var(--Color-Border, #E1E7E4);
+}
+
+.faceIconSmall {
+    display: flex;
+    width: 34px;
+    height: 34px;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    border: 1px solid var(--Color-Surface, #F5F7F6);
+    background: var(--Color-Border, #E1E7E4);
+}
+
+.post-major-tag {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    background: var(--Color-Surface, #F5F7F6);
+}
+
+/* 헤더 */
+.pageHeader {
+    display: flex;
+    width: 393px;
+    padding: 20.53px 23.463px 18.575px 23.463px;
+    justify-content: center;
+    align-items: center;
+    gap: 150.552px;
+}
+
+
+
+
+/* post_detail css */
+
+
+.padding {
+    padding: 0 30px;
+}
+
+.back-link {
+    margin-bottom: 0.39px;
+}
+
+.post-header,
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px;
+}
+
+.post-header {
+    margin-top: 29.79px;
+}
+
+.header_left {
+    display: flex;
+    gap: 10px;
+}
+
+.name {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.author-name {
+    color: var(--Color-Text, #17211E);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.time {
+    color: rgba(23, 33, 30, 0.60);
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.post-major-tag {
+    color: rgba(23, 33, 30, 0.80);
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.post-title {
+    color: var(--Color-Text, #17211E);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin: 16px 0 12px 0;
+}
+
+.post-content {
+    color: var(--Color-Text, #17211E);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    align-self: stretch;
+    margin-bottom: 17px;
+}
+
+.post-actions {
+    padding-bottom: 21px;
+    width: 332px;
+    border-bottom: 1px solid #E1E7E4;
+}
+
+/* 1. 기본 상태 (좋아요 안 누름: 회색) */
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #8E8E8E;
+    transition: color 0.2s ease;
+}
+
+
+.like-btn.active .like-heart path {
+    fill: #FF383C !important;
+    fill-opacity: 1 !important;
+    color: #FF383C !important;
+}
+
+
+.comment-section-title {
+    margin: 16px 0 0 0;
+    color: var(--Color-Text, #17211E);
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.comment-content {
+    color: var(--Color-Text, #17211E);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    margin-top: 10px;
+    margin-left: 40px;
+}
+
+.reply {
+    margin-left: 30px;
+    margin-top: 31px;
+}
+
+.reply-form {
+    display: flex;
+    margin-left: 30px;
+    margin-top: 22px;
+    margin-bottom: 30px;
+    gap: 8px;
+}
+
+.reply-form input {
+    display: flex;
+    padding: 8px 12px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 20px;
+    border: 1px solid var(--Color-Border, #E1E7E4);
+    background: var(--Color-Background, #FFF);
+}
+
+.reply-form button,
+.comment-form button {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex: 1 0 0;
+    align-self: stretch;
+    border-radius: 10px;
+    background: var(--Color-Button, #4DD7C1);
+    color: var(--Color-Background, #FFF);
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+    border: none;
+}
+
+.comment-header {
+    margin-top: 23px;
+}
+
+.comment-form {
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    display: flex;
+    width: 393px;
+    padding: 10px 30px;
+    border-top: 1px solid var(--Color-Border, #E1E7E4);
+    gap: 8px;
+}
+
+.comment-form input {
+    display: flex;
+    padding: 12px 16px;
+    width: 271px;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 20px;
+    border: 1px solid var(--Color-Border, #E1E7E4);
+    background: var(--Color-Surface, #F5F7F6);
+    color: rgba(23, 33, 30, 0.60);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+}
+
+.small {
+    margin: 11px 0 0 30px;
+}

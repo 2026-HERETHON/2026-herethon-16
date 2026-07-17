@@ -1,60 +1,271 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="my-major">
-  <h1>내 전공</h1>
+<!-- 내 전공 - 지금 할 수업 -->
+{% load static %}
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>내 전공 - 지금 할 수업</title>
+    <link rel="stylesheet" href="../../static/css/settings.css" />
+    <link rel="stylesheet" href="../../static/css/header.css" />
+    <link rel="stylesheet" href="../../static/css/my_major.css" />
+    <link rel="stylesheet" href="../../static/css/footer.css" />
+  </head>
 
-  <div class="major-header">
-    <h2>{{ major.name }}</h2>
-    <p>{{ major.description }}</p>
-  </div>
+  <body>
+    <div class="app">
+      <div class="header">내 전공</div>
 
-  <div class="progress-bar">
-    <div class="progress-fill" style="width: {% widthratio progress.completed progress.total 100 %}%;"></div>
-  </div>
-  <p class="progress-text">전체 과정 {{ progress.completed }} / {{ progress.total }}차시</p>
+      <div class="majorCard">
+        <div class="textExplain">
+          <div class="majorName">{{ major.name }}</div> <!-- 예) 콘텐츠 채널 마케팅 전공 -->
+          <div class="majorExplain">{{ major.description }}</div><!-- 예) 사람들의 관심과 반응을 살펴보고, ... -->
+        </div>
 
-  <div class="tabs">
-    <a href="{% url 'my_major' %}" class="active">오늘의 학습</a>
-    <a href="{% url 'roadmap' %}">전공 로드맵</a>
-    <a href="{% url 'bookmarked_materials' %}">담은 자료</a>
-  </div>
-
- {% for lesson in lessons %}
-  <div class="lesson-card {% if lesson.user_status == 'in_progress' %}current{% endif %}">
-    <span class="lesson-order">{{ lesson.order }}차시</span>
-
-    {% if lesson.user_status == 'locked' %}
-      <h3>{{ lesson.title }}</h3>
-    {% else %}
-      <a href="{% url 'lesson_detail' lesson.id %}">
-        <h3>{{ lesson.title }}</h3>
-      </a>
-    {% endif %}
-
-    <p>{{ lesson.card_summary }}</p>
-    <p>소요 시간: 약 {{ lesson.duration_minutes }}분</p>
-
-    {% if lesson.user_status == 'completed' %}
-      <span class="status-label status-completed">완료</span>
-    {% elif lesson.user_status == 'in_progress' %}
-      <span class="status-label status-in-progress">진행중</span>
-    {% else %}
-      <span class="status-label">진행 예정</span>
-    {% endif %}
-  </div>
-{% endfor %}
-
-  {% if reflections %}
-  <div class="motivation-list">
-    <h3>같은 단계 동기들의 한마디</h3>
-    {% for r in reflections %}
-      <div class="motivation-item">
-        <p class="author">{{ r.user.profile.nickname }}님</p>
-        <p class="content">"{{ r.reflection_text }}"</p>
+        <!-- 전공 이미지 -->
+        <div class="majorIcon">
+          <img
+            src="../../static/assets/content-marketing-major-illustration.png"
+            alt="콘텐츠 마케팅 일러스트"
+          />
+        </div>
       </div>
-    {% endfor %}
-  </div>
-  {% endif %}
 
-</div>
-{% endblock %}
+      <div class="sessionProgress">
+        <!-- 진행률 시각화 -->
+        <div class="progressBar">
+          <div class="filledProgress" style="width: {% widthratio progress.completed progress.total 100 %}%;"></div>
+        </div>
+
+        <!-- 예) 전체 과정 1/12차시 -->
+        <div class="progressText">
+          전체 과정 {{ progress.completed }} / {{ progress.total }}차시
+        </div>
+      </div>
+
+      <!-- 필터 컴포넌트 -->
+      <div class="filterComponent">
+        <!-- [지금 할 수업] 필터 -->
+        <a
+          class="componentActive"
+          href="{% url 'my_major' %}"
+          data-page="current-class.html"
+          >오늘의 학습</a
+        >
+
+        <!-- [전공 로드맵] 필터 -->
+        <a class="component" href="{% url 'roadmap' %}" data-page="roadmap.html"
+          >전공 로드맵</a
+        >
+
+        <!-- [담은 자료] 필터 -->
+        <a
+          class="component"
+          href="{% url 'bookmarked_materials' %}"
+          data-page="downloads.html"
+          >담은 자료</a
+        >
+      </div>
+
+      <div class="stepInfo">
+        <div class="stepComposition">
+          <div class="stepTitle">{{ stage.order }}단계 · {{ stage.title }}</div> <!-- 예) 1단계 · 콘텐츠 감각 찾기 -->
+          <div class="stepNum">{{ stage.lesson_count }}차시</div> <!-- 예) 3차시 -->
+        </div>
+
+        <!-- 예) 내 경험을 직무와 연결하고,메시지를 만들고 개선하는 기본 과정을 경험해요. -->
+        <div class="stepExplanation">
+          {{ stage.summary }}
+        </div>
+      </div>
+
+      <p class="lectureInfo">
+        {{ stage.lesson_count }}개 수업을 마치면
+        <span class="bold">{{ stage.deliverable_name }}</span>가 완성돼요.
+      </p>
+
+      <!-- 로드맵 카드 여러 개 출력 -->
+      <div class="cardList">
+      {% for lesson in lessons %}
+
+        <!-- 로드맵 카드 (완료) -->
+        {% if lesson.user_status == 'completed' %}
+        <div class="lectureCard">
+          <div class="lectureNotYet">
+            <div class="lectureTopBox">
+              <div class="lectureTitleBox">
+                <p class="futureLectureName">{{ lesson.order }}차시</p> <!-- 예) 2차시 -->
+
+                <!-- 클릭해도 이동 X --> 
+                {% if lesson.user_status == 'locked' %}
+                <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
+
+                <!-- 클릭 시 "내 전공 수업 상세 화면"으로 이동 -->
+                {% else %}
+                <a href="{% url 'lesson_detail' lesson.id %}">
+                  <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
+                </a>
+                {% endif %}
+              </div>
+
+              <img src="../../static/assets/vector.svg" alt="벡터 화살표" />
+            </div>
+
+            <!-- 예) 같은 내용을 SNS, 블로그, 메시지에 맞게... -->
+            <div class="lectureExplanation">{{ lesson.card_summary }}</div>
+
+            <div class="lectureUpcoming">완료</div>
+          </div>
+        </div>
+        
+        <!-- 로드맵 카드 (진행중) -->
+        {% elif lesson.user_status == 'in_progress' %}
+        <div class="lectureCard">
+          <div class="nowLecture">
+            <div class="lectureTopBox">
+              <div class="lectureTitleBox">
+                <p class="nowLectureName">{{ lesson.order }}차시</p> <!-- 예) 1차시 -->
+                <!-- 클릭해도 이동 X --> 
+                {% if lesson.user_status == 'locked' %}
+                <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 내 경험에서 전달 행동 찾기 -->
+
+                <!-- 클릭 시 "내 전공 수업 상세 화면"으로 이동 -->
+                {% else %}
+                <a href="{% url 'lesson_detail' lesson.id %}">
+                  <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 내 경험에서 전달 행동 찾기 -->
+                </a>
+                {% endif %}
+              </div>
+
+              <img src="../../static/assets/vector.svg" alt="벡터 화살표" />
+            </div>
+
+            <!-- 예) 이 수업을 마치면 평범하게 지나쳤던 경험을 ... -->
+            <div class="lectureExplanation">{{ lesson.card_summary }}</div>
+
+            <div class="nowLectureContent">
+              <div class="lectureRow">
+                <div class="lectureHead">결과물</div>
+                <div class="lectureBody">나의 전달 경험 카드</div>
+              </div>
+
+              <div class="lectureRow">
+                <div class="lectureHead">활용</div>
+                <div class="lectureBody">자기소개서·면접 경험 소재</div>
+              </div>
+
+              <div class="lectureRow">
+                <div class="lectureHead">소요 시간</div>
+                <div class="lectureBody">약 {{ lesson.duration_minutes }}분</div>
+              </div>
+            </div>
+
+            <div class="lectureCurrent">진행중</div>
+          </div>
+        </div>
+
+        <!-- 로드맵 카드 (진행 예정) -->
+        {% else %}
+        <div class="lectureCard">
+          <div class="lectureNotYet">
+            <div class="lectureTopBox">
+              <div class="lectureTitleBox">
+                <p class="futureLectureName">{{ lesson.order }}차시</p> <!-- 예) 2차시 -->
+
+                <!-- 클릭해도 이동 X --> 
+                {% if lesson.user_status == 'locked' %}
+                <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
+
+                <!-- 클릭 시 "내 전공 수업 상세 화면"으로 이동 -->
+                {% else %}
+                <a href="{% url 'lesson_detail' lesson.id %}">
+                  <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
+                </a>
+                {% endif %}
+              </div>
+
+              <img src="../../static/assets/vector.svg" alt="벡터 화살표" />
+            </div>
+
+            <!-- 예) 같은 내용을 SNS, 블로그, 메시지에 맞게... -->
+            <div class="lectureExplanation">{{ lesson.card_summary }}</div>
+
+            <div class="lectureUpcoming">진행 예정</div>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+
+
+      {% if reflections %}
+      <div class="solidaritySection">
+        <div class="solidarityTopBox">
+          <p class="solidarityTitle">같은 단계의 동기들과 함께하고 있어요</p>
+          <p class="solidarityNum">‘{{ stage.title }}’를 진행 중인 동기 {{ reflections_count }}명</p>
+        </div>
+
+        <!-- 가장 최신 동기 카드 1개(0번째 인덱스에 있는 것)만 출력되도록 수정 -->
+        <div class="solidarityCard">
+          <div class="accountInfo">
+            <div class="accountImage">
+              <!-- 프로필 이미지 -->
+              <img
+                src="../../static/assets/account-image.svg"
+                alt="계정 사진"
+              />
+            </div>
+
+            <!-- 예) 지혜맘님 -->
+            <div class="accountName">{{ user.profile.nickname }}님</div>
+          </div>
+
+          <!-- 예) 거창한 경험을 찾기보다는 ... -->
+          <div class="solidarityContent">"{{ reflections.0.reflection_text }}"</div> <!-- 0번째 인덱스에 있는 것만 출력 -->
+
+           <!-- 예) 1차시 완료 -->
+          <div class="doneBtn">{{ reflections.0.lesson.order }}차시 완료</div> <!-- 0번째 인덱스에 있는 것만 출력 -->
+        </div>
+      </div>
+
+      <!-- 클릭 시 "함께" 탭으로 이동 -->
+      <a href="{% url 'post_list' %}">
+        <div class="moreSolidarity">동기들 더 보러 가기 →</div>
+      </a>
+      {% endif %}
+
+      <!-- 하단 탭 바 (바텀 내비게이션 바) -->
+      <footer class="tapBar">
+        <!-- [내 전공] -->
+        <a href="{% url 'my_major' %}" class="footerTapActive">
+          <img
+            src="../../static/assets/mymajortap-active.svg"
+            alt="내 전공 선택됨"
+          />
+          <p class="tapNameActive">내 전공</p>
+        </a>
+
+        <!-- [함께] -->
+        <a href="{% url 'post_list' %}" class="footerTap">
+          <img
+            src="../../static/assets/together-none.svg"
+            alt="함께 선택안됨"
+          />
+          <p class="tapName">함께</p>
+        </a>
+
+        <!-- [자료실] -->
+        <a href="{% url 'material_list' %}" class="footerTap">
+          <img
+            src="../../static/assets/article-none.svg"
+            alt="자료실 선택안됨"
+          />
+          <p class="tapName">자료실</p>
+        </a>
+      </footer>
+    </div>
+
+    <script src="../../static/js/common.js"></script>
+    <script src="../../static/js/my_major.js"></script>
+  </body>
+</html>
