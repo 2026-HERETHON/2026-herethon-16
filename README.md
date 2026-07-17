@@ -14,56 +14,56 @@
     <td align="center">
       <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
       <br />
-      <strong>이름</strong>
+      <strong>양이진하</strong>
       <br />
       <sub>PM / Designer</sub>
       <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+      <a href="https://github.com/Jinnhaa">@Jinnhaa</a>
     </td>
     <td align="center">
       <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
       <br />
-      <strong>이름</strong>
+      <strong>이석현</strong>
       <br />
       <sub>Frontend</sub>
       <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+      <a href="https://github.com/LEle-donut91">@LEle-donut91</a>
     </td>
     <td align="center">
       <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
       <br />
-      <strong>이름</strong>
+      <strong>이현정</strong>
       <br />
       <sub>Frontend</sub>
       <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+      <a href="https://github.com/hj1222">@hj1222</a>
     </td>
     <td align="center">
       <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
       <br />
-      <strong>이름</strong>
+      <strong>정지원</strong>
       <br />
       <sub>Frontend</sub>
       <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+      <a href="https://github.com/stopwonee">@stopwonee</a>
     </td>
     <td align="center">
       <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
       <br />
-      <strong>이름</strong>
+      <strong>배서연</strong>
       <br />
       <sub>Backend</sub>
       <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+      <a href="https://github.com/seoyeon615">@seoyeon615</a>
     </td>
     <td align="center">
       <img src="이미지_URL_또는_경로" width="120" height="120" style="border-radius: 50%;" />
       <br />
-      <strong>이름</strong>
+      <strong>이윤진</strong>
       <br />
       <sub>Backend</sub>
       <br />
-      <a href="https://github.com/깃허브아이디">@깃허브아이디</a>
+      <a href="https://github.com/ylly5">@ylly5</a>
     </td>
   </tr>
 </table>
