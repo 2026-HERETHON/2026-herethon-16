@@ -185,20 +185,20 @@
     {% endif %}
 
     <footer class="tapBar">
-        <div class="footerTap">
+        <a href="{% url 'my_major' %}" class="footerTap">
             <img src="{% static 'assets/mymajor-none.svg' %}" alt="내 전공 선택안됨" style="opacity:0.6;">
             <p class="tapName">내 전공</p>
-        </div>
+        </a>
 
-        <div class="footerTap">
+        <a href="{% url 'post_list' %}" class="footerTap">
             <img src="{% static 'assets/together-none.svg' %}" alt="함께 선택안됨">
             <p class="tapName">함께</p>
-        </div>
+        </a>
 
-        <div class="footerTapActive">
+        <a href="{% url 'material_list' %}" class="footerTapActive">
             <img src="{% static 'assets/materials-selected.svg' %}" alt="자료실 선택됨">
             <p class="tapNameActive">자료실</p>
-        </div>
+        </a>
     </footer>
 
 </div>

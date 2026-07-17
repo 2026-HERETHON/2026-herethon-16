@@ -96,8 +96,9 @@ def lesson_complete_view(request, lesson_id):
 def roadmap_view(request):
     major = request.user.profile.selectedMajor
     stages = get_roadmap(major)
+    progress = get_major_progress(request.user, major)
 
-    context = {'major': major, 'stages': stages}
+    context = {'major': major, 'stages': stages, 'progress': progress,}
     return render(request, 'curriculums/roadmap.html', context)
 
 @login_required
