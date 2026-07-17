@@ -64,7 +64,8 @@
 }
 
 .myStepTab{
-    padding: 20px 0px 20px 0px;
+    padding-top: 20px;
+    padding-bottom: 80px;
 }
 
 .materialCard{
