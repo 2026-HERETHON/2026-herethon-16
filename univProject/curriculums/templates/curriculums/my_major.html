@@ -205,7 +205,7 @@
           <p class="solidarityNum">‘{{ stage.title }}’를 진행 중인 동기 {{ reflections_count }}명</p>
         </div>
 
-        {% for r in reflections %}
+        <!-- 가장 최신 동기 카드 1개(0번째 인덱스에 있는 것)만 출력되도록 수정 -->
         <div class="solidarityCard">
           <div class="accountInfo">
             <div class="accountImage">
@@ -217,16 +217,15 @@
             </div>
 
             <!-- 예) 지혜맘님 -->
-            <div class="accountName">{{ r.user.profile.nickname }}님</div>
+            <div class="accountName">{{ user.profile.nickname }}님</div>
           </div>
 
           <!-- 예) 거창한 경험을 찾기보다는 ... -->
-          <div class="solidarityContent">"{{ r.reflection_text }}"</div>
+          <div class="solidarityContent">"{{ reflections.0.reflection_text }}"</div> <!-- 0번째 인덱스에 있는 것만 출력 -->
 
            <!-- 예) 1차시 완료 -->
-          <div class="doneBtn">{{ r.lesson.order }}차시 완료</div>
+          <div class="doneBtn">{{ reflections.0.lesson.order }}차시 완료</div> <!-- 0번째 인덱스에 있는 것만 출력 -->
         </div>
-        {% endfor %}
       </div>
 
       <!-- 클릭 시 "함께" 탭으로 이동 -->

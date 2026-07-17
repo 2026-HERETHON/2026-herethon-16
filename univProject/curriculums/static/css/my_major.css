@@ -1,3 +1,8 @@
+/* 하단 탭 바 때문에 메인 컨텐츠가 가려져서 추가 */
+.app {
+    padding-bottom: 88px;
+}
+
 .stepInfo{
     padding-top: 20px;
 
@@ -340,11 +345,12 @@
     justify-content: center;
     align-items: center;
 
-    width: 100%;
     padding: 4px 14px;
 
     border-radius: 50px;
     background:#F5F7F6;
+    margin: 0px auto;
+    font-size: 12px;
 }
 
 .moreSolidarity{
