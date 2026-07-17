@@ -39,7 +39,7 @@
 
         <!-- 예) 전체 과정 1/12차시 -->
         <div class="progressText">
-          전체 과정 {{ progress.completed }} / {{ progress.total }} 차시
+          전체 과정 {{ progress.completed }} / {{ progress.total }}차시
         </div>
       </div>
 
@@ -105,21 +105,21 @@
         </div>
 
         <!-- 예) 내가 정보를 전했던 경험을 돌아보고, ... -->
-        <div class="roadmapContent">{{ stage.description }}</div>
+        <div class="roadmapContent">{{ stage.summary }}</div>
 
         <div class="rowBox">
           <!-- 예) 단계 - 3차시•약 40분 -->
           <div class="roadmapRow">
             <div class="rowHead">단계</div>
             <div class="rowBody">
-              {{ stage.lesson_count }}차시 · 약 {{ stage.total_duration }}분
+              {{ stage.lesson_count }}차시 · 약 {{ stage.estimated_minutes }}분
             </div>
           </div>
 
           <!-- 예) 완성할 것 - 콘텐츠 미니 포트폴리오 -->
           <div class="roadmapRow">
             <div class="rowHead">완성할 것</div>
-            <div class="rowBody">{{ stage.final_result }}</div>
+            <div class="rowBody">{{ stage.deliverable_name }}</div>
           </div>
         </div>
       </div>
