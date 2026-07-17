@@ -1,0 +1,137 @@
+{% load static %}
+{% block content %}
+{% load time_filters %}
+
+
+
+<link rel="stylesheet" href="{% static 'css/post_detail.css' %}">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back_ios" />
+<style>
+  .material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+
+    color: #1F1F1F;
+  }
+</style>
+
+
+
+<div class="app">
+  <header class="pageHeader"></header>
+  <div class="padding">
+    <div class="post-detail">
+      <a href="{% url 'post_list' %}" class="back-link"><span
+          class="material-symbols-outlined">arrow_back_ios</span></a>
+
+      <div class="margin-left">
+        <div class="post-header">
+          <div class="header_left">
+            <img src="{% static 'assets/faceIcon.svg' %}" alt="" class="faceIcon">
+            <div class="name">
+              <span class="author-name">{{ post.author.profile.nickname }}</span>
+              <span class="time">20시간 전</span>
+            </div>
+          </div>
+          <div class="header_right">
+            <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+          </div>
+        </div>
+
+        <h2 class="post-title">{{ post.title }}</h2>
+        <p class="post-content">{{ post.content }}</p>
+
+        <div class="post-actions">
+          <form method="post" action="{% url 'post_like' post.id %}" class="inline-form">
+            {% csrf_token %}
+            
+
+            <button type="submit" class="like-btn {% if has_liked %}active{% endif %}">
+
+              {% if has_liked %}
+              <img src="{% static 'assets/heart_full.svg' %}" alt="하트 선택">좋아요 {{ post.like_count }}
+              {% else %}
+              <img src="{% static 'assets/heart_empty.svg' %}" alt="하트 선택 안됨">좋아요 {{ post.like_count }}
+              {% endif %}
+
+            </button>
+          </form>
+        </div>
+
+        <h3 class="comment-section-title">{{ comments|length }}개의 댓글</h3>
+
+        {% for comment in comments %}
+        <div class="comment-block">
+          <div class="comment-header">
+            <div class="header_left">
+              <img src="{% static 'assets/faceIcon.svg' %}" alt="" class="faceIconSmall">
+              <div class="name">
+                <span class="author-name">{{ comment.author.profile.nickname }}</span>
+                <span class="time">18시간 전</span>
+              </div>
+            </div>
+            <div class="header_right">
+              <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+            </div>
+          </div>
+          <p class="comment-content">{{ comment.content }}</p>
+
+          <form method="post" action="{% url 'comment_like' comment.id %}" class="inline-form">
+            {% csrf_token %}
+            <button type="submit" class="like-btn small {% if comment.has_liked %}active{% endif %}">
+              {% if comment.has_liked %}
+              <img src="{% static 'assets/heart_full.svg' %}" alt="하트 선택">좋아요 {{ comment.like_count }}
+              {% else %}
+              <img src="{% static 'assets/heart_empty.svg' %}" alt="하트 선택 안됨">좋아요 {{ comment.like_count }}
+              {% endif %}
+            </button>
+
+            
+          </form>
+
+          {% for reply in comment.replies.all %}
+          <div class="comment-block reply">
+            <div class="comment-header">
+              <div class="header_left">
+                <img src="../../static/assets/faceIcon.svg" alt="" class="faceIconSmall">
+                <div class="name">
+                  <span class="author-name">{{ reply.author.profile.nickname }}</span>
+                  <span class="time">18시간 전</span>
+                </div>
+              </div>
+              <div class="header_right">
+                <span class="post-major-tag">{{ major.name|default:post.major.name }}</span>
+              </div>
+            </div>
+            <p class="comment-content">{{ reply.content }}</p>
+
+          </div>
+          {% endfor %}
+
+          <form method="post" action="{% url 'comment_create' post.id %}" class="reply-form">
+            {% csrf_token %}
+            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+            <img src="../../static/assets/faceIcon.svg" alt="" class="faceIconSmall">
+            <input type="text" name="content" placeholder="답글을 입력해주세요.">
+            <button type="submit">등록</button>
+          </form>
+        </div>
+        {% endfor %}
+
+        <form method="post" action="{% url 'comment_create' post.id %}" class="comment-form">
+          {% csrf_token %}
+          <input type="text" name="content" placeholder="댓글을 입력해주세요.">
+          <button type="submit">등록</button>
+        </form>
+      </div>
+      <script src="{% static 'js/post_detail.js' %}"></script>
+      {% endblock %}
+    </div>
+
+  </div>
+
+</div>

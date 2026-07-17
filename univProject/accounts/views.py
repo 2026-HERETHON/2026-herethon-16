@@ -1,0 +1,52 @@
+from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from .models import UserProfile
+
+# Create your views here.
+def signUp(request):
+    if request.method=='POST':
+        if request.POST['password'] == request.POST['repeat']:
+            newUser = User.objects.create_user(
+                username=request.POST['username'], 
+                password=request.POST['password']
+            )				
+            UserProfile.objects.create(user=newUser,nickname=request.POST.get('nickname', '')) 
+            auth_login(request, newUser)
+            print('회원가입 성공')
+            return redirect('intro')
+        else:
+            print('회원가입 실패')
+            return render(request, 'signup.html')
+    else :
+        return render(request, 'signup.html')
+    
+def login(request):
+    if request.method=='POST':
+        username=request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password = password)
+        if user is not None:
+            auth_login(request, user)
+            print('로그인 성공')
+            return redirect('intro')
+        else: 
+            print('로그인 실패')
+            errorMessage = "아이디 또는 비밀번호가 잘못되었습니다." 
+            return render(request, 'login.html', {'error_message': errorMessage})
+    else:
+        return render(request, 'login.html')
+    
+def logout(request):
+    auth_logout(request)
+    print('로그아웃 성공')
+    return redirect('onboarding')
+
+def intro(request):
+    return render(request, 'intro.html')
+
+def landing(request):
+    return render(request, 'landing.html')
+
+def main(request):
+    return render(request, 'main.html')

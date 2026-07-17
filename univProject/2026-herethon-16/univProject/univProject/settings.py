@@ -37,13 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'onboarding',
-    'accounts',
-    'search',
-    'posts',
-    'curriculums',
-    'materials',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +54,7 @@ ROOT_URLCONF = 'univProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

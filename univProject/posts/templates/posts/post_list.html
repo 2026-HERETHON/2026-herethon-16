@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post_setting.css' %}">
+<link rel="stylesheet" href="{% static 'css/post_list.css' %}">
+
+<div class="app">
+  <header class="pageHeader"></header>
+  <div class="together">
+    <h1>함께</h1>
+
+    <div class="tabs">
+      <a href="{% url 'post_list' %}?scope=major" class="{% if scope == 'major' %}active{% endif %}">우리 전공</a>
+      <a href="{% url 'post_list' %}?scope=all" class="{% if scope == 'all' %}active{% endif %}">잇대 전체</a>
+    </div>
+
+    {% if scope == 'major' %}
+    {# ===== 우리 전공 화면 ===== #}
+
+    <div class="board-header">
+      <h2>{{ major.name }} · {{ stage.order }}단계</h2>
+      <p>같은 단계에 있는&nbsp;<strong>{{ stage_mate_count }}명</strong>과 함께하고 있어요.</p>
+    </div>
+
+    {% if featured_reflection %}
+    <div class="box-scroll">
+      <div class="box">
+        <div class="name">
+          <img src="{% static 'assets/faceIcon.svg' %}" alt="" class="faceIcon">
+          <p class="box_name">{{ featured_reflection.user.profile.nickname }}님</p>
+        </div>
+        <p class="reflection-quote">"{{ featured_reflection.reflection_text }}"</p>
+
+        <form method="post" action="{% url 'reflection_cheer' featured_reflection.id %}" class="inline-form">
+          {% csrf_token %}
+          <input type="hidden" name="next" value="{{ request.path }}">
+          <button type="submit" class="cheer-btn {% if has_cheered %}active{% endif %}">
+            '응원해요' 보내기
+          </button>
+        </form>
+        <p class="cheer-count"><strong>{{ featured_reflection.cheers.count }}명</strong>이 {{featured_reflection.user.profile.nickname }}님을 응원했어요!</p>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="board-header">
+      <h2 class="black_board">전공 게시판</h2>
+    </div>
+
+    {% else %}
+    {# ===== 잇대 전체 화면 ===== #}
+    <div class="board-header">
+      <h2>각자의 전공에서 다시 시작하고 있어요</h2>
+      <p>전공은 달라도 비슷한 전환점을 지나고 있는 <br>
+        잇대 동기들의 과정을 만나보세요.</p>
+    </div>
+
+    {% if weekly_reflections %}
+    <div class="weekly-mates">
+      <h3>이번 주 동기들의 한 걸음</h3>
+      <div class="scroll-box">
+        {% for r in weekly_reflections %}
+        <div class="box">
+          <div class="box_header">
+            <div class="profile">
+              <img src="../../static/assets/faceIcon.svg" alt="" class="faceIcon">
+              <span class="author-name">{{ r.user.profile.nickname }}님</span>
+            </div>
+            <span class="post-major-tag">{{ r.lesson.stage.major.name }}</span>
+          </div>
+          <p class="reflection-quote">"{{ r.reflection_text }}"</p>
+          {% if r.milestone_text %}
+          <p class="milestone-label">이번 주의 한걸음</p>
+          <p class="milestone-text">{{ r.milestone_text }}</p>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="board-header">
+      <h2 class="black_board">전체 게시판</h2>
+      <div class="board-filter">
+        <a href="?scope=all" class="filter-tag {% if not request.GET.category %}active{% endif %}">전체</a>
+        <a href="?scope=all&category=question"
+          class="filter-tag {% if request.GET.category == 'question' %}active{% endif %}">질문</a>
+        <a href="?scope=all&category=info"
+          class="filter-tag {% if request.GET.category == 'info' %}active{% endif %}">정보 공유</a>
+      </div>
+    </div>
+    {% endif %}
+
+
+    <div class="post-board">
+      {% for post in posts %}
+      <a href="{% url 'post_detail' post.id %}" class="post-card-link">
+        <div class="post-card">
+          <div class="name">
+            <img src="{% static 'assets/faceIcon.svg' %}" alt="인물" class="faceIcon">
+            <span class="author-name">{{ post.author.profile.nickname }}</span>
+          </div>
+          <h3 class="post-title">{{ post.title }}</h3>
+          <p class="post-major">{{ post.major.name }}</p>
+          <div class="post-stats">
+            <!--하트 누르면 사진 바뀌게-->
+            <span class="heartButton">
+              <div class="heartFull">
+                <img src="{% static 'assets/heart_full.svg'%}" alt="빈 하트"/>
+              </div>
+
+              <div class="heartEmpty">
+                <img src="{% static 'assets/heart_empty.svg'%}" alt="꽉 찬 하트"/>
+              </div>
+
+              {{ post.like_count }}
+            </span>
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 108 108" fill="none">
+                <path
+                  d="M9 99V18C9 15.525 9.88125 13.4062 11.6437 11.6437C13.4062 9.88125 15.525 9 18 9H90C92.475 9 94.5938 9.88125 96.3562 11.6437C98.1187 13.4062 99 15.525 99 18V72C99 74.475 98.1187 76.5938 96.3562 78.3562C94.5938 80.1188 92.475 81 90 81H27L9 99ZM23.175 72H90V18H18V77.0625L23.175 72Z"
+                  fill="#1F1F1F" />
+              </svg>
+              {{ post.comment_count }}</span>
+          </div>
+        </div>
+      </a>
+      {% empty %}
+      <p class="empty-text">아직 등록된 게시글이 없어요.</p>
+      {% endfor %}
+    </div>
+
+    <a href="{% url 'post_create' %}" id="open-modal-btn" class="fab-button">+</a>
+    <div id="write-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="post-form">
+          <form method="post" action="{% url 'post_create' %}">
+            {% csrf_token %}
+            <input type="text" name="title" placeholder="제목을 입력해주세요." class="modal_title" required>
+            <p class="category_title">카테고리 선택</p>
+            <input type="hidden" name="category" id="category-input" value="">
+            <div class="category">
+              <button type="button" class="cate-btn" data-value="">전체</button>
+              <button type="button" class="cate-btn" data-value="question">질문</button>
+            <button type="button" class="cate-btn" data-value="info">정보 공유</button>
+          </div>
+            <textarea name="content" placeholder="자유롭게 내용을 입력해주세요.&#10;(1,000자 이내)" rows="8" required></textarea>
+            <button type="submit" class="btn-primary">게시글 등록하기</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="{% static 'js/post_list.js' %}"></script>
+  {% endblock %}
+</div>

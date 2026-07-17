@@ -1,0 +1,74 @@
+/*기본 초기화설정*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*폰트 설정*/
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+    font-family: "Pretendard", sans-serif;
+}
+
+/*레이아웃 설정*/
+html,
+body {
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+
+    background: #F5F5F5;
+
+    min-height: 100vh;
+}
+
+.app {
+    width: 100%;
+    max-width: 390px;
+    min-height: 100vh;
+
+    background: #FFFFFF;
+
+    position: relative;
+
+    overflow-x: hidden;
+}
+
+/* 아이콘 스타일 기본설정 */
+.faceIcon {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    border: 1px solid var(--Color-Surface, #F5F7F6);
+    background: var(--Color-Border, #E1E7E4);
+}
+
+.post-major-tag {
+    display: flex;
+    padding: 4px 8px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    background: var(--Color-Surface, #F5F7F6);
+}
+
+/* 헤더 */
+.pageHeader {
+    display: flex;
+    width: 393px;
+    padding: 20.53px 23.463px 18.575px 23.463px;
+    justify-content: center;
+    align-items: center;
+    gap: 150.552px;
+}

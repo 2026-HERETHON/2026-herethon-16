@@ -1,0 +1,255 @@
+/* 내 전공 탭 공통 CSS */
+
+/*기본 초기화설정*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*폰트 설정*/
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
+body {
+  font-family: "Pretendard", sans-serif;
+}
+
+/*레이아웃 설정*/
+html,
+body {
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+
+  background: #f5f5f5;
+
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  max-width: 390px;
+  min-height: 100vh;
+
+  background: #ffffff;
+
+  position: relative;
+
+  overflow-x: hidden;
+}
+
+/* 수업 상세, 수업 완료 공통 CSS */
+body {
+  color: #17211e;
+}
+
+/* 버튼 기본값 */
+button {
+  border: none;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* 헤더 */
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+}
+
+.pageTitle {
+  flex: 1;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 120%;
+}
+
+a {
+  color: #17211e;
+}
+
+.material-symbols-outlined {
+  cursor: pointer;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+}
+
+/* 수업 완료 화면 CSS 스타일 추가 */
+
+/* 전체 */
+
+.lessonPage {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px 30px;
+}
+
+/* 완료 안내 */
+
+.completeIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.completeTitle {
+  color: #20cdb1;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 140%;
+}
+
+.completeDescription {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+/* 공통 */
+
+.sectionTitle {
+  color: #20cdb1;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 140%;
+}
+
+/* 경험 카드 */
+
+.cardSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cardItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardLabel {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.cardBox {
+  padding: 16px;
+  border: 1px solid #4dd7c1;
+  border-radius: 12px;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+/* 활용 */
+
+.summarySection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.summaryText {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+/* 소감 */
+
+.reviewSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 13px 0px 50px;
+}
+
+.reviewHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.reviewDescription {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 150%;
+}
+
+.reviewBox {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+textarea {
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+.reviewInput {
+  width: 100%;
+  height: 99px;
+  padding: 15px 16px;
+  resize: none;
+  border: 1px solid #e1e7e4;
+  border-radius: 12px;
+  background: #f5f7f6;
+  font-size: 16px;
+}
+
+.reviewInput::placeholder {
+  color: rgba(23, 33, 30, 0.6);
+}
+
+.characterCount {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(23, 33, 30, 0.6);
+}
+
+/* 버튼 */
+
+.buttonSection {
+  display: flex;
+  justify-content: center;
+}
+
+/* CTA 버튼 (다음 페이지로 이동) */
+.completeButton:disabled {
+  width: 334px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #f5f7f6;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  color: rgba(23, 33, 30, 0.6);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: default;
+}
+
+/* CTA 버튼 - 활성화 */
+.completeButton:not(:disabled) {
+  width: 334px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #20cdb1;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
