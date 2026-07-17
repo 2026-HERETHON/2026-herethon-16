@@ -39,7 +39,7 @@
             '응원해요' 보내기
           </button>
         </form>
-        <p class="cheer-count">{{ featured_reflection.cheers.count }}명이 {{ featured_reflection.user.profile.nickname }}님을 응원했어요!</p>
+        <p class="cheer-count"><strong>{{ featured_reflection.cheers.count }}명</strong>이 {{featured_reflection.user.profile.nickname }}님을 응원했어요!</p>
       </div>
     </div>
     {% endif %}
@@ -83,9 +83,11 @@
     <div class="board-header">
       <h2 class="black_board">전체 게시판</h2>
       <div class="board-filter">
-        <a href="?scope=all" class="filter-tag {% if not category %}active{% endif %}">전체</a>
-        <a href="?scope=all&category=question" class="filter-tag {% if category == 'question' %}active{% endif %}">질문</a>
-        <a href="?scope=all&category=info" class="filter-tag {% if category == 'info' %}active{% endif %}">정보 공유</a>
+        <a href="?scope=all" class="filter-tag {% if not request.GET.category %}active{% endif %}">전체</a>
+        <a href="?scope=all&category=question"
+          class="filter-tag {% if request.GET.category == 'question' %}active{% endif %}">질문</a>
+        <a href="?scope=all&category=info"
+          class="filter-tag {% if request.GET.category == 'info' %}active{% endif %}">정보 공유</a>
       </div>
     </div>
     {% endif %}
