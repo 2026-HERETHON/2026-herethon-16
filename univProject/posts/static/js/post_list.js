@@ -50,15 +50,13 @@ document.querySelectorAll(".heartButton").forEach((heartButton) => {
 
   let liked = false;
 
-  heartButton.addEventListener("click", () => {
+  heartButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     liked = !liked;
 
-    if (liked) {
-      heartFull.style.display = "block";
-      heartEmpty.style.display = "none";
-    } else {
-      heartFull.style.display = "none";
-      heartEmpty.style.display = "block";
-    }
+    heartFull.style.display = liked ? "block" : "none";
+    heartEmpty.style.display = liked ? "none" : "block";
   });
 });
