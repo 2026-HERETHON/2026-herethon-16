@@ -86,117 +86,92 @@
 
       <!-- 로드맵 카드 여러 개 출력 -->
       <div class="cardList">
-      {% for lesson in lessons %}
-
-        <!-- 로드맵 카드 (완료) -->
-        {% if lesson.user_status == 'completed' %}
-        <div class="lectureCard">
-          <div class="lectureNotYet">
-            <div class="lectureTopBox">
-              <div class="lectureTitleBox">
-                <p class="futureLectureName">{{ lesson.order }}차시</p> <!-- 예) 2차시 -->
-
-                <!-- 클릭해도 이동 X --> 
-                {% if lesson.user_status == 'locked' %}
-                <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
-
-                <!-- 클릭 시 "내 전공 수업 상세 화면"으로 이동 -->
-                {% else %}
-                <a href="{% url 'lesson_detail' lesson.id %}">
-                  <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
-                </a>
-                {% endif %}
-              </div>
-
-              <img src="../../static/assets/vector.svg" alt="벡터 화살표" />
-            </div>
-
-            <!-- 예) 같은 내용을 SNS, 블로그, 메시지에 맞게... -->
-            <div class="lectureExplanation">{{ lesson.card_summary }}</div>
-
-            <div class="lectureUpcoming">완료</div>
-          </div>
-        </div>
+        {% for lesson in lessons %}
         
-        <!-- 로드맵 카드 (진행중) -->
-        {% elif lesson.user_status == 'in_progress' %}
-        <div class="lectureCard">
-          <div class="nowLecture">
-            <div class="lectureTopBox">
-              <div class="lectureTitleBox">
-                <p class="nowLectureName">{{ lesson.order }}차시</p> <!-- 예) 1차시 -->
-                <!-- 클릭해도 이동 X --> 
-                {% if lesson.user_status == 'locked' %}
-                <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 내 경험에서 전달 행동 찾기 -->
-
-                <!-- 클릭 시 "내 전공 수업 상세 화면"으로 이동 -->
-                {% else %}
-                <a href="{% url 'lesson_detail' lesson.id %}">
-                  <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 내 경험에서 전달 행동 찾기 -->
-                </a>
-                {% endif %}
-              </div>
-
-              <img src="../../static/assets/vector.svg" alt="벡터 화살표" />
-            </div>
-
-            <!-- 예) 이 수업을 마치면 평범하게 지나쳤던 경험을 ... -->
-            <div class="lectureExplanation">{{ lesson.card_summary }}</div>
-
-            <div class="nowLectureContent">
-              <div class="lectureRow">
-                <div class="lectureHead">결과물</div>
-                <div class="lectureBody">나의 전달 경험 카드</div>
-              </div>
-
-              <div class="lectureRow">
-                <div class="lectureHead">활용</div>
-                <div class="lectureBody">자기소개서·면접 경험 소재</div>
-              </div>
-
-              <div class="lectureRow">
-                <div class="lectureHead">소요 시간</div>
-                <div class="lectureBody">약 {{ lesson.duration_minutes }}분</div>
-              </div>
-            </div>
-
-            <div class="lectureCurrent">진행중</div>
-          </div>
-        </div>
-
-        <!-- 로드맵 카드 (진행 예정) -->
-        {% else %}
-        <div class="lectureCard">
-          <div class="lectureNotYet">
-            <div class="lectureTopBox">
-              <div class="lectureTitleBox">
-                <p class="futureLectureName">{{ lesson.order }}차시</p> <!-- 예) 2차시 -->
-
-                <!-- 클릭해도 이동 X --> 
-                {% if lesson.user_status == 'locked' %}
-                <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
-
-                <!-- 클릭 시 "내 전공 수업 상세 화면"으로 이동 -->
-                {% else %}
-                <a href="{% url 'lesson_detail' lesson.id %}">
-                  <p class="lectureTitle">{{ lesson.title }}</p> <!-- 예) 같은 메시지를 채널별로 바꿔보기 -->
-                </a>
-                {% endif %}
-              </div>
-
-              <img src="../../static/assets/vector.svg" alt="벡터 화살표" />
-            </div>
-
-            <!-- 예) 같은 내용을 SNS, 블로그, 메시지에 맞게... -->
-            <div class="lectureExplanation">{{ lesson.card_summary }}</div>
-
-            <div class="lectureUpcoming">진행 예정</div>
-          </div>
-        </div>
+        <!-- 클릭 이벤트 발생하는 조건 체크 -->
+        {% if lesson.user_status != 'locked' %}
+        <a href="{% url 'lesson_detail' lesson.id %}" class="lectureCardLink">
         {% endif %}
-        {% endfor %}
-      </div>
+          
+          {% if lesson.user_status == 'completed' %}
+          <!-- 완료 -->
+          <div class="lectureCard">
+            <div class="lectureNotYet">
+              <div class="lectureTopBox">
+                <div class="lectureTitleBox">
+                  <p class="futureLectureName">{{ lesson.order }}차시</p>
+                  <p class="lectureTitle">{{ lesson.title }}</p>
+                </div>
 
+                <img src="{% static 'assets/vector.svg' %}" alt="벡터 화살표" />
+              </div>
+
+              <div class="lectureExplanation">{{ lesson.card_summary }}</div>
+
+              <div class="lectureUpcoming">완료</div>
+            </div>
+          </div>
+
+          {% elif lesson.user_status == 'in_progress' %}
+          <!-- 진행중 -->
+          <div class="lectureCard">
+            <div class="nowLecture">
+              <div class="lectureTopBox">
+                <div class="lectureTitleBox">
+                  <p class="nowLectureName">{{ lesson.order }}차시</p>
+                  <p class="lectureTitle">{{ lesson.title }}</p>
+                </div>
+
+                <img src="{% static 'assets/vector.svg' %}" alt="벡터 화살표" />
+              </div>
+
+              <div class="lectureExplanation">{{ lesson.card_summary }}</div>
+
+              <div class="nowLectureContent">
+                <div class="lectureRow">
+                  <div class="lectureHead">결과물</div>
+                  <div class="lectureBody">나의 전달 경험 카드</div>
+                </div>
+
+                <div class="lectureRow">
+                  <div class="lectureHead">활용</div>
+                  <div class="lectureBody">자기소개서·면접 경험 소재</div>
+                </div>
+
+                <div class="lectureRow">
+                  <div class="lectureHead">소요 시간</div>
+                  <div class="lectureBody">
+                    약 {{ lesson.duration_minutes }}분
+                  </div>
+                </div>
+              </div>
+
+              <div class="lectureCurrent">진행중</div>
+            </div>
+          </div>
+
+          {% else %}
+          <!-- 진행 예정(locked) -->
+          <div class="lectureCard">
+            <div class="lectureNotYet">
+              <div class="lectureTopBox">
+                <div class="lectureTitleBox">
+                  <p class="futureLectureName">{{ lesson.order }}차시</p>
+                  <p class="lectureTitle">{{ lesson.title }}</p>
+                </div>
+
+                <img src="{% static 'assets/vector.svg' %}" alt="벡터 화살표" />
+              </div>
+
+              <div class="lectureExplanation">{{ lesson.card_summary }}</div>
+
+              <div class="lectureUpcoming">진행 예정</div>
+            </div>
+          </div>
+          {% endif %} {% if lesson.user_status != 'locked' %}
+        </a>
+        {% endif %} {% endfor %}
+      </div>
 
       {% if reflections %}
       <div class="solidaritySection">
