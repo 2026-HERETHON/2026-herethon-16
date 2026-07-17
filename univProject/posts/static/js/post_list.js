@@ -51,3 +51,23 @@ if (categoryButtons.length > 0) {
     });
   });
 }
+
+//좋아요 버튼
+document.querySelectorAll(".heartButton").forEach((heartButton) => {
+  const heartFull = heartButton.querySelector(".heartFull");
+  const heartEmpty = heartButton.querySelector(".heartEmpty");
+
+  let liked = false;
+
+  heartButton.addEventListener("click", () => {
+    liked = !liked;
+
+    if (liked) {
+      heartFull.style.display = "block";
+      heartEmpty.style.display = "none";
+    } else {
+      heartFull.style.display = "none";
+      heartEmpty.style.display = "block";
+    }
+  });
+});

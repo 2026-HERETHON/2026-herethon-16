@@ -64,7 +64,8 @@
 }
 
 .myStepTab{
-    padding: 20px 0px 20px 0px;
+    padding-top: 20px;
+    padding-bottom: 80px;
 }
 
 .materialCard{
@@ -77,6 +78,8 @@
 
     padding-top: 20px;
     padding-bottom: 20px;
+
+    border-bottom: 1px solid #00000039;
 }
 
 .materialTitle{
@@ -85,6 +88,8 @@
     font-style: normal;
     font-weight: 700;
     line-height: 120%;
+
+    margin-top: 20px;
 }
 
 .materialThumbnail{
