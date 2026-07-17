@@ -53,6 +53,19 @@ body {
     background: var(--Color-Border, #E1E7E4);
 }
 
+.faceIconSmall {
+    display: flex;
+    width: 34px;
+    height: 34px;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    aspect-ratio: 1/1;
+    border-radius: 100px;
+    border: 1px solid var(--Color-Surface, #F5F7F6);
+    background: var(--Color-Border, #E1E7E4);
+}
+
 .post-major-tag {
     display: flex;
     padding: 4px 8px;
@@ -283,7 +296,6 @@ body {
     line-height: 120%;
 }
 
-.small{
+.small {
     margin: 11px 0 0 30px;
 }
-

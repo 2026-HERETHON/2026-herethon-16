@@ -1,67 +1,209 @@
-{% extends 'base.html' %}
-{% block content %}
-<div class="material-list">
-  <h2>자료실</h2>
+{% load static %}
 
-  <div class="tabs">
-    <a href="?scope=stage" class="{% if scope == 'stage' %}active{% endif %}">내 단계 맞춤 자료</a>
-    <a href="?scope=all" class="{% if scope == 'all' %}active{% endif %}">전체 전공 자료</a>
-  </div>
+<!--일단 base.html 사용x-->
 
-  <h3 class="major-title">{{ major.name }}</h3>
-  <p class="major-desc">지금의 단계에 도움이 되는 자료를 모았어요.</p>
+<!DOCTYPE html>
+<html lang="ko">
 
-  {% if scope == 'stage' %}
-    {% for section in sections %}
-    <h4 class="section-title">{{ section.stage.title }} 추천 자료</h4>
-      <div class="material-list-vertical">
-        {% for material in section.materials %}
-          <div class="material-card-wide">
-            <div class="material-thumb"></div>
-            <div class="material-info">
-              <p class="material-title">{{ material.title }}</p>
-              <p class="material-duration">{{ material.duration_text }}</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자료실</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard/dist/web/static/pretendard.css">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/materials.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+</head>
+
+<body>
+<div class="app">
+
+    <div class="header">자료실</div>
+
+    <div class="tabSelection">
+        <a href="?scope=stage"
+          class="{% if scope == 'stage' %}tabSelected{% else %}tab{% endif %}">
+            내 단계 맞춤 자료
+        </a>
+
+        <a href="?scope=all"
+          class="{% if scope == 'all' %}tabSelected{% else %}tab{% endif %}">
+            전체 전공 자료
+        </a>
+    </div>
+
+    <div class="cardExplanation">
+        <div class="majorTitle">{{ major.name }}</div>
+        <div class="comments">지금의 단계에 도움이 되는 자료를 모았어요.</div>
+    </div>
+
+
+    {% if scope == 'stage' %}
+
+    <!-- 내 단계 맞춤 자료 -->
+    <div class="myStepTab">
+
+        {% for section in sections %}
+
+            <div class="materialTitle">
+                {{ section.lesson.title }} 추천 자료
             </div>
-            <form method="post" action="{% url 'material_bookmark_toggle' material.id %}">
-              {% csrf_token %}
-              <input type="hidden" name="next" value="{{ request.path }}?scope=stage">
-              <button type="submit" class="bookmark-btn">
-                {% if material.id in bookmarked_ids %}★{% else %}☆{% endif %}
-              </button>
-            </form>
-          </div>
+
+            {% for material in section.materials %}
+
+                <div class="materialCard">
+
+                    <div class="materialThumbnail">
+                        <img src="{% static 'assets/library/thumb_m01_s1_ai_digital_baeum.png' %}"
+                            alt="{{ material.title }}">
+                    </div>
+
+                    <div class="materialCardFooter">
+
+                        <div class="materialDuration">
+                            <div class="materialName">{{ material.title }}</div>
+                            <div class="materialExplain">{{ material.duration_text }}</div>
+                        </div>
+
+                        <form method="post"
+                            action="{% url 'material_bookmark_toggle' material.id %}">
+                            {% csrf_token %}
+
+                            <input type="hidden"
+                                name="next"
+                                value="{{ request.path }}?scope=stage">
+
+                            <button type="submit" class="bookmarkBtn">
+
+                                {% if material.id in bookmarked_ids %}
+                                    <img src="{% static 'assets/bookmark-selected.svg' %}"
+                                        alt="북마크 선택">
+                                {% else %}
+                                    <img src="{% static 'assets/bookmark-non.svg' %}"
+                                        alt="북마크 선택 안됨">
+                                {% endif %}
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+
+        {% empty %}
+            <p class="empty-text">추천 자료가 아직 없어요.</p>
         {% endfor %}
-      </div>
-    {% empty %}
-      <p class="empty-text">추천 자료가 아직 없어요.</p>
-    {% endfor %}
 
-  {% else %}
-    <div class="filter-chips">
-      <a href="?scope=all&type=all" class="chip {% if material_type == 'all' %}active{% endif %}">전체</a>
-      <a href="?scope=all&type=program" class="chip {% if material_type == 'program' %}active{% endif %}">프로그램</a>
-      <a href="?scope=all&type=lecture" class="chip {% if material_type == 'lecture' %}active{% endif %}">강의</a>
-      <a href="?scope=all&type=book" class="chip {% if material_type == 'book' %}active{% endif %}">도서</a>
     </div>
 
-    <div class="material-grid">
-      {% for material in materials %}
-        <div class="material-card">
-          <div class="material-thumb"></div>
-          <p class="material-title">{{ material.title }}</p>
-          <p class="material-duration">{{ material.duration_text }}</p>
-          <form method="post" action="{% url 'material_bookmark_toggle' material.id %}">
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{ request.path }}?scope=all&type={{ material_type }}">
-            <button type="submit" class="bookmark-btn">
-              {% if material.id in bookmarked_ids %}★{% else %}☆{% endif %}
-            </button>
-          </form>
+
+    {% else %}
+
+    <!-- 전체 전공 자료 -->
+    <div class="allMajorTab">
+
+        <div class="category">
+
+            <a href="?scope=all&type=all"
+              class="categoryOption {% if material_type == 'all' %}categoryActivated{% endif %}">
+                전체
+            </a>
+
+            <a href="?scope=all&type=program"
+              class="categoryOption {% if material_type == 'program' %}categoryActivated{% endif %}">
+                프로그램
+            </a>
+
+            <a href="?scope=all&type=lecture"
+              class="categoryOption {% if material_type == 'lecture' %}categoryActivated{% endif %}">
+                강의
+            </a>
+
+            <a href="?scope=all&type=book"
+              class="categoryOption {% if material_type == 'book' %}categoryActivated{% endif %}">
+                도서
+            </a>
+
         </div>
-      {% empty %}
-        <p class="empty-text">등록된 자료가 없어요.</p>
-      {% endfor %}
+
+        <div class="categoryList allCategory">
+
+            {% for material in materials %}
+
+            <div class="categoryCard">
+
+                <div class="categoryThumbnail">
+                    <img src="{% static 'assets/library/thumb_m04_s3_book_cx_bible.jpeg' %}"
+                        alt="{{ material.title }}">
+                </div>
+
+                <div class="categoryCardFooter">
+
+                    <div class="categoryDuration">
+                        <div class="categoryName">{{ material.title }}</div>
+                        <div class="categoryExplain">{{ material.duration_text }}</div>
+                    </div>
+
+                    <form method="post"
+                          action="{% url 'material_bookmark_toggle' material.id %}">
+                        {% csrf_token %}
+
+                        <input type="hidden"
+                              name="next"
+                              value="{{ request.path }}?scope=all&type={{ material_type }}">
+
+                        <button type="submit" class="bookmarkBtn">
+
+                            {% if material.id in bookmarked_ids %}
+                                <img src="{% static 'assets/bookmark-selected.svg' %}"
+                                    alt="북마크 선택">
+                            {% else %}
+                                <img src="{% static 'assets/bookmark-non.svg' %}"
+                                    alt="북마크 선택 안됨">
+                            {% endif %}
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+                <p class="empty-text">등록된 자료가 없어요.</p>
+            {% endfor %}
+
+        </div>
+
     </div>
-  {% endif %}
+
+    {% endif %}
+
+    <footer class="tapBar">
+        <a href="{% url 'my_major' %}" class="footerTap">
+            <img src="{% static 'assets/mymajor-none.svg' %}" alt="내 전공 선택안됨" style="opacity:0.6;">
+            <p class="tapName">내 전공</p>
+        </a>
+
+        <a href="{% url 'post_list' %}" class="footerTap">
+            <img src="{% static 'assets/together-none.svg' %}" alt="함께 선택안됨">
+            <p class="tapName">함께</p>
+        </a>
+
+        <a href="{% url 'material_list' %}" class="footerTapActive">
+            <img src="{% static 'assets/materials-selected.svg' %}" alt="자료실 선택됨">
+            <p class="tapNameActive">자료실</p>
+        </a>
+    </footer>
+
 </div>
-{% endblock %}
+
+<script src="{% static 'js/materials.js' %}"></script>
+
+</body>
+</html>

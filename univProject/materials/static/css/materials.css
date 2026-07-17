@@ -1,0 +1,279 @@
+/*내 단계 맞춤 자료*/
+
+.tabSelection {
+    display: flex;
+    flex-direction: row;
+
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-bottom: 6px;
+
+    justify-content:space-between;
+}
+
+.tabSelection a{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.tabSelected{
+    color:#17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+
+    border-bottom: 2px solid #000000;
+    padding-bottom: 6px;
+}
+
+.tab{
+    color: rgba(23, 33, 30, 0.60);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+.cardExplanation{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    margin-top: 25px;
+    padding-bottom: 6px;
+
+    gap: 7px;
+}
+
+.majorTitle{
+    color:#20CDB1;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.comments{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 120%; 
+}
+
+.myStepTab{
+    padding: 20px 0px 20px 0px;
+}
+
+.materialCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 8px;
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.materialTitle{
+    color:#17211E;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.materialThumbnail{
+    width: 100%;
+    height: 202px;
+
+    overflow: hidden;
+}
+
+.materialThumbnail img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+.materialCardFooter{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+.materialDuration{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 4px;
+}
+
+.materialName{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.materialExplain{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}
+
+/*북마크는 '전체 전공 자료 내용'에서도 동일하게 사용*/
+
+.bookmarkBtn{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.bookmarkBtn:focus{
+    outline:none;
+}
+
+.bookmarkActivated{
+    display: none;
+}
+
+/*전체 전공 자료 내용*/
+
+.category{
+    width: 75%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    gap: 9px;
+
+    margin-bottom: 20px;
+}
+
+.categoryOption{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 10px;
+    padding: 6px 12px;
+
+    border-radius: 100px;
+    opacity: 0.9;
+    background: #F5F7F6;
+
+    color: rgba(23, 33, 30, 0.80);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+
+    text-align: center;
+
+    cursor: pointer;
+}
+
+.categoryOption.categoryActivated{
+    border-radius: 100px;
+    opacity: 0.9;
+    background:#20CDB1; 
+
+    color:#FFFFFF;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+
+    text-align: center;
+}
+
+.categoryList{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 8px;
+}
+
+.programCategory,
+.lectureCategory,
+.bookCategory{
+    display: none;
+}
+
+.categoryCard{
+    width:100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+.categoryThumbnail{
+    width: 160px;
+    height: 160px;
+
+    overflow: hidden;
+}
+
+.categoryThumbnail img{
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    display: block;
+}
+
+.categoryCardFooter{
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 8px;
+}
+
+.categoryDuration{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 4px;
+}
+
+.categoryName{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.categoryExplain{
+    color:#17211E;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120%;
+}

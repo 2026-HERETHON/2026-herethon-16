@@ -62,17 +62,11 @@
 }
 
 .tapName{
-    color: #17211E;
+    color: var(--Color-Text, #17211E);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: 120%;
 
     text-align: center;
-}
-
-.footerTap,
-.footerTapActive {
-    text-decoration: none;
-    color: inherit;
 }
