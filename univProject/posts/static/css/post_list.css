@@ -188,7 +188,7 @@ h1 {
 .box {
     display: flex;
     width: 333px;
-    padding: 16px 18px;
+    padding: 16px 18px 25px 18px;
     flex-direction: column;
     gap: 12px;
     border-radius: 20px;
@@ -610,6 +610,7 @@ a {
 
 .profile {
     display: flex;
+    align-items: center;
     gap: 9px;
 }
 
