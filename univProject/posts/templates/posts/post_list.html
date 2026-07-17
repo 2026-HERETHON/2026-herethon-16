@@ -139,11 +139,12 @@
             {% csrf_token %}
             <input type="text" name="title" placeholder="제목을 입력해주세요." class="modal_title" required>
             <p class="category_title">카테고리 선택</p>
+            <input type="hidden" name="category" id="category-input" value="">
             <div class="category">
-              <button class="cate-btn">전체</button>
-              <button class="cate-btn">질문</button>
-              <button class="cate-btn">정보 공유</button>
-            </div>
+              <button type="button" class="cate-btn" data-value="">전체</button>
+              <button type="button" class="cate-btn" data-value="question">질문</button>
+            <button type="button" class="cate-btn" data-value="info">정보 공유</button>
+          </div>
             <textarea name="content" placeholder="자유롭게 내용을 입력해주세요.&#10;(1,000자 이내)" rows="8" required></textarea>
             <button type="submit" class="btn-primary">게시글 등록하기</button>
           </form>

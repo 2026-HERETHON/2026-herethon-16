@@ -14,9 +14,12 @@ from curriculums.models import LessonReflection, LessonProgress, ReflectionCheer
 def post_list(request):
     major = request.user.profile.selectedMajor
     scope = request.GET.get('scope', 'major')
+    category = request.GET.get('category')  # 추가
 
     if scope == 'all':
         posts = Post.objects.select_related('author', 'major').order_by('-created_at')
+        if category:  # 추가
+            posts = posts.filter(category=category)
     else:
         posts = Post.objects.filter(major=major).select_related('author').order_by('-created_at')
 
@@ -24,7 +27,9 @@ def post_list(request):
         'posts': posts,
         'major': major,
         'scope': scope,
+        'category': category,  
     }
+
 
     if scope == 'major':
         # 우리 전공 화면용 데이터
@@ -98,12 +103,15 @@ def post_create(request):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
+        category = request.POST.get('category') or None 
 
         post = Post.objects.create(
             author=request.user,
             major=request.user.profile.selectedMajor,
             title=title,
             content=content,
+            category=category,
+        
         )
         return redirect('post_detail', post_id=post.id)
 
