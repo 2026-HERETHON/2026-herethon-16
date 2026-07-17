@@ -22,16 +22,3 @@ filters.forEach(filter => {
         location.href = page;
     });
 });
-
-// ==============================
-// Footer Navigation
-// (추후 구현 예정)
-// ==============================
-
-// const footerTabs = document.querySelectorAll(".footerTap, .footerTapActive");
-
-// footerTabs.forEach(tab => {
-//     tab.addEventListener("click", () => {
-//
-//     });
-// });
