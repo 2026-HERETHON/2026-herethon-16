@@ -53,48 +53,45 @@
 
             {% for material in section.materials %}
 
-            <div class="materialCard">
+                <div class="materialCard">
 
-                <div class="materialThumbnail">
-                    <img src="{% static 'assets/library/thumb_m01_s1_ai_digital_baeum.png' %}"
-                        alt="{{ material.title }}">
-                </div>
-
-                <div class="materialCardFooter">
-
-                    <div class="materialDuration">
-                        <div class="materialName">{{ material.title }}</div>
-                        <div class="materialExplain">{{ material.duration_text }}</div>
+                    <div class="materialThumbnail">
+                        <img src="{% static 'assets/library/thumb_m01_s1_ai_digital_baeum.png' %}"
+                            alt="{{ material.title }}">
                     </div>
 
-                    <form method="post"
-                          action="{% url 'material_bookmark_toggle' material.id %}">
-                        {% csrf_token %}
+                    <div class="materialCardFooter">
 
-                        <input type="hidden"
-                              name="next"
-                              value="{{ request.path }}?scope=stage">
+                        <div class="materialDuration">
+                            <div class="materialName">{{ material.title }}</div>
+                            <div class="materialExplain">{{ material.duration_text }}</div>
+                        </div>
 
-                        <button type="submit" class="bookmarkBtn">
+                        <form method="post"
+                            action="{% url 'material_bookmark_toggle' material.id %}">
+                            {% csrf_token %}
 
-                            {% if material.id in bookmarked_ids %}
-                                <img src="{% static 'assets/bookmark-selected.svg' %}"
-                                    alt="북마크 선택">
-                            {% else %}
-                                <img src="{% static 'assets/bookmark-non.svg' %}"
-                                    alt="북마크 선택 안됨">
-                            {% endif %}
+                            <input type="hidden"
+                                name="next"
+                                value="{{ request.path }}?scope=stage">
 
-                        </button>
+                            <button type="submit" class="bookmarkBtn">
 
-                    </form>
+                                {% if material.id in bookmarked_ids %}
+                                    <img src="{% static 'assets/bookmark-selected.svg' %}"
+                                        alt="북마크 선택">
+                                {% else %}
+                                    <img src="{% static 'assets/bookmark-non.svg' %}"
+                                        alt="북마크 선택 안됨">
+                                {% endif %}
+
+                            </button>
+
+                        </form>
+
+                    </div>
 
                 </div>
-
-            </div>
-
-            {% empty %}
-                <p class="empty-text">추천 자료가 아직 없어요.</p>
             {% endfor %}
 
         {% empty %}
