@@ -143,7 +143,7 @@ h1 {
     margin-bottom: 7px;
 }
 
-.black_board{
+.black_board {
     color: #17211E !important;
     font-size: 18px;
     font-style: normal;
@@ -219,7 +219,7 @@ h1 {
     line-height: 120%;
 }
 
-.box_content {
+.reflection-quote {
     color: #17211E;
     text-align: center;
     font-size: 16px;
@@ -228,7 +228,7 @@ h1 {
     line-height: 120%;
 }
 
-.box_btn {
+.cheer-btn {
     display: flex;
     width: 297px;
     padding: 8px 12px;
@@ -238,13 +238,23 @@ h1 {
     border: 1px solid var(--Color-Button, #4DD7C1);
     background: var(--Color-Background, #FFF);
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 
-.box_btn.active {
+.cheer-btn.active {
     /* 활성화 상태: 민트색 배경에 흰색 글자 */
     background-color: #4DD7C1;
     border: 1px solid #4DD7C1;
     color: #FFF;
+}
+
+.cheer-count {
+    color: var(--Color-Text, #17211E) !important;
+    text-align: right;
+    font-size: 12px !important;
+    font-style: normal !important;
+    font-weight: 300 !important;
+    line-height: 120% !important;
 }
 
 .post-board {
@@ -474,7 +484,8 @@ a {
 
 /* base html 부분 디자인 */
 
-.tapBar{
+
+.tapBar {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
@@ -499,7 +510,7 @@ a {
     z-index: 1000;
 }
 
-.footerTapActive{
+.footerTapActive {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -507,13 +518,13 @@ a {
     gap: 3px;
 }
 
-.footerTapActive > svg{
+.footerTapActive>svg {
     width: 24px;
     height: 20px;
 }
 
-.tapNameActive{
-    color:#20CDB1;
+.tapNameActive {
+    color: #20CDB1;
     font-size: 14px;
     font-style: normal;
     font-weight: 500;
@@ -521,7 +532,7 @@ a {
     text-align: center;
 }
 
-.footerTap{
+.footerTap {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -529,12 +540,12 @@ a {
     gap: 3px;
 }
 
-.footerTap > svg{
+.footerTap>svg {
     width: 24px;
     height: 20px;
 }
 
-.tapName{
+.tapName {
     color: var(--Color-Text, #17211E);
     font-size: 14px;
     font-style: normal;
@@ -544,7 +555,7 @@ a {
     text-align: center;
 }
 
-/* 전체게시판 */
+/* 잇대 전체 - 전체게시판 */
 
 .board-filter {
     display: flex;
@@ -571,9 +582,15 @@ a {
     background: var(--Color-Surface, #F5F7F6);
 }
 
+.board-filter .filter-tag.active {
+    background-color: #4DD7C1 !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
 
 /* 잇대전체 디자인 */
-.weekly-mates > h3 {
+.weekly-mates>h3 {
     margin-left: 29px;
     margin-top: 22px;
     margin-bottom: 15px;
@@ -618,13 +635,8 @@ a {
     line-height: 120%;
 }
 
-.board-filter .filter-tag.active {
-  background-color: #4DD7C1 !important;
-  color: #ffffff !important;
-  font-weight: bold !important;
-}
 
-.scroll-box{
+.scroll-box {
     display: flex;
     gap: 18px;
     overflow-x: scroll;
