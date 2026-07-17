@@ -322,11 +322,12 @@ a {
     line-height: 120%;
 }
 
+/* 
 .post-stats span {
     display: inline-flex;
     align-items: center;
     gap: 4px;
-}
+} */
 
 .together {
     position: relative;
@@ -668,3 +669,14 @@ textarea:not(:placeholder-shown) {
     display: none;
 }
 
+/*좋아요 버튼*/
+.heartButton {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.heartFull {
+    display: none;
+}
