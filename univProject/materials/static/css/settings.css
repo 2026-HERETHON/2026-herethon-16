@@ -1,0 +1,43 @@
+/*기본 초기화설정*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*폰트 설정*/ 
+body {
+    font-family: "Pretendard", sans-serif;
+}
+
+/*레이아웃 설정*/
+html,
+body {
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+
+    background: #F5F5F5;
+
+    min-height: 100vh;
+}
+
+.app {
+    width: 100%;
+    max-width: 390px;
+    min-height: 100vh;
+
+    background: #FFFFFF;
+
+    position: relative;
+
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    padding-bottom: 72px;
+}
