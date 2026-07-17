@@ -189,7 +189,7 @@ body {
 }
 
 
-.like-heart.active .like-heart path {
+.like-btn.active .like-heart path {
     fill: #FF383C !important;
     fill-opacity: 1 !important;
     color: #FF383C !important;
