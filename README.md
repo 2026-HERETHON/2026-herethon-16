@@ -38,14 +38,14 @@
         <sub>01 · EXPLORE</sub>
         <h3>탐색 학기</h3>
         <p>설문과 체험으로 찾는<br /><strong>나의 전공</strong></p>
-        <p>해온 경험과 관심사를 돌아보고,<br />추천받은 전공을 체험한 뒤 선택해요.</p>
+        <p>해온 경험과<br />관심사를 돌아보고,<br />추천받은 전공을<br />체험한 뒤 선택해요.</p>
       </td>
       <td width="23%" align="center"><img src="readme_images/screenshots/my-major.jpg" width="210" alt="내 전공: 오늘의 학습과 단계별 수업 화면" /></td>
       <td width="27%" valign="middle">
         <sub>02 · LEARN</sub>
         <h3>내 전공</h3>
         <p>오늘의 학습부터<br /><strong>전공 로드맵까지</strong></p>
-        <p>진행 중인 수업과 결과물을 확인하고,<br />나의 속도로 다음 단계를 이어가요.</p>
+        <p>진행 중인 수업과<br />결과물을 확인하고,<br />나의 속도로 다음 단계를 이어가요.</p>
       </td>
     </tr>
   </tbody>
@@ -64,7 +64,7 @@
         <sub>04 · TOGETHER</sub>
         <h3>함께</h3>
         <p>동료와 나누는<br /><strong>배움과 응원</strong></p>
-        <p>같은 단계의 동료와 소감을 나누고,<br />게시판에서 질문과 정보를 주고받아요.</p>
+        <p>같은 단계의 동료와<br />소감을 나누고,<br />게시판에서 질문과 정보를 주고받아요.</p>
       </td>
     </tr>
   </tbody>
