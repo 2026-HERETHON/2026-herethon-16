@@ -31,41 +31,44 @@
 ## 02 · 주요 기능
 
 <table>
-  <tr>
-    <td width="23%" align="center"><img src="readme_images/screenshots/exploration.jpg" width="210" alt="탐색 학기: 실제 설문 선택 화면" /></td>
-    <td width="27%" valign="middle">
-      <sub>01 · EXPLORE</sub>
-      <h3>탐색 학기</h3>
-      <p>설문과 체험으로 찾는<br /><strong>나의 전공</strong></p>
-      <p>해온 경험과 관심사를 돌아보고,<br />추천받은 전공을 체험한 뒤 선택해요.</p>
-    </td>
-    <td width="23%" align="center"><img src="readme_images/screenshots/my-major.jpg" width="210" alt="내 전공: 오늘의 학습과 단계별 수업 화면" /></td>
-    <td width="27%" valign="middle">
-      <sub>02 · LEARN</sub>
-      <h3>내 전공</h3>
-      <p>오늘의 학습부터<br /><strong>전공 로드맵까지</strong></p>
-      <p>진행 중인 수업과 결과물을 확인하고,<br />나의 속도로 다음 단계를 이어가요.</p>
-    </td>
-  </tr>
-  <tr>
-    <td align="center"><img src="readme_images/screenshots/materials.jpg" width="210" alt="자료실: 전공 자료 목록과 북마크 화면" /></td>
-    <td valign="middle">
-      <sub>03 · LIBRARY</sub>
-      <h3>자료실</h3>
-      <p>필요한 전공 자료를<br /><strong>한곳에</strong></p>
-      <p>내 단계에 맞는 자료와 전체 전공 자료를<br />살펴보고, 필요한 자료를 담아둬요.</p>
-    </td>
-    <td align="center"><img src="readme_images/screenshots/community.jpg" width="210" alt="함께: 동료의 학습 소감, 응원과 전공 게시판 화면" /></td>
-    <td valign="middle">
-      <sub>04 · TOGETHER</sub>
-      <h3>함께</h3>
-      <p>동료와 나누는<br /><strong>배움과 응원</strong></p>
-      <p>같은 단계의 동료와 소감을 나누고,<br />게시판에서 질문과 정보를 주고받아요.</p>
-    </td>
-  </tr>
-</table>
+  <tbody>
+    <tr>
+      <td width="23%" align="center"><img src="readme_images/screenshots/exploration.jpg" width="210" alt="탐색 학기: 실제 설문 선택 화면" /></td>
+      <td width="27%" valign="middle">
+        <sub>01 · EXPLORE</sub>
+        <h3>탐색 학기</h3>
+        <p>설문과 체험으로 찾는<br /><strong>나의 전공</strong></p>
+        <p>해온 경험과 관심사를 돌아보고,<br />추천받은 전공을 체험한 뒤 선택해요.</p>
+      </td>
+      <td width="23%" align="center"><img src="readme_images/screenshots/my-major.jpg" width="210" alt="내 전공: 오늘의 학습과 단계별 수업 화면" /></td>
+      <td width="27%" valign="middle">
+        <sub>02 · LEARN</sub>
+        <h3>내 전공</h3>
+        <p>오늘의 학습부터<br /><strong>전공 로드맵까지</strong></p>
+        <p>진행 중인 수업과 결과물을 확인하고,<br />나의 속도로 다음 단계를 이어가요.</p>
+      </td>
+    </tr>
+  </tbody>
 
-<sub>위 이미지는 저장소의 Django 앱을 로컬에서 실행하여 직접 캡처한 실제 화면입니다. 전공 탐색은 저장소의 원본 데이터를 사용했으며, 저장소에 없는 수업·자료·게시글과 계정은 시연 데이터로 구성했습니다. <a href="docs/README_ASSETS.md">캡처 환경 및 데이터 안내</a></sub>
+  <tbody>
+    <tr>
+      <td align="center"><img src="readme_images/screenshots/materials.jpg" width="210" alt="자료실: 전공 자료 목록과 북마크 화면" /></td>
+      <td valign="middle">
+        <sub>03 · LIBRARY</sub>
+        <h3>자료실</h3>
+        <p>필요한 전공 자료를<br /><strong>한곳에</strong></p>
+        <p>내 단계에 맞는 자료와<br />전체 전공 자료를 살펴보고,<br />필요한 자료를 담아둬요.</p>
+      </td>
+      <td align="center"><img src="readme_images/screenshots/community.jpg" width="210" alt="함께: 동료의 학습 소감, 응원과 전공 게시판 화면" /></td>
+      <td valign="middle">
+        <sub>04 · TOGETHER</sub>
+        <h3>함께</h3>
+        <p>동료와 나누는<br /><strong>배움과 응원</strong></p>
+        <p>같은 단계의 동료와 소감을 나누고,<br />게시판에서 질문과 정보를 주고받아요.</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <br /><br />
 
